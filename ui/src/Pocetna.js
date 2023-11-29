@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 //import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
-import PrikazProizvoda from './Kartica'
+//import PrikazProizvoda from './Kartica'
 import axios from 'axios';
 
 const Pocetna = () => {
@@ -18,7 +18,7 @@ const Pocetna = () => {
     const stilCeleStranice = {
         textAlign: 'center',
         backgroundSize: 'cover',
-        backgroundImage: `url('Pozadine/pozadinaPocetna.jpg')`,
+        //backgroundImage: `url('Pozadine/pozadinaPocetna.jpg')`,
         backgroundPosition: 'center',
         height: '100vh',
         display: 'flex',
@@ -66,11 +66,11 @@ const Pocetna = () => {
                     </li>
                 </ul>
             </div>
-            <div className="kontejner" style={stilKontejneraZaKartice}>
+            {/* <div className="kontejner" style={stilKontejneraZaKartice}>
                 {data.map((proizvod, index) => (
                     <PrikazProizvoda key={index} proizvod={proizvod} />
                 ))}
-            </div>
+            </div> */}
         </div>
     );
 }
