@@ -17,42 +17,42 @@ proizvodi = [
         naziv = 'Plazma torta',
         cena = 490,
         valuta = 'RSD',
-        količina = 3,
+        kolicina = 3,
         slika = 'Proizvodi/plazma.jpg'
     ),
     Proizvod(
         naziv = 'Nugat torta', 
         cena = 520, 
         valuta = 'RSD',
-        količina = 5, 
+        kolicina = 5, 
         slika = 'Proizvodi/nugat.jpg'
     ),
     Proizvod(
         naziv = 'Pistać Malina torta',
         cena = 590,
         valuta = 'RSD',
-        količina = 3,
+        kolicina = 3,
         slika = 'Proizvodi/pistacmalina.jpg'
     ),
     Proizvod(
         naziv = 'Chocco torta',
         cena = 550,
         valuta = 'RSD',
-        količina = 8,
+        kolicina = 8,
         slika = 'Proizvodi/choco.jpg'
     ),
     Proizvod(
         naziv = 'Cherry torta', 
         cena = 590, 
         valuta = 'RSD',
-        količina = 20, 
+        kolicina = 20, 
         slika = 'Proizvodi/cherry.jpg'
     ),
      Proizvod(
         naziv = 'Jagoda torta', 
         cena = 600, 
         valuta = 'RSD',
-        količina = 12, 
+        kolicina = 12, 
         slika = 'Proizvodi/jagoda.jpg'
     )
 ]
