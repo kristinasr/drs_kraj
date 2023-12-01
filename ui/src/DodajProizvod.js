@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-//import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -15,7 +15,7 @@ const DodajProizvod = () => {
 
     const stilKontejnera = {
         textAlign: 'center',
-        backgroundColor: 'white',
+        backgroundColor: 'beige',
         marginLeft: '950px',
         width: '370px',
         height: '260px'
@@ -33,8 +33,8 @@ const DodajProizvod = () => {
     };
 
     const stilZaUnos = {
-        fontFamily: 'Arial',
-        color: 'blue',
+        fontFamily: 'Times New Roman',
+        color: 'black',
     };
 
     const stilZaDugme = {
@@ -51,7 +51,7 @@ const DodajProizvod = () => {
 
     const stilCeleStranice = {
         textAlign: 'center',
-        backgroundImage: `url('Pozadine/proizvodi.jpg')`,
+        backgroundImage: `url('Pozadine/pozadinaPocetna.jpg')`,
         backgroundSize: 'cover',
         height: '100vh',
         display: 'flex',

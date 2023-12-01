@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-//import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 
 const IzmenaProfila = () => {
@@ -29,7 +29,7 @@ const IzmenaProfila = () => {
 
     const stilKontejnera = {
         textAlign: 'center',
-        backgroundColor: 'white',
+        backgroundColor: 'beige',
         width: '320px',
         height: '400px'
     };
@@ -47,7 +47,7 @@ const IzmenaProfila = () => {
 
     const stilZaUnos = {
         fontFamily: 'Times New Roman',
-        color: 'blue',
+        color: 'black',
     };
 
     const stilZaDugme = {
@@ -64,7 +64,7 @@ const IzmenaProfila = () => {
 
     const stilCeleStranice = {
         textAlign: 'center',
-        backgroundImage: `url('Pozadine/profil.jpg')`,
+        backgroundImage: `url('Pozadine/pozadinaPocetna.jpg')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         height: '100vh',
@@ -75,28 +75,28 @@ const IzmenaProfila = () => {
 
     const sacuvajIzmene = () => {
         if (ime.length === 0 || /\d/.test(ime) || !/^[a-zA-Z\s]*$/.test(ime)) {
-            alert("Polje mora biti popunjeno!")
+            alert("Polje za ime mora biti popunjeno!")
         }
         else if (prezime.length === 0 || /\d/.test(prezime) || !/^[a-zA-Z\s]*$/.test(prezime)) {
-            alert("Polje mora biti popunjeno!")
+            alert("Polje za prezime mora biti popunjeno!")
         }
         else if (adresa.length === 0 || !/^[a-zA-Z0-9\s]+$/.test(adresa)) {
-            alert("Polje mora biti popunjeno!")
+            alert("Polje za adresu mora biti popunjeno!")
         }
         else if (grad.length === 0 || /\d/.test(grad) || !/^[a-zA-Z\s]*$/.test(grad)) {
-            alert("Polje mora biti popunjeno!")
+            alert("Polje za grad mora biti popunjeno!")
         }
         else if (drzava.length === 0 || /\d/.test(drzava) || !/^[a-zA-Z\s]*$/.test(drzava)) {
-            alert("Polje mora biti popunjeno!")
+            alert("Polje za drzavu mora biti popunjeno!")
         }
         else if (brojTelefona.length === 0 || /^[a-zA-Z]*$/.test(brojTelefona)) {
-            alert("Polje mora biti popunjeno!")
+            alert("Polje za telefon mora biti popunjeno!")
         }
         else if (email.length === 0 || !/^[a-zA-Z0-9@.]*$/.test(email)) {
-            alert("Polje mora biti popunjeno!")
+            alert("Polje za email mora biti popunjeno!")
         }
         else if (lozinka.length === 0 || lozinka.length < 6) {
-            alert("Polje mora biti popunjeno!")
+            alert("Polje za lozinku mora biti popunjeno!")
         }
         else {
             axios.post('http://127.0.0.1:3000/Profil', {
@@ -166,7 +166,7 @@ const IzmenaProfila = () => {
                             <td colSpan="2" align="right" style={{ padding: '0 40px 0 0' }}>
                                 <input
                                     className="btn btn-outline-primary"
-                                    id="registracijaDugme"
+                                    id="izmenaProfilaDugme"
                                     style={stilZaDugme}
                                     type="submit"
                                     value="Sačuvaj izmene"

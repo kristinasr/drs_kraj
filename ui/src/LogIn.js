@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-//import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -11,8 +11,8 @@ const Prijava = () => {
 
     const stilKontejnera = {
         textAlign: 'center',
-        backgroundColor: 'white',
-        width: '280px',
+        backgroundColor: 'beige',
+        width: '350px',
         height: '180px'
     };
 
@@ -29,12 +29,15 @@ const Prijava = () => {
 
     const stilZaUnos = {
         fontFamily: 'Times New Roman',
-        color: 'blue',
+        color: 'black',
     };
 
     const stilZaDugme = {
         fontFamily: 'Times New Roman',
         fontWeight: 'bold',
+        border: '0.5px solid black',
+        backgroundColor:'white',
+        color:'black',
     };
 
     const stilNaslova = {
@@ -46,7 +49,7 @@ const Prijava = () => {
 
     const stilCeleStranice = {
         textAlign: 'center',
-        backgroundImage: `url('Pozadine/pozadinaPiR.jpg')`,
+        backgroundImage: `url('Pozadine/pozadinaPocetna.jpg')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         height: '100vh',
@@ -91,20 +94,20 @@ const Prijava = () => {
             <div style={stilZaNavBar}>
                 <ul className="nav nav-pills nav-fill">
                     <li className="nav-item">
-                        <Link to="/" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Početna</Link>
+                        <Link to="/" className="nav-link" style={{ color: 'black', fontWeight: "bold" }}>Početna</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/Prijava" className="nav-link active" style={{ color: 'yellow', fontWeight: "bold" }}>Prijava</Link>
+                        <Link to="/Prijava" className="nav-link active" style={{ color: 'black', fontWeight: "bold" }}>Prijava</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/Registracija" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Registracija</Link>
+                        <Link to="/Registracija" className="nav-link" style={{ color: 'black', fontWeight: "bold" }}>Registracija</Link>
                     </li>
                 </ul>
             </div>
             <div className='prijava'>
                 <div className="kontejner" style={stilKontejnera}>
                     <div className="forma" style={stilForme}>
-                        <h1 style={stilNaslova}>Prijavljivanje</h1>
+                        <h1 style={stilNaslova}>Prijava</h1>
                         <table style={{ margin: 'auto', borderSpacing: '0 5px', borderCollapse: 'separate' }}>
                             <tr>
                                 <th style={stilZaLabelu}>Email:</th>
@@ -141,7 +144,7 @@ const Prijava = () => {
                                         id="prijavaDugme"
                                         style={stilZaDugme}
                                         type="submit"
-                                        value="Prijava"
+                                        value="Prijavi se"
                                         onClick={prijavaKorisnika}
                                     />
                                 </td>

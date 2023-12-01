@@ -12,8 +12,8 @@ def slanje_emaila(predmet, telo, to_email):
     message['Predmet'] = predmet
     message.attach(MIMEText(telo, 'plain'))
 
-#promeni 587 
-    with smtplib.SMTP('smtp.gmail.com', 587) as server:
+
+    with smtplib.SMTP('smtp.gmail.com', 0) as server:
         server.starttls()
         server.login(korisnik, lozinka)
         server.sendmail(korisnik, to_email, message.as_string())

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-//import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -17,8 +17,8 @@ const Registracija = () => {
 
     const stilKontejnera = {
         textAlign: 'center',
-        backgroundColor: 'white',
-        width: '320px',
+        backgroundColor: 'beige',
+        width: '500px',
         height: '400px'
     };
 
@@ -35,12 +35,15 @@ const Registracija = () => {
 
     const stilZaUnos = {
         fontFamily: 'Times New Roman',
-        color: 'blue',
+        color: 'black',
     };
 
     const stilZaDugme = {
         fontFamily: 'Times New Roman',
         fontWeight: 'bold',
+        backgroundColor: "white",
+        color: 'black',
+        border: '0.5px solid black',
     };
 
     const stilNaslova = {
@@ -52,7 +55,7 @@ const Registracija = () => {
 
     const stilCeleStranice = {
         textAlign: 'center',
-        backgroundImage: `url('Pozadine/pozadinaPiR.jpg')`,
+        backgroundImage: `url('Pozadine/pozadinaPocetna.jpg')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         height: '100vh',
@@ -84,7 +87,7 @@ const Registracija = () => {
         else if (drzava.length === 0 || /\d/.test(drzava) || !/^[a-zA-Z\s]*$/.test(drzava)) {
             alert("Polje mora biti popunjeno!")
         }
-        else if (brojTelefona.length === 0 || /^[a-zA-Z]*$/.test(brTel)) {
+        else if (brojTelefona.length === 0 || /^[a-zA-Z]*$/.test(brojTelefona)) {
             alert("Polje mora biti popunjeno!")
         }
         else if (email.length === 0 || !/^[a-zA-Z0-9@.]*$/.test(email)) {
@@ -100,7 +103,7 @@ const Registracija = () => {
                 adresa: adresa,
                 grad: grad,
                 drzava: drzava,
-                brojTelfona: brojTelefona,
+                brojTelefona: brojTelefona,
                 email: email,
                 lozinka: lozinka
             })
@@ -114,13 +117,13 @@ const Registracija = () => {
             <div style={stilZaNavBar}>
                 <ul className="nav nav-pills nav-fill">
                     <li className="nav-item">
-                        <Link to="/" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Početna</Link>
+                        <Link to="/" className="nav-link" style={{ color: 'black', fontWeight: "bold" }}>Početna</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/Prijava" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Prijava</Link>
+                        <Link to="/Prijava" className="nav-link" style={{ color: 'black', fontWeight: "bold" }}>Prijava</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/Registracija" className="nav-link active" style={{ color: 'yellow', fontWeight: "bold" }}>Registracija</Link>
+                        <Link to="/Registracija" className="nav-link active" style={{ color: 'black', fontWeight: "bold" }}>Registracija</Link>
                     </li>
                 </ul>
             </div>

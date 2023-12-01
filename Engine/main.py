@@ -3,14 +3,11 @@ from flask_cors import CORS
 from EmailObaveštenje import slanje_emaila
 from Proizvod import Proizvod
 from Korisnik import Korisnik
-import os
+from putanjaDoFajla import odrediPutanju
 
 app = Flask(__name__)
 
-def odrediPutanju(putanjaDoFajla):
-    nazivFajla = os.path.basename(putanjaDoFajla)
-    novaPutanja = f"Proizvodi/{nazivFajla}"
-    return novaPutanja
+CORS(app, supports_credentials=True)
 
 proizvodi = [
     Proizvod(
@@ -48,7 +45,7 @@ proizvodi = [
         kolicina = 20, 
         slika = 'Proizvodi/cherry.jpg'
     ),
-     Proizvod(
+    Proizvod(
         naziv = 'Jagoda torta', 
         cena = 600, 
         valuta = 'RSD',
@@ -70,6 +67,8 @@ Korisnici = [
     )
 ]
 
+prijavljen = None
+
 @app.route('/Prijava', methods=['POST'])
 def prijava():
     
@@ -86,12 +85,11 @@ def prijava():
 
    
     response_data = {
-        "message": "Uspešno primljeni podaci!",
+        "message": "Uspešna prijava!",
         "email": email,
         "lozinka": lozinka
     }
 
-    
     return jsonify(response_data), 200
 
 
@@ -117,7 +115,7 @@ def registracija():
     slanje_emaila(predmet, telo, to_email)
     
     response_data = {
-        "message": "Podaci su uspešno primljeni!",
+        "message": "Podaci za registraciju su uspešno primljeni!",
         "email": email,
         "lozinka": lozinka,
         "ime": ime,
@@ -128,7 +126,6 @@ def registracija():
         "brojTelefona": brojTelefona
     }
 
-    
     return jsonify(response_data), 200
 
 
@@ -145,9 +142,8 @@ def dodajProizvod():
 
     proizvodi.append(Proizvod(naziv, cena, valuta, kolicina, slika))
     
-    app.logger.info(f"\nNaziv: {naziv}\ncena: {cena}\nvaluta: {valuta}\nkolicina {kolicina}\nslika {slika}")
+    app.logger.info(f"\nNaziv: {naziv}\ncena: {cena}\nvaluta: {valuta}\nkolicina: {kolicina}\nslika: {slika}")
 
-    
     response_data = {
         "message": "Podaci uspešno primljeni",
         "naziv": naziv,
@@ -156,9 +152,7 @@ def dodajProizvod():
         "kolicina": kolicina,
     }
 
-    
     return jsonify(response_data), 200
-
 
 @app.route('/Profil', methods=['POST'])
 def izmeniProfil():
@@ -170,6 +164,7 @@ def izmeniProfil():
     brojTelefona = request.json['brojTelefona']
     email = request.json['email']
     lozinka = request.json['lozinka']
+
     global prijavljen
 
     for korisnik in Korisnici:
@@ -197,7 +192,7 @@ def izmeniProfil():
         if korisnik.lozinka != lozinka:
             prijavljen.lozinka = lozinka
 
-    app.logger.info(f"Email: {email}, Password: {lozinka}")
+    app.logger.info(f"Email: {email}, Lozinka: {lozinka}")
 
     app.logger.info(f"Ime: {ime}, Prezime: {prezime}, Adresa: {adresa}, Grad: {grad}, Drzava: {drzava}, Broj: {brojTelefona}, Email: {email}, Lozinka: {lozinka}")
 
@@ -236,7 +231,7 @@ def posaljiProizvod():
             'naziv': proizvod.naziv,
             'cena': proizvod.cena,
             'valuta': proizvod.valuta,
-            'količina': proizvod.količina,
+            'kolicina': proizvod.kolicina,
             'slika': proizvod.slika,
         }
         for proizvod in proizvodi
@@ -246,7 +241,8 @@ def posaljiProizvod():
 
 
 @app.route('/Profil', methods=['GET'])
-def izmeniProfil():
+def izmeniProfilGet():
+
     global prijavljen
 
     data = {}
@@ -267,4 +263,4 @@ def izmeniProfil():
 
 # Main
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False, port=3000)
