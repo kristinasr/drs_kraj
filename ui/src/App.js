@@ -15,7 +15,7 @@ function App() {
           <Route path="/" element={<Pocetna />} ></Route>
           <Route path="/Prijava" element={<Prijava />} ></Route>
           <Route path="/Registracija" element={<Registracija />} ></Route>
-          <Route path="/Proizvod" element={<DodajProizvod />} ></Route> 
+          <Route path="/Proizvod" element={<DodajProizvod />} ></Route>
           <Route path="/Profil" element={<IzmenaProfila />} ></Route>
           <Route path="/Uzivo" element={<UzivoPracenjeKupovina />} ></Route>
         </Routes>

@@ -3,54 +3,54 @@ from flask_cors import CORS
 from EmailObaveštenje import slanje_emaila
 from Proizvod import Proizvod
 from Korisnik import Korisnik
-from putanjaDoFajla import odrediPutanju
+from putanjaDoSlike import odrediPutanju
 
 app = Flask(__name__)
 
 CORS(app, supports_credentials=True)
 
-proizvodi = [
+Proizvodi = [
     Proizvod(
-        naziv = 'Plazma torta',
-        cena = 490,
-        valuta = 'RSD',
-        kolicina = 3,
-        slika = 'Proizvodi/plazma.jpg'
+        naziv= 'Plazma torta',
+        cena=  490,
+        valuta= 'RSD',
+        kolicina= 3,
+        slika= 'Proizvodi/plazma.jpg'
     ),
     Proizvod(
-        naziv = 'Nugat torta', 
-        cena = 520, 
-        valuta = 'RSD',
-        kolicina = 5, 
-        slika = 'Proizvodi/nugat.jpg'
+        naziv= 'Nugat torta', 
+        cena= 520, 
+        valuta= 'RSD',
+        kolicina= 5, 
+        slika= 'Proizvodi/nugat.jpg'
     ),
     Proizvod(
-        naziv = 'Pistać Malina torta',
-        cena = 590,
-        valuta = 'RSD',
-        kolicina = 3,
-        slika = 'Proizvodi/pistacmalina.jpg'
+        naziv= 'Pistać Malina torta',
+        cena= 590,
+        valuta= 'RSD',
+        kolicina= 3,
+        slika= 'Proizvodi/pistacmalina.jpg'
     ),
     Proizvod(
-        naziv = 'Chocco torta',
-        cena = 550,
-        valuta = 'RSD',
-        kolicina = 8,
-        slika = 'Proizvodi/choco.jpg'
+        naziv= 'Chocco torta',
+        cena= 550,
+        valuta= 'RSD',
+        kolicina= 8,
+        slika= 'Proizvodi/choco.jpg'
     ),
     Proizvod(
-        naziv = 'Cherry torta', 
-        cena = 590, 
-        valuta = 'RSD',
-        kolicina = 20, 
-        slika = 'Proizvodi/cherry.jpg'
+        naziv= 'Cherry torta', 
+        cena= 590, 
+        valuta= 'RSD',
+        kolicina= 20, 
+        slika= 'Proizvodi/cherry.jpg'
     ),
     Proizvod(
-        naziv = 'Jagoda torta', 
-        cena = 600, 
-        valuta = 'RSD',
-        kolicina = 12, 
-        slika = 'Proizvodi/jagoda.jpg'
+        naziv= 'Jagoda torta', 
+        cena= 600, 
+        valuta= 'RSD',
+        kolicina= 12, 
+        slika= 'Proizvodi/jagoda.jpg'
     )
 ]
 
@@ -67,31 +67,29 @@ Korisnici = [
     )
 ]
 
-prijavljen = None
+prijavljenKorisnik = None
 
 @app.route('/Prijava', methods=['POST'])
 def prijava():
     
     email = request.json['email']
     lozinka = request.json['lozinka']
-    global prijavljen
+    global prijavljenKorisnik
 
     for korisnik in Korisnici:
         if korisnik.email == email:
-            prijavljen = korisnik
+            prijavljenKorisnik = korisnik
             break
     
     app.logger.info(f"\nEmail: {email}\nLozinka: {lozinka}")
 
-   
-    response_data = {
-        "message": "Uspešna prijava!",
+    response = {
+        "message": "Podaci za prijavu su uspešno primljeni!",
         "email": email,
         "lozinka": lozinka
     }
 
-    return jsonify(response_data), 200
-
+    return jsonify(response), 200
 
 @app.route('/Registracija', methods=['POST'])
 def registracija():
@@ -105,17 +103,16 @@ def registracija():
     email = request.json['email']
     lozinka = request.json['lozinka']
 
+    app.logger.info(f"\nIme: {ime}\nPrezime: {prezime}\nAdresa: {adresa}\nGrad: {grad}\nDrzava: {drzava}\nBroj Telefona: {brojTelefona}\nEmail: {email}\nLozinka: {lozinka}")
     
-    app.logger.info(f"\nIme: {ime}\nPrezime: {prezime}\nAdresa: {adresa}\nGrad: {grad}\nDržava: {drzava}\nBroj: {brojTelefona}\nEmail: {email}\nLozinka: {lozinka}")
-    
-    predmet = "Uspešno je registrovan novi korisnik!"
-    telo = f"Korisnicki podaci:\nIme: {ime}\nPrezime: {prezime}\nAdresa: {adresa}\nGrad: {grad}\nDržava: {drzava}\nBroj: {brojTelefona}\nEmail: {email}\nLozinka: {lozinka}"
-    to_email = "secernisanns@gmail.com"
+    odgovor = "Novi korisnik je uspesno registrovan!"
+    podaci = f"Podaci o korisniku:\nIme: {ime}\nPrezime: {prezime}\nAdresa: {adresa}\nGrad: {grad}\nDrzava: {drzava}\nBroj Telefona: {brojTelefona}\nEmail: {email}\nLozinka: {lozinka}"
+    na_email = "secernisanns@gmail.com"
 
-    slanje_emaila(predmet, telo, to_email)
+    slanje_emaila(odgovor, podaci, na_email)
     
-    response_data = {
-        "message": "Podaci za registraciju su uspešno primljeni!",
+    response = {
+        "message": "Podaci su uspešno primljeni!",
         "email": email,
         "lozinka": lozinka,
         "ime": ime,
@@ -126,8 +123,7 @@ def registracija():
         "brojTelefona": brojTelefona
     }
 
-    return jsonify(response_data), 200
-
+    return jsonify(response), 200
 
 @app.route('/Proizvod', methods=['POST'])
 def dodajProizvod():
@@ -140,22 +136,22 @@ def dodajProizvod():
 
     slika = odrediPutanju(slika)
 
-    proizvodi.append(Proizvod(naziv, cena, valuta, kolicina, slika))
+    Proizvodi.append(Proizvod(naziv, cena, valuta, kolicina, slika))
     
-    app.logger.info(f"\nNaziv: {naziv}\ncena: {cena}\nvaluta: {valuta}\nkolicina: {kolicina}\nslika: {slika}")
+    app.logger.info(f"\nNaziv proivoda: {naziv}\nCena: {cena}\nValuta: {valuta}\nKolicina: {kolicina}\nSlika: {slika}")
 
-    response_data = {
-        "message": "Podaci uspešno primljeni",
+    response = {
+        "message": "Podaci su uspešno primljeni!",
         "naziv": naziv,
         "cena": cena,
         "valuta": valuta,
         "kolicina": kolicina,
     }
 
-    return jsonify(response_data), 200
+    return jsonify(response), 200
 
 @app.route('/Profil', methods=['POST'])
-def izmeniProfil():
+def izmenaProfila():
     ime = request.json['ime']
     prezime = request.json['prezime']
     adresa = request.json['adresa']
@@ -164,40 +160,39 @@ def izmeniProfil():
     brojTelefona = request.json['brojTelefona']
     email = request.json['email']
     lozinka = request.json['lozinka']
-
-    global prijavljen
+    global prijavljenKorisnik
 
     for korisnik in Korisnici:
         if korisnik.ime != ime:
-            prijavljen.ime = ime
+            prijavljenKorisnik.ime = ime
 
         if korisnik.prezime != prezime:
-            prijavljen.prezime = prezime
+            prijavljenKorisnik.prezime = prezime
 
         if korisnik.adresa != adresa:
-            prijavljen.adresa = adresa
+            prijavljenKorisnik.adresa = adresa
 
         if korisnik.grad != grad:
-            prijavljen.grad = grad
+            prijavljenKorisnik.grad = grad
 
         if korisnik.drzava != drzava:
-            prijavljen.drzava = drzava
+            prijavljenKorisnik.drzava = drzava
 
         if korisnik.brojTelefona != brojTelefona:
-            prijavljen.brojTelefona = brojTelefona
+            prijavljenKorisnik.brojTelefona = brojTelefona
 
         if korisnik.email != email:
-            prijavljen.email = email
+            prijavljenKorisnik.email = email
 
         if korisnik.lozinka != lozinka:
-            prijavljen.lozinka = lozinka
+            prijavljenKorisnik.lozinka = lozinka
 
     app.logger.info(f"Email: {email}, Lozinka: {lozinka}")
 
-    app.logger.info(f"Ime: {ime}, Prezime: {prezime}, Adresa: {adresa}, Grad: {grad}, Drzava: {drzava}, Broj: {brojTelefona}, Email: {email}, Lozinka: {lozinka}")
+    app.logger.info(f"Ime: {ime}, Prezime: {prezime}, Adresa: {adresa}, Grad: {grad}, Drzava: {drzava}, Broj Telefona: {brojTelefona}, Email: {email}, Lozinka: {lozinka}")
 
-    response_data = {
-        "message": "Podaci uspešno primljeni",
+    response = {
+        "message": "Podaci su uspešno primljeni!",
         "email": email,
         "lozinka": lozinka,
         "ime": ime,
@@ -208,21 +203,19 @@ def izmeniProfil():
         "brojTelefona": brojTelefona
     }
 
-    return jsonify(response_data), 200
-
+    return jsonify(response), 200
 
 @app.route('/Uzivo', methods=['GET'])
 def uzmi_podatke():
     data = [
         {
-            'naziv': proizvod.naziv,
+            'nazivProizvoda': proizvod.naziv,
             'cena': proizvod.cena,
             'valuta': proizvod.valuta,
         }
-        for proizvod in proizvodi
+        for proizvod in Proizvodi
     ]
     return jsonify(data)
-
 
 @app.route('/', methods=['GET'])
 def posaljiProizvod():
@@ -234,33 +227,30 @@ def posaljiProizvod():
             'kolicina': proizvod.kolicina,
             'slika': proizvod.slika,
         }
-        for proizvod in proizvodi
+        for proizvod in Proizvodi
     ]
 
     return jsonify(data)
 
-
 @app.route('/Profil', methods=['GET'])
-def izmeniProfilGet():
-
-    global prijavljen
+def izmeniProfil():
+    global prijavljenKorisnik
 
     data = {}
 
-    if prijavljen is not None:
+    if prijavljenKorisnik is not None:
         data = {
-            "ime": prijavljen.ime,
-            "prezime": prijavljen.prezime,
-            "adresa": prijavljen.adresa,
-            "grad": prijavljen.grad,
-            "drzava": prijavljen.drzava,
-            "brojTelefona": prijavljen.brojTelefona,
-            "email": prijavljen.email,
-            "lozinka": prijavljen.lozinka
+            "ime": prijavljenKorisnik.ime,
+            "prezime": prijavljenKorisnik.prezime,
+            "adresa": prijavljenKorisnik.adresa,
+            "grad": prijavljenKorisnik.grad,
+            "drzava": prijavljenKorisnik.drzava,
+            "brojTelefona": prijavljenKorisnik.brojTelefona,
+            "email": prijavljenKorisnik.email,
+            "lozinka": prijavljenKorisnik.lozinka
         }
 
     return jsonify(data)
 
-# Main
 if __name__ == "__main__":
-    app.run(debug=False, port=3000)
+    app.run(debug=True, port=3000)

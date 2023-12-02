@@ -29,7 +29,7 @@ const IzmenaProfila = () => {
 
     const stilKontejnera = {
         textAlign: 'center',
-        backgroundColor: 'beige',
+        backgroundColor: 'white',
         width: '320px',
         height: '400px'
     };
@@ -47,7 +47,7 @@ const IzmenaProfila = () => {
 
     const stilZaUnos = {
         fontFamily: 'Times New Roman',
-        color: 'black',
+        color: 'blue',
     };
 
     const stilZaDugme = {
@@ -75,28 +75,28 @@ const IzmenaProfila = () => {
 
     const sacuvajIzmene = () => {
         if (ime.length === 0 || /\d/.test(ime) || !/^[a-zA-Z\s]*$/.test(ime)) {
-            alert("Polje za ime mora biti popunjeno!")
+            alert("Ime mora biti popunjeno!")
         }
         else if (prezime.length === 0 || /\d/.test(prezime) || !/^[a-zA-Z\s]*$/.test(prezime)) {
-            alert("Polje za prezime mora biti popunjeno!")
+            alert("Prezime mora biti popunjeno!")
         }
         else if (adresa.length === 0 || !/^[a-zA-Z0-9\s]+$/.test(adresa)) {
-            alert("Polje za adresu mora biti popunjeno!")
+            alert("Adresa mora biti popunjena!")
         }
         else if (grad.length === 0 || /\d/.test(grad) || !/^[a-zA-Z\s]*$/.test(grad)) {
-            alert("Polje za grad mora biti popunjeno!")
+            alert("Grad mora biti popunjen!")
         }
         else if (drzava.length === 0 || /\d/.test(drzava) || !/^[a-zA-Z\s]*$/.test(drzava)) {
-            alert("Polje za drzavu mora biti popunjeno!")
+            alert("Država mora biti popunjena!")
         }
         else if (brojTelefona.length === 0 || /^[a-zA-Z]*$/.test(brojTelefona)) {
-            alert("Polje za telefon mora biti popunjeno!")
+            alert("Broj telefona mora biti popunjen!")
         }
         else if (email.length === 0 || !/^[a-zA-Z0-9@.]*$/.test(email)) {
-            alert("Polje za email mora biti popunjeno!")
+            alert("Email mora biti popunjen!")
         }
         else if (lozinka.length === 0 || lozinka.length < 6) {
-            alert("Polje za lozinku mora biti popunjeno!")
+            alert("Lozinka mora biti popunjena!")
         }
         else {
             axios.post('http://127.0.0.1:3000/Profil', {
@@ -119,7 +119,7 @@ const IzmenaProfila = () => {
         podesiAdresu(data.adresa || '');
         podesiGrad(data.grad || '');
         podesiDrzavu(data.drzava || '');
-        podesiBrojTelefona(data.brojTelefona || '');
+        podesiBrTel(data.brojTelefona || '');
         podesiEmail(data.email || '');
         podesiLozinku(data.lozinka || '');
     }, [data]);
@@ -152,7 +152,7 @@ const IzmenaProfila = () => {
                         </tr>
                         <tr>
                             <td style={stilZaLabelu}>Broj telefona:</td>
-                            <td><input style={stilZaUnos} value={brojTelefona} onChange={(e) => podesiBrojTelefona(e.target.value)} type="text" id="brojtelefona" className="brojtelefona" maxLength="25" /></td>
+                            <td><input style={stilZaUnos} value={brojTelefona} onChange={(e) => podesiBrojTelefona(e.target.value)} type="text" id="brojTelefona" className="brojTelefona" maxLength="25" /></td>
                         </tr>
                         <tr>
                             <td style={stilZaLabelu}>Email:</td>
@@ -166,10 +166,10 @@ const IzmenaProfila = () => {
                             <td colSpan="2" align="right" style={{ padding: '0 40px 0 0' }}>
                                 <input
                                     className="btn btn-outline-primary"
-                                    id="izmenaProfilaDugme"
+                                    id="izmeniDugme"
                                     style={stilZaDugme}
                                     type="submit"
-                                    value="Sačuvaj izmene"
+                                    value="Izmeni"
                                     onClick={sacuvajIzmene}
                                 />
                             </td>
