@@ -82,7 +82,7 @@ const Pocetna = () => {
                     <li className="nav-item">
                         <Link to="/" className="nav-link active" style={{ color: 'black', fontWeight: "bold" }}>Početna</Link>
                     </li>
-                    {!isLogged ? (
+                    {isLogged ? (
                     <>
                        
                         
@@ -92,15 +92,8 @@ const Pocetna = () => {
                     </>
                 ) : (
                     <>
-                     <li className="nav-item">
-                            <Link to="/Pocetna" className="nav-link" style={{ color: 'black', fontWeight: "bold" }}>Pocetna</Link>
-                        </li>
-                        
-                        <li className="nav-item">
+                         <li className="nav-item">
                             <Link to="/Prijava" className="nav-link" style={{ color: 'black', fontWeight: "bold" }}>Prijava</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to="/Registracija" className="nav-link" style={{ color: 'black', fontWeight: "bold" }}>Registracija</Link>
                         </li>
                         
                     </>
