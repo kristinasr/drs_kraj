@@ -7,6 +7,8 @@ import os
 
 app = Flask(__name__)
 
+CORS(app, supports_credentials=True)
+
 def odrediPutanju(putanjaDoFajla):
     nazivFajla = os.path.basename(putanjaDoFajla)
     novaPutanja = f"Proizvodi/{nazivFajla}"
@@ -14,46 +16,60 @@ def odrediPutanju(putanjaDoFajla):
 
 proizvodi = [
     Proizvod(
-        naziv = 'Plazma torta',
+        naziv = 'Plazma',
         cena = 490,
         valuta = 'RSD',
         kolicina = 3,
         slika = 'Proizvodi/plazma.jpg'
     ),
     Proizvod(
-        naziv = 'Nugat torta', 
+        naziv = 'Nugat', 
         cena = 520, 
         valuta = 'RSD',
         kolicina = 5, 
         slika = 'Proizvodi/nugat.jpg'
     ),
     Proizvod(
-        naziv = 'Pistać Malina torta',
+        naziv = 'Pistać Malina',
         cena = 590,
         valuta = 'RSD',
         kolicina = 3,
         slika = 'Proizvodi/pistacmalina.jpg'
     ),
     Proizvod(
-        naziv = 'Chocco torta',
+        naziv = 'Chocco',
         cena = 550,
         valuta = 'RSD',
         kolicina = 8,
         slika = 'Proizvodi/choco.jpg'
     ),
     Proizvod(
-        naziv = 'Cherry torta', 
+        naziv = 'Cherry', 
         cena = 590, 
         valuta = 'RSD',
         kolicina = 20, 
         slika = 'Proizvodi/cherry.jpg'
     ),
      Proizvod(
-        naziv = 'Jagoda torta', 
+        naziv = 'Jagoda', 
         cena = 600, 
         valuta = 'RSD',
         kolicina = 12, 
         slika = 'Proizvodi/jagoda.jpg'
+    ),
+    Proizvod(
+        naziv = 'Monaliza', 
+        cena = 610, 
+        valuta = 'RSD',
+        kolicina = 2, 
+        slika = 'Proizvodi/monaliza.jpg'
+    ),
+     Proizvod(
+        naziv = 'Cheese Cake', 
+        cena = 510, 
+        valuta = 'RSD',
+        kolicina = 8, 
+        slika = 'Proizvodi/cake.jpg'
     )
 ]
 
@@ -69,6 +85,8 @@ Korisnici = [
         lozinka= 'secernisan1234!'
     )
 ]
+
+prijavljen = None
 
 @app.route('/Prijava', methods=['POST'])
 def prijava():
@@ -161,7 +179,7 @@ def dodajProizvod():
 
 
 @app.route('/Profil', methods=['POST'])
-def izmeniProfil():
+def izmenaProfila():
     ime = request.json['ime']
     prezime = request.json['prezime']
     adresa = request.json['adresa']
@@ -217,7 +235,7 @@ def izmeniProfil():
 
 
 @app.route('/Uzivo', methods=['GET'])
-def uzmi_podatke():
+def get_data():
     data = [
         {
             'naziv': proizvod.naziv,
@@ -236,7 +254,7 @@ def posaljiProizvod():
             'naziv': proizvod.naziv,
             'cena': proizvod.cena,
             'valuta': proizvod.valuta,
-            'količina': proizvod.količina,
+            'kolicina': proizvod.kolicina,
             'slika': proizvod.slika,
         }
         for proizvod in proizvodi
@@ -267,4 +285,4 @@ def izmeniProfil():
 
 # Main
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True,port=5000)

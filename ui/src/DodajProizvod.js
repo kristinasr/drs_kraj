@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-//import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 const DodajProizvod = () => {
@@ -79,7 +80,7 @@ const DodajProizvod = () => {
             alert("Količina proizvoda mora biti popunjena!")
         }
         else {
-            axios.post('http://127.0.0.1:3000/Proizvod', {
+            axios.post('http://127.0.0.1:5000/Proizvod', {
                 naziv: naziv,
                 cena: cena,
                 valuta: valuta,
@@ -94,6 +95,45 @@ const DodajProizvod = () => {
     return (
         <div style={stilCeleStranice}>
             <div className='proizvod'>
+                {/* <div style={stilKontejnera}>
+                    <ul className="nav nav-pills nav-fill">
+                        <li className="nav-item">
+                            <Link to="/" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Početna</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to="/Proizvod" className="nav-link active" style={{ color: 'yellow', fontWeight: "bold" }}>Dodavanje proizvoda</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to="" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Povećanje količine proizvoda</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to="/Uzivo" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Uživo praćenje kupovina</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to="" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Verifikacija naloga</Link>
+                        </li>
+                    </ul>
+                </div> */}
+                <div style={stilKontejnera}>
+                    <ul className="nav flex-column">
+                        <li className="nav-item">
+                            <Link to="/" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Početna</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to="/Proizvod" className="nav-link active" style={{ color: 'yellow', fontWeight: "bold" }}>Dodavanje proizvoda</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to="" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Povećanje količine proizvoda</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to="/Uzivo" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Uživo praćenje kupovina</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to="" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Verifikacija naloga</Link>
+                        </li>
+                    </ul>
+                </div>
+
                 <div className="kontejner" style={stilKontejnera}>
                     <div className="forma" style={stilForme}>
                         <h1 style={stilNaslova}>Proizvod</h1>

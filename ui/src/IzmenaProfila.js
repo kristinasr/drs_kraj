@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-//import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const IzmenaProfila = () => {
 
@@ -17,7 +18,7 @@ const IzmenaProfila = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/Profil');
+                const response = await axios.get('http://localhost:5000/Profil');
                 setData(response.data);
             } catch (error) {
                 console.error('Greška: ', error);
@@ -126,6 +127,25 @@ const IzmenaProfila = () => {
 
     return (
         <div style={stilCeleStranice}>
+            <div style={stilZaNavBar}>
+                <ul className="nav nav-pills nav-fill">
+                    <li className="nav-item">
+                        <Link to="/" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Početna</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/Profil" className="nav-link active" style={{ color: 'yellow', fontWeight: "bold" }}>Profil</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Pregled računa</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Uplata i konverzija valuta</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Istorijat kupovina</Link>
+                    </li>
+                </ul>
+            </div>
             <div className="kontejner" style={stilKontejnera}>
                 <div className="forma" style={stilForme}>
                     <h1 style={stilNaslova}>Pregled profila</h1>
@@ -152,7 +172,7 @@ const IzmenaProfila = () => {
                         </tr>
                         <tr>
                             <td style={stilZaLabelu}>Broj telefona:</td>
-                            <td><input style={stilZaUnos} value={brojTelefona} onChange={(e) => podesiBrojTelefona(e.target.value)} type="text" id="brojtelefona" className="brojtelefona" maxLength="25" /></td>
+                            <td><input style={stilZaUnos} value={brTel} onChange={(e) => podesiBrTel(e.target.value)} type="text" id="brtelefona" className="brtelefona" maxLength="25" /></td>
                         </tr>
                         <tr>
                             <td style={stilZaLabelu}>Email:</td>

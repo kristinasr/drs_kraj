@@ -1,24 +1,28 @@
-import React, { useState, useEffect } from 'react';
-//import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { Component } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
-//import PrikazProizvoda from './Kartica'
+import PrikazProizvoda from './Kartica';
 import axios from 'axios';
+import { useState } from 'react';
+import { useEffect } from 'react';
+
 
 const Pocetna = () => {
 
-    const [data, setData] = useState([]);
+    const [podaci, podesiPodatke] = useState([]);
+    const [uloga, podesiUlogu] = useState([]);
 
     const stilKontejneraZaKartice = {
         display: 'flex',
         justifyContent: 'center',
         flexWrap: 'wrap',
-        gap: '15px',
+        gap: '25px',
     };
 
     const stilCeleStranice = {
         textAlign: 'center',
         backgroundSize: 'cover',
-        //backgroundImage: `url('Pozadine/pozadinaPocetna.jpg')`,
+        backgroundImage: `url('Pozadine/pozadinaPocetna.jpg')`,
         backgroundPosition: 'center',
         height: '100vh',
         display: 'flex',
@@ -38,11 +42,30 @@ const Pocetna = () => {
         zIndex: 1000,
     }
 
+    const stilZaProfil = {
+        position: 'fixed',
+        top: 0,
+        right: 0,
+        marginRight: '30px',
+        marginTop: '40px',
+    };
+
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/');
-                setData(response.data);
+                const odgovor = await axios.get('http://localhost:5000/');
+                podesiPodatke(odgovor.data);
+                const email = odgovor.data.email;
+
+                if (email === '') {
+                    podesiUlogu('/');
+                }
+                else if (email === 'drsprojekat2023@gmail.com') {
+                    podesiUlogu('/Proizvod');
+                }
+                else {
+                    podesiUlogu('/Profil');
+                }
             } catch (error) {
                 console.error('Greška:', error);
             }
@@ -66,11 +89,16 @@ const Pocetna = () => {
                     </li>
                 </ul>
             </div>
-            {/* <div className="kontejner" style={stilKontejneraZaKartice}>
-                {data.map((proizvod, index) => (
+            <div style={stilZaProfil}>
+                <Link to={uloga}>
+                    <img src="/profil.jpg" alt="Profile" style={{ width: '50px', height: '50px', borderRadius: '50%' }} />
+                </Link>
+            </div>
+            <div className="kontejner" style={stilKontejneraZaKartice}>
+                {podaci.map((proizvod, index) => (
                     <PrikazProizvoda key={index} proizvod={proizvod} />
                 ))}
-            </div> */}
+            </div>
         </div>
     );
 }

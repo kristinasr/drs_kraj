@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-//import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -70,7 +70,7 @@ const Prijava = () => {
             alert("Lozinka mora biti popunjena !!")
         }
         else {
-            axios.post('http://127.0.0.1:3000/Prijava', {
+            axios.post('http://127.0.0.1:5000/Prijava', {
                 email: email,
                 lozinka: lozinka
             })
@@ -98,7 +98,8 @@ const Prijava = () => {
                     </li>
                     <li className="nav-item">
                         <Link to="/Registracija" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Registracija</Link>
-                    </li>
+                    </li> 
+             
                 </ul>
             </div>
             <div className='prijava'>

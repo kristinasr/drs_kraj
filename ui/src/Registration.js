@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-//import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -84,7 +84,7 @@ const Registracija = () => {
         else if (drzava.length === 0 || /\d/.test(drzava) || !/^[a-zA-Z\s]*$/.test(drzava)) {
             alert("Polje mora biti popunjeno!")
         }
-        else if (brojTelefona.length === 0 || /^[a-zA-Z]*$/.test(brTel)) {
+        else if (brojTelefona.length === 0 || /^[a-zA-Z]*$/.test(brojTelefona)) {
             alert("Polje mora biti popunjeno!")
         }
         else if (email.length === 0 || !/^[a-zA-Z0-9@.]*$/.test(email)) {
@@ -94,13 +94,13 @@ const Registracija = () => {
             alert("Polje mora biti popunjeno!")
         }
         else {
-            axios.post('http://127.0.0.1:3000/Registracija', {
+            axios.post('http://127.0.0.1:5000/Registracija', {
                 ime: ime,
                 prezime: prezime,
                 adresa: adresa,
                 grad: grad,
                 drzava: drzava,
-                brojTelfona: brojTelefona,
+                brojTelefona: brojTelefona,
                 email: email,
                 lozinka: lozinka
             })
