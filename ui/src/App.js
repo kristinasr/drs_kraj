@@ -1,11 +1,11 @@
 import './App.css';
-import Prijava from './LogIn'
-import Registracija from './Registration'
-import DodajProizvod from './DodajProizvod';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Pocetna from './Pocetna';
+import Prijava from './LogIn';
+import Registracija from './Registration';
+import DodajProizvod from './DodajProizvod';
 import IzmenaProfila from './IzmenaProfila';
-import UzivoPracenjeKupovina from './PracenjeKupovine'
+import UzivoPracenjeKupovina from './PracenjeKupovine';
 
 function App() {
   return (

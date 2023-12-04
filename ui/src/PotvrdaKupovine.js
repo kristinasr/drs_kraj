@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Modal } from 'react-bootstrap';
 import axios from 'axios';
 
-const PotvrdaKupovine = ({ showModal, handleCloseModal, nazivProizvoda, cenaProizvoda, valutaProizvoda }) => {
+const PotvrdaKupovine = ({ showModal, handleOpenModal, handleCloseModal, nazivProizvoda, cenaProizvoda, valutaProizvoda }) => {
 
   const [konvertovanaCena, podesiKonvertovanuCenu] = useState(null);
   const [kolicina, podesiKolicinu] = useState('');
@@ -86,7 +86,7 @@ const PotvrdaKupovine = ({ showModal, handleCloseModal, nazivProizvoda, cenaProi
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleCloseModal}>
-          Potvrdi naručbinu
+          Potvrdi narudzbinu
         </Button>
       </Modal.Footer>
     </Modal>
