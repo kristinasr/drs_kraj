@@ -60,7 +60,7 @@ const Pocetna = () => {
                 if (email === '') {
                     podesiUlogu('/');
                 }
-                else if (email === 'drsprojekat2023@gmail.com') {
+                else if (email === 'secernisanns@gmail.com') {
                     podesiUlogu('/Proizvod');
                 }
                 else {

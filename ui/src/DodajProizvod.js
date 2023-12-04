@@ -95,25 +95,6 @@ const DodajProizvod = () => {
     return (
         <div style={stilCeleStranice}>
             <div className='proizvod'>
-                {/* <div style={stilKontejnera}>
-                    <ul className="nav nav-pills nav-fill">
-                        <li className="nav-item">
-                            <Link to="/" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Početna</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to="/Proizvod" className="nav-link active" style={{ color: 'yellow', fontWeight: "bold" }}>Dodavanje proizvoda</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to="" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Povećanje količine proizvoda</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to="/Uzivo" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Uživo praćenje kupovina</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to="" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Verifikacija naloga</Link>
-                        </li>
-                    </ul>
-                </div> */}
                 <div style={stilKontejnera}>
                     <ul className="nav flex-column">
                         <li className="nav-item">
