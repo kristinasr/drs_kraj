@@ -1,14 +1,7 @@
-<<<<<<< HEAD
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 import PrikazProizvoda from './Kartica';
-=======
-import React, { useState, useEffect } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from 'react-router-dom';
-import PrikazProizvoda from './Kartica'
->>>>>>> 6fc7f72addcc0e82ef5cc97ab6c4d136c95d05e4
 import axios from 'axios';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -96,7 +89,6 @@ const Pocetna = () => {
                     </li>
                 </ul>
             </div>
-<<<<<<< HEAD
             <div style={stilZaProfil}>
                 <Link to={uloga}>
                     <img src="/profil.jpg" alt="Profile" style={{ width: '50px', height: '50px', borderRadius: '50%' }} />
@@ -104,10 +96,6 @@ const Pocetna = () => {
             </div>
             <div className="kontejner" style={stilKontejneraZaKartice}>
                 {podaci.map((proizvod, index) => (
-=======
-            <div className="kontejner" style={stilKontejneraZaKartice}>
-                {data.map((proizvod, index) => (
->>>>>>> 6fc7f72addcc0e82ef5cc97ab6c4d136c95d05e4
                     <PrikazProizvoda key={index} proizvod={proizvod} />
                 ))}
             </div>

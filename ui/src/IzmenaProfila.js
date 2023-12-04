@@ -120,14 +120,14 @@ const IzmenaProfila = () => {
         podesiAdresu(data.adresa || '');
         podesiGrad(data.grad || '');
         podesiDrzavu(data.drzava || '');
-        podesiBrTel(data.brojTelefona || '');
+        podesiBrojTelefona(data.brojTelefona || '');
         podesiEmail(data.email || '');
         podesiLozinku(data.lozinka || '');
     }, [data]);
 
     return (
         <div style={stilCeleStranice}>
-            <div style={stilZaNavBar}>
+            <div style={stilKontejnera}>
                 <ul className="nav nav-pills nav-fill">
                     <li className="nav-item">
                         <Link to="/" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Početna</Link>
@@ -172,11 +172,7 @@ const IzmenaProfila = () => {
                         </tr>
                         <tr>
                             <td style={stilZaLabelu}>Broj telefona:</td>
-<<<<<<< HEAD
-                            <td><input style={stilZaUnos} value={brTel} onChange={(e) => podesiBrTel(e.target.value)} type="text" id="brtelefona" className="brtelefona" maxLength="25" /></td>
-=======
-                            <td><input style={stilZaUnos} value={brojTelefona} onChange={(e) => podesiBrojTelefona(e.target.value)} type="text" id="brojTelefona" className="brojTelefona" maxLength="25" /></td>
->>>>>>> 6fc7f72addcc0e82ef5cc97ab6c4d136c95d05e4
+                            <td><input style={stilZaUnos} value={brojTelefona} onChange={(e) => podesiBrojTelefona(e.target.value)} type="text" id="brtelefona" className="brtelefona" maxLength="25" /></td>
                         </tr>
                         <tr>
                             <td style={stilZaLabelu}>Email:</td>

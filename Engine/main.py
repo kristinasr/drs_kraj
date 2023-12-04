@@ -8,18 +8,9 @@ from putanjaDoSlike import odrediPutanju
 app = Flask(__name__)
 
 CORS(app, supports_credentials=True)
-<<<<<<< HEAD
-
-def odrediPutanju(putanjaDoFajla):
-    nazivFajla = os.path.basename(putanjaDoFajla)
-    novaPutanja = f"Proizvodi/{nazivFajla}"
-    return novaPutanja
-=======
->>>>>>> 6fc7f72addcc0e82ef5cc97ab6c4d136c95d05e4
 
 Proizvodi = [
     Proizvod(
-<<<<<<< HEAD
         naziv = 'Plazma',
         cena = 490,
         valuta = 'RSD',
@@ -74,48 +65,6 @@ Proizvodi = [
         valuta = 'RSD',
         kolicina = 8, 
         slika = 'Proizvodi/cake.jpg'
-=======
-        naziv= 'Plazma torta',
-        cena=  490,
-        valuta= 'RSD',
-        kolicina= 3,
-        slika= 'Proizvodi/plazma.jpg'
-    ),
-    Proizvod(
-        naziv= 'Nugat torta', 
-        cena= 520, 
-        valuta= 'RSD',
-        kolicina= 5, 
-        slika= 'Proizvodi/nugat.jpg'
-    ),
-    Proizvod(
-        naziv= 'Pistać Malina torta',
-        cena= 590,
-        valuta= 'RSD',
-        kolicina= 3,
-        slika= 'Proizvodi/pistacmalina.jpg'
-    ),
-    Proizvod(
-        naziv= 'Chocco torta',
-        cena= 550,
-        valuta= 'RSD',
-        kolicina= 8,
-        slika= 'Proizvodi/choco.jpg'
-    ),
-    Proizvod(
-        naziv= 'Cherry torta', 
-        cena= 590, 
-        valuta= 'RSD',
-        kolicina= 20, 
-        slika= 'Proizvodi/cherry.jpg'
-    ),
-    Proizvod(
-        naziv= 'Jagoda torta', 
-        cena= 600, 
-        valuta= 'RSD',
-        kolicina= 12, 
-        slika= 'Proizvodi/jagoda.jpg'
->>>>>>> 6fc7f72addcc0e82ef5cc97ab6c4d136c95d05e4
     )
 ]
 
@@ -132,11 +81,7 @@ Korisnici = [
     )
 ]
 
-<<<<<<< HEAD
 prijavljen = None
-=======
-prijavljenKorisnik = None
->>>>>>> 6fc7f72addcc0e82ef5cc97ab6c4d136c95d05e4
 
 @app.route('/Prijava', methods=['POST'])
 def prijava():
@@ -322,8 +267,4 @@ def izmeniProfil():
     return jsonify(data)
 
 if __name__ == "__main__":
-<<<<<<< HEAD
     app.run(debug=True,port=5000)
-=======
-    app.run(debug=True, port=3000)
->>>>>>> 6fc7f72addcc0e82ef5cc97ab6c4d136c95d05e4

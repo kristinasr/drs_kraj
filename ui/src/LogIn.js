@@ -100,14 +100,9 @@ const Prijava = () => {
                         <Link to="/Prijava" className="nav-link active" style={{ color: 'black', fontWeight: "bold" }}>Prijava</Link>
                     </li>
                     <li className="nav-item">
-<<<<<<< HEAD
                         <Link to="/Registracija" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Registracija</Link>
                     </li> 
              
-=======
-                        <Link to="/Registracija" className="nav-link" style={{ color: 'black', fontWeight: "bold" }}>Registracija</Link>
-                    </li>
->>>>>>> 6fc7f72addcc0e82ef5cc97ab6c4d136c95d05e4
                 </ul>
             </div>
             <div className='prijava'>
