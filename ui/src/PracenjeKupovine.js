@@ -31,7 +31,7 @@ const UzivoPracenjeKupovina = () => {
     };
 
     const stilNaslova = {
-        fontFamily: 'Times New Roman',
+        fontFamily: 'Calibri',
         fontWeight: 'bold',
         marginTop: 0,
         textAlign: 'center',

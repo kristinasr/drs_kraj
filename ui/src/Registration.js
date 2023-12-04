@@ -17,9 +17,10 @@ const Registracija = () => {
 
     const stilKontejnera = {
         textAlign: 'center',
-        backgroundColor: 'beige',
+        backgroundColor: 'white',
         width: '500px',
-        height: '400px'
+        height: '410px',
+        border: '5px solid black',
     };
 
     const stilForme = {
@@ -28,18 +29,18 @@ const Registracija = () => {
     };
 
     const stilZaLabelu = {
-        fontFamily: 'Times New Roman',
+        fontFamily: 'Calibri',
         fontWeight: 'bold',
         marginTop: 0,
     };
 
     const stilZaUnos = {
-        fontFamily: 'Times New Roman',
+        fontFamily: 'Calibri',
         color: 'black',
     };
 
     const stilZaDugme = {
-        fontFamily: 'Times New Roman',
+        fontFamily: 'Calibri',
         fontWeight: 'bold',
         backgroundColor: "white",
         color: 'black',
@@ -47,7 +48,7 @@ const Registracija = () => {
     };
 
     const stilNaslova = {
-        fontFamily: 'Times New Roman',
+        fontFamily: 'Calibri',
         fontWeight: 'bold',
         marginTop: 0,
         textAlign: 'center',

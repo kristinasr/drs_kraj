@@ -11,9 +11,10 @@ const Prijava = () => {
 
     const stilKontejnera = {
         textAlign: 'center',
-        backgroundColor: 'beige',
+        backgroundColor: 'white',
         width: '350px',
-        height: '180px'
+        height: '190px',
+        border: '5px solid black',
     };
 
     const stilForme = {
@@ -22,18 +23,18 @@ const Prijava = () => {
     };
 
     const stilZaLabelu = {
-        fontFamily: 'Times New Roman',
+        fontFamily: 'Calibri',
         fontWeight: 'bold',
         marginTop: 0,
     };
 
     const stilZaUnos = {
-        fontFamily: 'Times New Roman',
+        fontFamily: 'Calibri',
         color: 'black',
     };
 
     const stilZaDugme = {
-        fontFamily: 'Times New Roman',
+        fontFamily: 'Calibri',
         fontWeight: 'bold',
         border: '0.5px solid black',
         backgroundColor:'white',
@@ -41,7 +42,7 @@ const Prijava = () => {
     };
 
     const stilNaslova = {
-        fontFamily: 'Times New Roman',
+        fontFamily: 'Calibri',
         fontWeight: 'bold',
         marginTop: 0,
         textAlign: 'center',
@@ -100,7 +101,7 @@ const Prijava = () => {
                         <Link to="/Prijava" className="nav-link active" style={{ color: 'black', fontWeight: "bold" }}>Prijava</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/Registracija" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Registracija</Link>
+                        <Link to="/Registracija" className="nav-link" style={{ color: 'black', fontWeight: "bold" }}>Registracija</Link>
                     </li> 
              
                 </ul>

@@ -16,10 +16,11 @@ const DodajProizvod = () => {
 
     const stilKontejnera = {
         textAlign: 'center',
-        backgroundColor: 'beige',
+        backgroundColor: 'white',
         marginLeft: '950px',
         width: '370px',
-        height: '260px'
+        height: '270px',
+        border: '5px solid black',
     };
 
     const stilForme = {
@@ -28,23 +29,25 @@ const DodajProizvod = () => {
     };
 
     const stilZaLabelu = {
-        fontFamily: 'Times New Roman',
+        fontFamily: 'Calibri',
         fontWeight: 'bold',
         marginTop: 0,
     };
 
     const stilZaUnos = {
-        fontFamily: 'Times New Roman',
+        fontFamily: 'Calibri',
         color: 'black',
     };
 
     const stilZaDugme = {
-        fontFamily: 'Times New Roman',
+        fontFamily: 'Calibri',
         fontWeight: 'bold',
+        color:'black',
+        border:'0.5px solid black',
     };
 
     const stilNaslova = {
-        fontFamily: 'Times New Roman',
+        fontFamily: 'Calibri',
         fontWeight: 'bold',
         marginTop: 0,
         textAlign: 'center',
@@ -98,19 +101,19 @@ const DodajProizvod = () => {
                 <div style={stilKontejnera}>
                     <ul className="nav flex-column">
                         <li className="nav-item">
-                            <Link to="/" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Početna</Link>
+                            <Link to="/" className="nav-link" style={{ color: 'black', fontWeight: "bold" }}>Početna</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/Proizvod" className="nav-link active" style={{ color: 'yellow', fontWeight: "bold" }}>Dodavanje proizvoda</Link>
+                            <Link to="/Proizvod" className="nav-link active" style={{ color: 'black', fontWeight: "bold" }}>Dodavanje proizvoda</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Povećanje količine proizvoda</Link>
+                            <Link to="" className="nav-link" style={{ color: 'black', fontWeight: "bold" }}>Povećanje količine proizvoda</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/Uzivo" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Uživo praćenje kupovina</Link>
+                            <Link to="/Uzivo" className="nav-link" style={{ color: 'black', fontWeight: "bold" }}>Uživo praćenje kupovina</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Verifikacija naloga</Link>
+                            <Link to="" className="nav-link" style={{ color: 'black', fontWeight: "bold" }}>Verifikacija naloga</Link>
                         </li>
                     </ul>
                 </div>

@@ -41,23 +41,23 @@ const IzmenaProfila = () => {
     };
 
     const stilZaLabelu = {
-        fontFamily: 'Times New Roman',
+        fontFamily: 'Calibri',
         fontWeight: 'bold',
         marginTop: 0,
     };
 
     const stilZaUnos = {
-        fontFamily: 'Times New Roman',
+        fontFamily: 'Calibri',
         color: 'blue',
     };
 
     const stilZaDugme = {
-        fontFamily: 'Times New Roman',
+        fontFamily: 'Calibri',
         fontWeight: 'bold',
     };
 
     const stilNaslova = {
-        fontFamily: 'Times New Roman',
+        fontFamily: 'Calibri',
         fontWeight: 'bold',
         marginTop: 0,
         textAlign: 'center',
@@ -130,19 +130,19 @@ const IzmenaProfila = () => {
             <div style={stilKontejnera}>
                 <ul className="nav nav-pills nav-fill">
                     <li className="nav-item">
-                        <Link to="/" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Početna</Link>
+                        <Link to="/" className="nav-link" style={{ color: 'black', fontWeight: "bold" }}>Početna</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/Profil" className="nav-link active" style={{ color: 'yellow', fontWeight: "bold" }}>Profil</Link>
+                        <Link to="/Profil" className="nav-link active" style={{ color: 'black', fontWeight: "bold" }}>Profil</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Pregled računa</Link>
+                        <Link to="" className="nav-link" style={{ color: 'black', fontWeight: "bold" }}>Pregled računa</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Uplata i konverzija valuta</Link>
+                        <Link to="" className="nav-link" style={{ color: 'black', fontWeight: "bold" }}>Uplata i konverzija valuta</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Istorijat kupovina</Link>
+                        <Link to="" className="nav-link" style={{ color: 'black', fontWeight: "bold" }}>Istorijat kupovina</Link>
                     </li>
                 </ul>
             </div>
