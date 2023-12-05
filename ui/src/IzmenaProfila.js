@@ -16,7 +16,7 @@ const IzmenaProfila = () => {
     const [podaci, podesiPodatke] = useState([]);
 
     useEffect(() => {
-        const fetchData = async () => {
+        const prihvatiPodatke = async () => {
             try {
                 const response = await axios.get('http://localhost:5000/Profil');
                 podesiPodatke(response.data);
@@ -25,7 +25,7 @@ const IzmenaProfila = () => {
             }
         };
 
-        fetchData();
+        prihvatiPodatke();
     }, []);
 
     const stilKontejnera = {
@@ -109,7 +109,7 @@ const IzmenaProfila = () => {
         else if (email.length === 0 || !/^[a-zA-Z0-9@.]*$/.test(email)) {
             alert("Email mora biti popunjen!")
         }
-        else if (lozinka.length === 0 || lozinka.length < 6) {
+        else if (lozinka.length === 0) {
             alert("Lozinka mora biti popunjena!")
         }
         else {
@@ -149,10 +149,10 @@ const IzmenaProfila = () => {
                         <Link to="/Profil" className="nav-link active" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Profil</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Pregled računa</Link>
+                        <Link to="/KarticaKorisnika" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Pregled računa</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Uplata i konverzija valuta</Link>
+                        <Link to="/IstorijaProizvoda" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Uplata i konverzija valuta</Link>
                     </li>
                     <li className="nav-item">
                         <Link to="" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Istorijat kupovina</Link>
