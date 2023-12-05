@@ -62,6 +62,13 @@ const DodajProizvod = () => {
         alignItems: 'center',
     };
 
+    const stilZaNavBar = {
+        position: 'fixed',
+        top: 0,
+        width: '100%',
+        zIndex: 1000,
+    }
+
     useEffect(() => {
         const dobaviValute = async () => {
             const odgovor = await axios.get('https://open.er-api.com/v6/latest');
@@ -98,7 +105,7 @@ const DodajProizvod = () => {
     return (
         <div style={stilCeleStranice}>
             <div className='proizvod'>
-                <div style={stilKontejnera}>
+                <div style={stilZaNavBar}>
                     <ul className="nav flex-column">
                         <li className="nav-item">
                             <Link to="/" className="nav-link" style={{ color: 'black', fontWeight: "bold" }}>Početna</Link>

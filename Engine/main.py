@@ -4,7 +4,6 @@ from EmailObaveštenje import slanje_emaila
 from Proizvod import Proizvod
 from Korisnik import Korisnik
 from putanjaDoSlike import odrediPutanju
-from datetime import datetime
 
 app = Flask(__name__)
 
@@ -228,8 +227,7 @@ def get_data():
             'slika': proizvod.slika,
             'nazivProizvoda': proizvod.naziv,
             'cena': proizvod.cena,
-            'valuta': proizvod.valuta,
-            'kupac': 'culibrk.nevena@gmail.com'
+            'valuta': proizvod.valuta
         }
         for proizvod in Proizvodi
     ]
@@ -248,20 +246,7 @@ def posaljiProizvod():
         for proizvod in Proizvodi
     ]
 
-    global prijavljenKorisnik
-    proizvodiPrijavljen = {}
-    if prijavljenKorisnik is not None:
-        proizvodiPrijavljen = {
-            'email' : prijavljenKorisnik.email,
-            'proizvodi' : data
-        }
-    else:
-        proizvodiPrijavljen = {
-            'email' : '',
-            'proizvodi' : data
-        }
-
-    return jsonify(proizvodiPrijavljen)
+    return jsonify(data)
 
 @app.route('/Profil', methods=['GET'])
 def izmeniProfil():
@@ -280,30 +265,6 @@ def izmeniProfil():
             "email": prijavljenKorisnik.email,
             "lozinka": prijavljenKorisnik.lozinka
         }
-
-    return jsonify(data)
-
-@app.route('/IzvrseneKupovine', methods=['GET'])
-def kupljeniProizvodi():
-
-    proizvod = Proizvod(
-        naziv = 'Pistać Malina',
-        cena = 590,
-        valuta = 'RSD',
-        kolicina = 3,
-        slika = 'Proizvodi/pistacmalina.jpg'
-    )
-
-    data = [
-        {
-            'slika': proizvod.slika,
-            'nazivProizvoda': proizvod.naziv,
-            'cena': proizvod.cena,
-            'valuta': proizvod.valuta,
-            'kolicina': proizvod.kolicina,
-            'vreme': datetime.now()
-        }
-    ]
 
     return jsonify(data)
 

@@ -82,34 +82,19 @@ const Pocetna = () => {
                     <li className="nav-item">
                         <Link to="/" className="nav-link active" style={{ color: 'black', fontWeight: "bold" }}>Početna</Link>
                     </li>
-                    {isLogged ? (
-                    <>
-                       
-                        
-                        <li className="nav-item">
-                            <Link to="/Profil" className="nav-link" style={{ color: 'black', fontWeight: "bold" }}>Profil</Link>
-                        </li>
-                    </>
-                ) : (
-                    <>
-                         <li className="nav-item">
-                            <Link to="/Prijava" className="nav-link" style={{ color: 'black', fontWeight: "bold" }}>Prijava</Link>
-                        </li>
-                        
-                    </>
-                )}
+                    <li className="nav-item">
+                        <Link to="/Prijava" className="nav-link" style={{ color: 'black', fontWeight: "bold" }}>Prijava</Link>
+                    </li>
                     <li className="nav-item">
                         <Link to="/Registracija" className="nav-link" style={{ color: 'black', fontWeight: "bold" }}>Registracija</Link>
                     </li>
                 </ul>
             </div>
-            {isLogged && (
-                <div style={stilZaProfil}>
-                    <Link to={uloga}>
-                        <img src="/profil.jpg" alt="Profile" style={{ width: '50px', height: '50px', borderRadius: '50%' }} />
-                    </Link>
-                </div>
-            )}
+            <div style={stilZaProfil}>
+                <Link to={uloga}>
+                    <img src="/profil.jpg" alt="Profile" style={{ width: '50px', height: '50px', borderRadius: '50%' }} />
+                </Link>
+            </div>
             <div className="kontejner" style={stilKontejneraZaKartice}>
                 {podaci.map((proizvod, index) => (
                     <PrikazProizvoda key={index} proizvod={proizvod} />

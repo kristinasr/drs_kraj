@@ -48,12 +48,14 @@ const IzmenaProfila = () => {
 
     const stilZaUnos = {
         fontFamily: 'Calibri',
-        color: 'blue',
+        color: 'black',
     };
 
     const stilZaDugme = {
         fontFamily: 'Calibri',
         fontWeight: 'bold',
+        color: 'black',
+        border: '0.5px solid black',
     };
 
     const stilNaslova = {
