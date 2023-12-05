@@ -11,7 +11,7 @@ const Pocetna = () => {
 
     const [podaci, podesiPodatke] = useState([]);
     const [uloga, podesiUlogu] = useState([]);
-    const [isLogged, setIsLogged] = useState(false);
+   // const [isLogged, setIsLogged] = useState(false);
 
     const stilKontejneraZaKartice = {
         display: 'flex',
@@ -55,7 +55,7 @@ const Pocetna = () => {
         const prihvatiPodatke = async () => {
             try {
                 const odgovor = await axios.get('http://localhost:5000/');
-                podesiPodatke(odgovor.data);
+                podesiPodatke(odgovor.data.proizvodi);
                 const email = odgovor.data.email;
 
                 if (email == '') {

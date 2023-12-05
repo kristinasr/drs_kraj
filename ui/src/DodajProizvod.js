@@ -74,13 +74,13 @@ const DodajProizvod = () => {
     }
 
     useEffect(() => {
-        const dobaviValute = async () => {
-            const odgovor = await axios.get('https://open.er-api.com/v6/latest');
-            const valuteAPI = Object.keys(odgovor.data.rates);
-            postaviValute(valuteAPI);
+        const sveValute = async () => {
+            const response = await axios.get('https://open.er-api.com/v6/latest');
+            const valute = Object.keys(response.data.rates);
+            postaviValute(valute);
         };
 
-        dobaviValute();
+        sveValute();
     }, []);
 
     const dodavanjeProizvoda = () => {
