@@ -52,7 +52,7 @@ const Pocetna = () => {
     };
 
     useEffect(() => {
-        const fetchData = async () => {
+        const prihvatiPodatke = async () => {
             try {
                 const odgovor = await axios.get('http://localhost:5000/');
                 podesiPodatke(odgovor.data);
@@ -72,7 +72,7 @@ const Pocetna = () => {
             }
         };
 
-        fetchData();
+        prihvatiPodatke();
     }, []);
 
     return (

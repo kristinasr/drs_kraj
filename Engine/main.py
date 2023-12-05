@@ -1,3 +1,4 @@
+import datetime
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from EmailObaveštenje import slanje_emaila
@@ -227,7 +228,8 @@ def get_data():
             'slika': proizvod.slika,
             'nazivProizvoda': proizvod.naziv,
             'cena': proizvod.cena,
-            'valuta': proizvod.valuta
+            'valuta': proizvod.valuta,
+            'kupac' : 'marko.markovic@gmail.com'
         }
         for proizvod in Proizvodi
     ]
@@ -246,7 +248,20 @@ def prikazProizvoda():
         for proizvod in Proizvodi
     ]
 
-    return jsonify(data)
+    global prijavljenKorisnik
+    korisnickiProizvodi = {}
+    if prijavljenKorisnik is not None:
+        korisnickiProizvodi = {
+            'email': prijavljenKorisnik.email,
+            'proizvodi': data
+        }
+    else:
+        korisnickiProizvodi = {
+            'email': '',
+            'proizvodi': data
+        }
+
+    return jsonify(korisnickiProizvodi)
 
 @app.route('/Profil', methods=['GET'])
 def izmeniProfil():
@@ -267,6 +282,49 @@ def izmeniProfil():
         }
 
     return jsonify(data)
+
+
+@app.route('/IstorijaProizvoda', methods=['GET'])
+def kupljeno():
+
+    p = Proizvod(
+         naziv = 'Cherry', 
+        cena = 590, 
+        valuta = 'RSD',
+        kolicina = 20, 
+        slika = 'Proizvodi/cherry.jpg'
+    )
+
+    data = [
+        {
+            'slika': p.slika,
+            'nazivProizvoda': p.naziv,
+            'cena': p.cena,
+            'valuta': p.valuta,
+            'kolicina': p.kolicina,
+            'vreme': datetime.now().strftime("%Y.%m.%d %H:%M:%S")
+        }
+    ]
+
+    return jsonify(data)
+
+@app.route('/KarticaKorisnika', methods=['POST'])
+def dodajKarticu():
+
+    cardNum = request.json['cardNum']
+    dateExp = request.json['dateExp']
+    cvv = request.json.get('cvv')
+
+    app.logger.info(f"\nBroj kartice: {cardNum}\nDatum isteka: {dateExp}\nCVV: {cvv}")
+
+    response_data = {
+        "message": "Podaci uspesno primljeni",
+        "cardNum": cardNum,
+        "dateExp": dateExp,
+        "cvv": cvv,
+    }
+
+    return jsonify(response_data), 200
 
 if __name__ == "__main__":
     app.run(debug=True,port=5000)
