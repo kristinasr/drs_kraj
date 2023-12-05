@@ -13,13 +13,13 @@ const IzmenaProfila = () => {
     const [brojTelefona, podesiBrojTelefona] = useState('');
     const [email, podesiEmail] = useState('');
     const [lozinka, podesiLozinku] = useState('');
-    const [data, setData] = useState([]);
+    const [podaci, podesiPodatke] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await axios.get('http://localhost:5000/Profil');
-                setData(response.data);
+                podesiPodatke(response.data);
             } catch (error) {
                 console.error('Greška: ', error);
             }
@@ -88,28 +88,28 @@ const IzmenaProfila = () => {
     }
 
     const sacuvajIzmene = () => {
-        if (ime.length == 0 || /\d/.test(ime) || !/^[a-zA-Z\s]*$/.test(ime)) {
+        if (ime.length === 0 || /\d/.test(ime) || !/^[a-zA-Z\s]*$/.test(ime)) {
             alert("Ime mora biti popunjeno!")
         }
-        else if (prezime.length == 0 || /\d/.test(prezime) || !/^[a-zA-Z\s]*$/.test(prezime)) {
+        else if (prezime.length === 0 || /\d/.test(prezime) || !/^[a-zA-Z\s]*$/.test(prezime)) {
             alert("Prezime mora biti popunjeno!")
         }
-        else if (adresa.length == 0 || !/^[a-zA-Z0-9\s]+$/.test(adresa)) {
+        else if (adresa.length === 0 || !/^[a-zA-Z0-9\s]+$/.test(adresa)) {
             alert("Adresa mora biti popunjena!")
         }
-        else if (grad.length == 0 || /\d/.test(grad) || !/^[a-zA-Z\s]*$/.test(grad)) {
+        else if (grad.length === 0 || /\d/.test(grad) || !/^[a-zA-Z\s]*$/.test(grad)) {
             alert("Grad mora biti popunjen!")
         }
-        else if (drzava.length == 0 || /\d/.test(drzava) || !/^[a-zA-Z\s]*$/.test(drzava)) {
+        else if (drzava.length === 0 || /\d/.test(drzava) || !/^[a-zA-Z\s]*$/.test(drzava)) {
             alert("Država mora biti popunjena!")
         }
-        else if (brojTelefona.length == 0 || /^[a-zA-Z]*$/.test(brojTelefona)) {
+        else if (brojTelefona.length === 0 || /^[a-zA-Z]*$/.test(brojTelefona)) {
             alert("Broj telefona mora biti popunjen!")
         }
-        else if (email.length == 0 || !/^[a-zA-Z0-9@.]*$/.test(email)) {
+        else if (email.length === 0 || !/^[a-zA-Z0-9@.]*$/.test(email)) {
             alert("Email mora biti popunjen!")
         }
-        else if (lozinka.length == 0 || lozinka.length < 6) {
+        else if (lozinka.length === 0 || lozinka.length < 6) {
             alert("Lozinka mora biti popunjena!")
         }
         else {
@@ -128,15 +128,15 @@ const IzmenaProfila = () => {
     }
 
     useEffect(() => {
-        podesiIme(data.ime || '');
-        podesiPrezime(data.prezime || '');
-        podesiAdresu(data.adresa || '');
-        podesiGrad(data.grad || '');
-        podesiDrzavu(data.drzava || '');
-        podesiBrojTelefona(data.brojTelefona || '');
-        podesiEmail(data.email || '');
-        podesiLozinku(data.lozinka || '');
-    }, [data]);
+        podesiIme(podaci.ime || '');
+        podesiPrezime(podaci.prezime || '');
+        podesiAdresu(podaci.adresa || '');
+        podesiGrad(podaci.grad || '');
+        podesiDrzavu(podaci.drzava || '');
+        podesiBrojTelefona(podaci.brojTelefona || '');
+        podesiEmail(podaci.email || '');
+        podesiLozinku(podaci.lozinka || '');
+    }, [podaci]);
 
     return (
         <div style={stilCeleStranice}>

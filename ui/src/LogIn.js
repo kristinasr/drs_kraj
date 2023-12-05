@@ -69,10 +69,10 @@ const Prijava = () => {
     }
 
     const prijavaKorisnika = () => {
-        if (email.length == 0 || !/^[a-zA-Z0-9@.]*$/.test(email)) {
+        if (email.length === 0 || !/^[a-zA-Z0-9@.]*$/.test(email)) {
             alert("Email mora biti popunjen !!")
         }
-        else if (lozinka.length == 0 || lozinka.length < 6) {
+        else if (lozinka.length === 0 || lozinka.length < 6) {
             alert("Lozinka mora biti popunjena !!")
         }
         else {
