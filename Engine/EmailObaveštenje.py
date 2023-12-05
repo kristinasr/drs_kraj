@@ -3,12 +3,12 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 def slanje_emaila(subject, telo, to_email):
-    korisnik = "onlinekupovina@gmail.com"
-    lozinka = "onlinekupovina1234"
+    korisnik = 'secernisanns@gmail.com'
+    lozinka = 'rpng rfwz jmrr yzoj'
 
     message = MIMEMultipart()
     message['From'] = korisnik
-    message['To'] = to_email
+    message['To'] = korisnik
     message['Subject'] = subject
     message.attach(MIMEText(telo, 'plain'))
 
