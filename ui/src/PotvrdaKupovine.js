@@ -11,7 +11,7 @@ const PotvrdaKupovine = ({ showModal, handleOpenModal, handleCloseModal, nazivPr
   const [valuta, postaviOdabranuValutu] = useState('');
 
   useEffect(() => {
-    const fetchData = async () => {
+    const prihvatiPodatke = async () => {
       try {
         const response = await fetch(`https://open.er-api.com/v6/latest/${valuta}`);
         const data = await response.json();
@@ -23,18 +23,18 @@ const PotvrdaKupovine = ({ showModal, handleOpenModal, handleCloseModal, nazivPr
     };
 
     if (showModal) {
-      fetchData();
+      prihvatiPodatke();
     }
   }, [showModal, cenaProizvoda, valutaProizvoda, valuta]);
 
   useEffect(() => {
-    const dobaviValute = async () => {
-      const odgovor = await axios.get('https://open.er-api.com/v6/latest');
-      const valuteAPI = Object.keys(odgovor.data.rates);
-      postaviValute(valuteAPI);
+    const sveValute = async () => {
+      const response = await axios.get('https://open.er-api.com/v6/latest');
+      const valute = Object.keys(response.data.rates);
+      postaviValute(valute);
     };
 
-    dobaviValute();
+    sveValute();
   }, []);
 
   const stilZaUnos = {
@@ -60,7 +60,7 @@ const PotvrdaKupovine = ({ showModal, handleOpenModal, handleCloseModal, nazivPr
       </Modal.Header>
       <Modal.Body>
         <div style={stilKontejnera}>
-          <span>Odaberite valutu u kojoj želite da platite:</span>
+          <span>Odaberite valutu u kojoj zelite da platite:</span>
           <select style={stilListeValuta} value={valuta} onChange={(e) => postaviOdabranuValutu(e.target.value)}>
             {valute.map((valuta, index) => (
               <option key={index} value={valuta}>
@@ -70,10 +70,10 @@ const PotvrdaKupovine = ({ showModal, handleOpenModal, handleCloseModal, nazivPr
           </select>
         </div>
         <div style={stilKontejnera}>
-          Cena proizvoda za odabranu valutu je: {konvertovanaCena} {valuta}
+          Cena za odabranu valutu je: {konvertovanaCena} {valuta}
         </div>
         <div>
-          <span>Broj artikala koji poručujete:</span>
+          <span>Broj proizvoda:</span>
           <input
             style={stilZaUnos}
             type="number"
