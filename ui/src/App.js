@@ -6,6 +6,7 @@ import Registracija from './Registration';
 import DodajProizvod from './DodajProizvod';
 import IzmenaProfila from './IzmenaProfila';
 import UzivoPracenjeKupovina from './PracenjeKupovine';
+import DodavanjeKartice from './DodajKarticu';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/Proizvod" element={<DodajProizvod />} ></Route>
           <Route path="/Profil" element={<IzmenaProfila />} ></Route>
           <Route path="/UzivoKupovina" element={<UzivoPracenjeKupovina />} ></Route>
+          <Route path="/KarticaKorisnika" element={<DodavanjeKartice />} ></Route>
         </Routes>
       </BrowserRouter>
     </div>
