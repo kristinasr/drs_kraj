@@ -32,18 +32,21 @@ const IzmenaProfila = () => {
         textAlign: 'center',
         backgroundColor: 'white',
         width: '320px',
-        height: '400px'
+        height: '400px',
+        border:'3px inset #3d2b1f',
     };
 
     const stilForme = {
         display: 'inline-block',
         textAlign: 'left',
+        
     };
 
     const stilZaLabelu = {
         fontFamily: 'Calibri',
         fontWeight: 'bold',
         marginTop: 0,
+        color:'#3d2b1f',
     };
 
     const stilZaUnos = {
@@ -54,8 +57,8 @@ const IzmenaProfila = () => {
     const stilZaDugme = {
         fontFamily: 'Calibri',
         fontWeight: 'bold',
-        color: 'black',
-        border: '0.5px solid black',
+        color: '#3d2b1f',
+        border: '0.5px solid #3d2b1f',
     };
 
     const stilNaslova = {
@@ -63,6 +66,7 @@ const IzmenaProfila = () => {
         fontWeight: 'bold',
         marginTop: 0,
         textAlign: 'center',
+        color:'#3d2b1f',
     };
 
     const stilCeleStranice = {
@@ -76,29 +80,36 @@ const IzmenaProfila = () => {
         justifyContent: 'center',
     };
 
+    const stilZaNavBar = {
+        position: 'fixed',
+        top: 0,
+        width: '100%',
+        zIndex: 1000,
+    }
+
     const sacuvajIzmene = () => {
-        if (ime.length === 0 || /\d/.test(ime) || !/^[a-zA-Z\s]*$/.test(ime)) {
+        if (ime.length == 0 || /\d/.test(ime) || !/^[a-zA-Z\s]*$/.test(ime)) {
             alert("Ime mora biti popunjeno!")
         }
-        else if (prezime.length === 0 || /\d/.test(prezime) || !/^[a-zA-Z\s]*$/.test(prezime)) {
+        else if (prezime.length == 0 || /\d/.test(prezime) || !/^[a-zA-Z\s]*$/.test(prezime)) {
             alert("Prezime mora biti popunjeno!")
         }
-        else if (adresa.length === 0 || !/^[a-zA-Z0-9\s]+$/.test(adresa)) {
+        else if (adresa.length == 0 || !/^[a-zA-Z0-9\s]+$/.test(adresa)) {
             alert("Adresa mora biti popunjena!")
         }
-        else if (grad.length === 0 || /\d/.test(grad) || !/^[a-zA-Z\s]*$/.test(grad)) {
+        else if (grad.length == 0 || /\d/.test(grad) || !/^[a-zA-Z\s]*$/.test(grad)) {
             alert("Grad mora biti popunjen!")
         }
-        else if (drzava.length === 0 || /\d/.test(drzava) || !/^[a-zA-Z\s]*$/.test(drzava)) {
+        else if (drzava.length == 0 || /\d/.test(drzava) || !/^[a-zA-Z\s]*$/.test(drzava)) {
             alert("Država mora biti popunjena!")
         }
-        else if (brojTelefona.length === 0 || /^[a-zA-Z]*$/.test(brojTelefona)) {
+        else if (brojTelefona.length == 0 || /^[a-zA-Z]*$/.test(brojTelefona)) {
             alert("Broj telefona mora biti popunjen!")
         }
-        else if (email.length === 0 || !/^[a-zA-Z0-9@.]*$/.test(email)) {
+        else if (email.length == 0 || !/^[a-zA-Z0-9@.]*$/.test(email)) {
             alert("Email mora biti popunjen!")
         }
-        else if (lozinka.length === 0 || lozinka.length < 6) {
+        else if (lozinka.length == 0 || lozinka.length < 6) {
             alert("Lozinka mora biti popunjena!")
         }
         else {
@@ -129,22 +140,22 @@ const IzmenaProfila = () => {
 
     return (
         <div style={stilCeleStranice}>
-            <div style={stilKontejnera}>
+            <div style={stilZaNavBar}>
                 <ul className="nav nav-pills nav-fill">
                     <li className="nav-item">
-                        <Link to="/" className="nav-link" style={{ color: 'black', fontWeight: "bold" }}>Početna</Link>
+                        <Link to="/" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Početna</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/Profil" className="nav-link active" style={{ color: 'black', fontWeight: "bold" }}>Profil</Link>
+                        <Link to="/Profil" className="nav-link active" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Profil</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="" className="nav-link" style={{ color: 'black', fontWeight: "bold" }}>Pregled računa</Link>
+                        <Link to="" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Pregled računa</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="" className="nav-link" style={{ color: 'black', fontWeight: "bold" }}>Uplata i konverzija valuta</Link>
+                        <Link to="" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Uplata i konverzija valuta</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="" className="nav-link" style={{ color: 'black', fontWeight: "bold" }}>Istorijat kupovina</Link>
+                        <Link to="" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Istorijat kupovina</Link>
                     </li>
                 </ul>
             </div>

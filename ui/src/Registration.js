@@ -20,7 +20,7 @@ const Registracija = () => {
         backgroundColor: 'white',
         width: '500px',
         height: '410px',
-        border: '5px solid black',
+        border: '3px inset #3d2b1f',
     };
 
     const stilForme = {
@@ -32,6 +32,7 @@ const Registracija = () => {
         fontFamily: 'Calibri',
         fontWeight: 'bold',
         marginTop: 0,
+        color:'#3d2b1f',
     };
 
     const stilZaUnos = {
@@ -43,8 +44,8 @@ const Registracija = () => {
         fontFamily: 'Calibri',
         fontWeight: 'bold',
         backgroundColor: "white",
-        color: 'black',
-        border: '0.5px solid black',
+        color: '#3d2b1f',
+        border: '0.5px solid #3d2b1f',
     };
 
     const stilNaslova = {
@@ -52,6 +53,7 @@ const Registracija = () => {
         fontWeight: 'bold',
         marginTop: 0,
         textAlign: 'center',
+        color:'#3d2b1f',
     };
 
     const stilCeleStranice = {
@@ -73,28 +75,28 @@ const Registracija = () => {
     }
 
     const registracijaKorisnika = () => {
-        if (ime.length === 0 || /\d/.test(ime) || !/^[a-zA-Z\s]*$/.test(ime)) {
+        if (ime.length == 0 || /\d/.test(ime) || !/^[a-zA-Z\s]*$/.test(ime)) {
             alert("Polje mora biti popunjeno!")
         }
-        else if (prezime.length === 0 || /\d/.test(prezime) || !/^[a-zA-Z\s]*$/.test(prezime)) {
+        else if (prezime.length == 0 || /\d/.test(prezime) || !/^[a-zA-Z\s]*$/.test(prezime)) {
             alert("Polje mora biti popunjeno!")
         }
-        else if (adresa.length === 0 || !/^[a-zA-Z0-9\s]+$/.test(adresa)) {
+        else if (adresa.length == 0 || !/^[a-zA-Z0-9\s]+$/.test(adresa)) {
             alert("Polje mora biti popunjeno!")
         }
-        else if (grad.length === 0|| /\d/.test(grad) || !/^[a-zA-Z\s]*$/.test(grad)) {
+        else if (grad.length == 0|| /\d/.test(grad) || !/^[a-zA-Z\s]*$/.test(grad)) {
             alert("Polje mora biti popunjeno!")
         }
-        else if (drzava.length === 0 || /\d/.test(drzava) || !/^[a-zA-Z\s]*$/.test(drzava)) {
+        else if (drzava.length == 0 || /\d/.test(drzava) || !/^[a-zA-Z\s]*$/.test(drzava)) {
             alert("Polje mora biti popunjeno!")
         }
-        else if (brojTelefona.length === 0 || /^[a-zA-Z]*$/.test(brojTelefona)) {
+        else if (brojTelefona.length == 0 || /^[a-zA-Z]*$/.test(brojTelefona)) {
             alert("Polje mora biti popunjeno!")
         }
-        else if (email.length === 0 || !/^[a-zA-Z0-9@.]*$/.test(email)) {
+        else if (email.length == 0 || !/^[a-zA-Z0-9@.]*$/.test(email)) {
             alert("Polje mora biti popunjeno!")
         }
-        else if (lozinka.length === 0 || lozinka.length < 6) {
+        else if (lozinka.length == 0 || lozinka.length < 6) {
             alert("Polje mora biti popunjeno!")
         }
         else {
@@ -118,13 +120,13 @@ const Registracija = () => {
             <div style={stilZaNavBar}>
                 <ul className="nav nav-pills nav-fill">
                     <li className="nav-item">
-                        <Link to="/" className="nav-link" style={{ color: 'black', fontWeight: "bold" }}>Početna</Link>
+                        <Link to="/" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Početna</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/Prijava" className="nav-link" style={{ color: 'black', fontWeight: "bold" }}>Prijava</Link>
+                        <Link to="/Prijava" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Prijava</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/Registracija" className="nav-link active" style={{ color: 'black', fontWeight: "bold" }}>Registracija</Link>
+                        <Link to="/Registracija" className="nav-link active" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Registracija</Link>
                     </li>
                 </ul>
             </div>

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const DodajProizvod = () => {
 
@@ -17,10 +17,11 @@ const DodajProizvod = () => {
     const stilKontejnera = {
         textAlign: 'center',
         backgroundColor: 'white',
-        marginLeft: '950px',
-        width: '370px',
-        height: '270px',
-        border: '5px solid black',
+        marginLeft: '550px',
+        width: '380px',
+        height: '280px',
+        borderRadius: '5px',
+        border: '3px inset #3d2b1f',
     };
 
     const stilForme = {
@@ -32,18 +33,20 @@ const DodajProizvod = () => {
         fontFamily: 'Calibri',
         fontWeight: 'bold',
         marginTop: 0,
+        color: '#3d2b1f',
     };
 
     const stilZaUnos = {
         fontFamily: 'Calibri',
-        color: 'black',
+        color: 'blue',
     };
 
     const stilZaDugme = {
         fontFamily: 'Calibri',
         fontWeight: 'bold',
-        color:'black',
-        border:'0.5px solid black',
+        color:'#3d2b1f',
+        backgroundColor:'white',
+        border:'0.5px solid #3d2b1f',
     };
 
     const stilNaslova = {
@@ -51,6 +54,7 @@ const DodajProizvod = () => {
         fontWeight: 'bold',
         marginTop: 0,
         textAlign: 'center',
+        color:'#3d2b1f',
     };
 
     const stilCeleStranice = {
@@ -81,13 +85,13 @@ const DodajProizvod = () => {
 
     const dodavanjeProizvoda = () => {
         if (naziv.length === 0) {
-            alert("Naziv proizvoda mora biti popunjen!")
+            alert("Naziv proizvoda mora biti popunjen !!")
         }
         else if (cena.length === 0) {
-            alert("Cena proizvoda mora biti popunjena!")
+            alert("Cena proizvoda mora biti popunjena !!")
         }
         else if (kolicina.length === 0) {
-            alert("Količina proizvoda mora biti popunjena!")
+            alert("Količina proizvoda mora biti popunjena !!")
         }
         else {
             axios.post('http://127.0.0.1:5000/Proizvod', {
@@ -97,7 +101,7 @@ const DodajProizvod = () => {
                 kolicina: kolicina,
                 slika: slika
             })
-            alert("Uspešno ste dodali proizvod!")
+            alert("Uspešno ste dodali proizvod !!")
             redirekcija('/');
         }
     }
@@ -106,25 +110,24 @@ const DodajProizvod = () => {
         <div style={stilCeleStranice}>
             <div className='proizvod'>
                 <div style={stilZaNavBar}>
-                    <ul className="nav flex-column">
+                    <ul className="nav nav-pills nav-fill">
                         <li className="nav-item">
-                            <Link to="/" className="nav-link" style={{ color: 'black', fontWeight: "bold" }}>Početna</Link>
+                            <Link to="/" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Početna</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/Proizvod" className="nav-link active" style={{ color: 'black', fontWeight: "bold" }}>Dodavanje proizvoda</Link>
+                            <Link to="/Proizvod" className="nav-link active" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Dodavanje proizvoda</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="" className="nav-link" style={{ color: 'black', fontWeight: "bold" }}>Povećanje količine proizvoda</Link>
+                            <Link to="" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Povećanje količine proizvoda</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/Uzivo" className="nav-link" style={{ color: 'black', fontWeight: "bold" }}>Uživo praćenje kupovina</Link>
+                            <Link to="/UzivoKupovina" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Uživo praćenje kupovina</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="" className="nav-link" style={{ color: 'black', fontWeight: "bold" }}>Verifikacija naloga</Link>
+                            <Link to="" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Verifikacija naloga</Link>
                         </li>
                     </ul>
                 </div>
-
                 <div className="kontejner" style={stilKontejnera}>
                     <div className="forma" style={stilForme}>
                         <h1 style={stilNaslova}>Proizvod</h1>

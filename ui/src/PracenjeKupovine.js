@@ -5,13 +5,13 @@ import { Link } from 'react-router-dom';
 
 const UzivoPracenjeKupovina = () => {
 
-    const [data, setData] = useState([]);
+    const [podaci, podesiPodatke] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/Uzivo');
-                setData(response.data);
+                const odgovor = await axios.get('http://localhost:5000/UzivoKupovina');
+                podesiPodatke(odgovor.data);
             } catch (error) {
                 console.error('Greška: ', error);
             }
@@ -22,7 +22,8 @@ const UzivoPracenjeKupovina = () => {
 
     const stilKontejnera = {
         textAlign: 'center',
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        borderRadius: '5px'
     };
 
     const stilForme = {
@@ -33,8 +34,9 @@ const UzivoPracenjeKupovina = () => {
     const stilNaslova = {
         fontFamily: 'Calibri',
         fontWeight: 'bold',
-        marginTop: 0,
+        marginTop: 10,
         textAlign: 'center',
+        color:'#3d2b1f',
     };
 
     const stilTabele = {
@@ -48,18 +50,21 @@ const UzivoPracenjeKupovina = () => {
     };
 
     const stilZaglavlja = {
-        border: '1px solid #ddd',
+        border: '3px solid #ddd',
         textAlign: 'center',
-        padding: '12px',
-        backgroundColor: 'blue',
+        padding: '20px',
+        backgroundColor: '#3d2b1f',
         color: 'white',
+        fontFamily: 'Calibri',
     };
 
     const stilRedaUTabeli = {
-        border: '1px solid #ddd',
+        border: '3px solid #ddd',
         textAlign: 'center',
         padding: '12px',
-        backgroundColor: '#ecf0f1',
+        backgroundColor: 'white',
+        fontWeight: 'bold',
+        fontFamily: 'Calibri',
     };
 
     const stilCeleStranice = {
@@ -72,8 +77,39 @@ const UzivoPracenjeKupovina = () => {
         justifyContent: 'center',
     };
 
+    const stilZaNavBar = {
+        position: 'fixed',
+        top: 0,
+        width: '100%',
+        zIndex: 1000,
+    }
+    
+    const stilSlike = {
+        width: '80px',
+        height: 'auto%',
+    }
+
     return (
         <div style={stilCeleStranice} >
+            <div style={stilZaNavBar}>
+                <ul className="nav nav-pills nav-fill">
+                    <li className="nav-item">
+                        <Link to="/" className="nav-link" style={{ color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Početna</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/Proizvod" className="nav-link" style={{ color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Dodavanje proizvoda</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="" className="nav-link" style={{ color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Povećanje količine proizvoda</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/UzivoKupovina" className="nav-link active" style={{ color: 'white', fontWeight: "#3d2b1f", backgroundColor: 'black', fontFamily: 'Calibri' }}>Uživo praćenje kupovina</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="" className="nav-link" style={{ color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Verifikacija naloga</Link>
+                    </li>
+                </ul>
+            </div>
             <div className='uzivoPracenjeKupovina'>
                 <div className="kontejner" style={stilKontejnera}>
                     <div className="forma" style={stilForme}>
@@ -81,6 +117,7 @@ const UzivoPracenjeKupovina = () => {
                         <table style={stilTabele}>
                             <thead>
                                 <tr>
+                                    <th style={stilZaglavlja}>Slika proizvoda</th>
                                     <th style={stilZaglavlja}>Naziv proizvoda</th>
                                     <th style={stilZaglavlja}>Cena</th>
                                     <th style={stilZaglavlja}>Valuta</th>
@@ -89,8 +126,11 @@ const UzivoPracenjeKupovina = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {data.map((item, index) => (
+                                {podaci.map((item, index) => (
                                     <tr key={index}>
+                                        <td style={stilRedaUTabeli}>
+                                            <img style={stilSlike} src={item.slika} alt="" />
+                                        </td>
                                         <td style={stilRedaUTabeli}>{item.nazivProizvoda}</td>
                                         <td style={stilRedaUTabeli}>{item.cena}</td>
                                         <td style={stilRedaUTabeli}>{item.valuta}</td>

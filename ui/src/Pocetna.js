@@ -39,7 +39,7 @@ const Pocetna = () => {
     const stilZaNavBar = {
         position: 'fixed',
         top: 0,
-        width: '100%',
+        width: '105%',
         zIndex: 1000,
     }
 
@@ -58,10 +58,10 @@ const Pocetna = () => {
                 podesiPodatke(odgovor.data);
                 const email = odgovor.data.email;
 
-                if (email === '') {
+                if (email == '') {
                     podesiUlogu('/');
                 }
-                else if (email === 'secernisanns@gmail.com') {
+                else if (email == 'secernisanns@gmail.com') {
                     podesiUlogu('/Proizvod');
                 }
                 else {
@@ -80,13 +80,13 @@ const Pocetna = () => {
             <div style={stilZaNavBar}>
                 <ul className="nav nav-pills nav-fill">
                     <li className="nav-item">
-                        <Link to="/" className="nav-link active" style={{ color: 'black', fontWeight: "bold" }}>Početna</Link>
+                        <Link to="/" className="nav-link active" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Početna</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/Prijava" className="nav-link" style={{ color: 'black', fontWeight: "bold" }}>Prijava</Link>
+                        <Link to="/Prijava" className="nav-link" style={{ borderRadius:'5px', width:'100%', color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Prijava</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/Registracija" className="nav-link" style={{ color: 'black', fontWeight: "bold" }}>Registracija</Link>
+                        <Link to="/Registracija" className="nav-link" style={{ borderRadius:'5px', width:'100%', color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Registracija</Link>
                     </li>
                 </ul>
             </div>

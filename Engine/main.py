@@ -88,6 +88,7 @@ def prijava():
     
     email = request.json['email']
     lozinka = request.json['lozinka']
+
     global prijavljenKorisnik
 
     for korisnik in Korisnici:
@@ -119,11 +120,11 @@ def registracija():
 
     app.logger.info(f"\nIme: {ime}\nPrezime: {prezime}\nAdresa: {adresa}\nGrad: {grad}\nDrzava: {drzava}\nBroj Telefona: {brojTelefona}\nEmail: {email}\nLozinka: {lozinka}")
     
-    odgovor = "Novi korisnik je uspešno registrovan!"
-    podaci = f"Podaci o korisniku:\nIme: {ime}\nPrezime: {prezime}\nAdresa: {adresa}\nGrad: {grad}\nDrzava: {drzava}\nBroj Telefona: {brojTelefona}\nEmail: {email}\nLozinka: {lozinka}"
+    title = "Novi korisnik je uspešno registrovan!"
+    body = f"Podaci o korisniku:\nIme: {ime}\nPrezime: {prezime}\nAdresa: {adresa}\nGrad: {grad}\nDrzava: {drzava}\nBroj Telefona: {brojTelefona}\nEmail: {email}\nLozinka: {lozinka}"
     na_email = "secernisanns@gmail.com"
 
-    slanje_emaila(odgovor, podaci, na_email)
+    slanje_emaila(title, body, na_email)
     
     response = {
         "message": "Podaci su uspešno primljeni!",
@@ -203,7 +204,6 @@ def izmenaProfila():
             prijavljenKorisnik.lozinka = lozinka
 
     app.logger.info(f"Email: {email}, Lozinka: {lozinka}")
-
     app.logger.info(f"Ime: {ime}, Prezime: {prezime}, Adresa: {adresa}, Grad: {grad}, Drzava: {drzava}, Broj Telefona: {brojTelefona}, Email: {email}, Lozinka: {lozinka}")
 
     response = {
@@ -220,7 +220,7 @@ def izmenaProfila():
 
     return jsonify(response), 200
 
-@app.route('/Uzivo', methods=['GET'])
+@app.route('/UzivoKupovina', methods=['GET'])
 def get_data():
     data = [
         {
@@ -234,7 +234,7 @@ def get_data():
     return jsonify(data)
 
 @app.route('/', methods=['GET'])
-def posaljiProizvod():
+def prikazProizvoda():
     data = [
         {
             'naziv': proizvod.naziv,

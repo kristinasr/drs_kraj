@@ -14,7 +14,7 @@ const Prijava = () => {
         backgroundColor: 'white',
         width: '350px',
         height: '190px',
-        border: '5px solid black',
+        border: '3px inset #3d2b1f',
     };
 
     const stilForme = {
@@ -26,19 +26,20 @@ const Prijava = () => {
         fontFamily: 'Calibri',
         fontWeight: 'bold',
         marginTop: 0,
+        color:'#3d2b1f',
     };
 
     const stilZaUnos = {
         fontFamily: 'Calibri',
-        color: 'black',
+        color: '#3d2b1f',
     };
 
     const stilZaDugme = {
         fontFamily: 'Calibri',
         fontWeight: 'bold',
-        border: '0.5px solid black',
+        border: '0.5px solid #3d2b1f',
         backgroundColor:'white',
-        color:'black',
+        color:'#3d2b1f',
     };
 
     const stilNaslova = {
@@ -46,6 +47,7 @@ const Prijava = () => {
         fontWeight: 'bold',
         marginTop: 0,
         textAlign: 'center',
+        color: '#3d2b1f',
     };
 
     const stilCeleStranice = {
@@ -67,10 +69,10 @@ const Prijava = () => {
     }
 
     const prijavaKorisnika = () => {
-        if (email.length === 0 || !/^[a-zA-Z0-9@.]*$/.test(email)) {
+        if (email.length == 0 || !/^[a-zA-Z0-9@.]*$/.test(email)) {
             alert("Email mora biti popunjen !!")
         }
-        else if (lozinka.length === 0 || lozinka.length < 6) {
+        else if (lozinka.length == 0 || lozinka.length < 6) {
             alert("Lozinka mora biti popunjena !!")
         }
         else {
@@ -79,7 +81,7 @@ const Prijava = () => {
                 lozinka: lozinka
             })
 
-            if (email === 'secernisanns@gmail.com') {
+            if (email == 'secernisanns@gmail.com') {
                 alert("Admin prijavljen!")
                 redirekcija('/Proizvod');
             }
@@ -95,13 +97,13 @@ const Prijava = () => {
             <div style={stilZaNavBar}>
                 <ul className="nav nav-pills nav-fill">
                     <li className="nav-item">
-                        <Link to="/" className="nav-link" style={{ color: 'black', fontWeight: "bold" }}>Početna</Link>
+                        <Link to="/" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri'  }}>Početna</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/Prijava" className="nav-link active" style={{ color: 'black', fontWeight: "bold" }}>Prijava</Link>
+                        <Link to="/Prijava" className="nav-link active" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri'  }}>Prijava</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/Registracija" className="nav-link" style={{ color: 'black', fontWeight: "bold" }}>Registracija</Link>
+                        <Link to="/Registracija" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri'  }}>Registracija</Link>
                     </li> 
              
                 </ul>

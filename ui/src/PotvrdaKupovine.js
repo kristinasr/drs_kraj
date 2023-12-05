@@ -38,7 +38,7 @@ const PotvrdaKupovine = ({ showModal, handleOpenModal, handleCloseModal, nazivPr
   }, []);
 
   const stilZaUnos = {
-    fontFamily: 'Arial',
+    fontFamily: 'Calibri',
     textAlign: 'center',
     color: 'blue',
     width: '100px',
@@ -60,7 +60,7 @@ const PotvrdaKupovine = ({ showModal, handleOpenModal, handleCloseModal, nazivPr
       </Modal.Header>
       <Modal.Body>
         <div style={stilKontejnera}>
-          <span>Odaberite valutu u kojoj želite da platite :</span>
+          <span>Odaberite valutu u kojoj želite da platite:</span>
           <select style={stilListeValuta} value={valuta} onChange={(e) => postaviOdabranuValutu(e.target.value)}>
             {valute.map((valuta, index) => (
               <option key={index} value={valuta}>
@@ -70,10 +70,10 @@ const PotvrdaKupovine = ({ showModal, handleOpenModal, handleCloseModal, nazivPr
           </select>
         </div>
         <div style={stilKontejnera}>
-          Cena proizvoda za odabranu valutu je : {konvertovanaCena} {valuta}
+          Cena proizvoda za odabranu valutu je: {konvertovanaCena} {valuta}
         </div>
         <div>
-          <span>Broj artikala koji naručujete:</span>
+          <span>Broj artikala koji poručujete:</span>
           <input
             style={stilZaUnos}
             type="number"
@@ -86,7 +86,7 @@ const PotvrdaKupovine = ({ showModal, handleOpenModal, handleCloseModal, nazivPr
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleCloseModal}>
-          Potvrdi narudzbinu
+          Potvrdi porudzbinu
         </Button>
       </Modal.Footer>
     </Modal>
