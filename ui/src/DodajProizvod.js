@@ -54,7 +54,7 @@ const DodajProizvod = () => {
         fontWeight: 'bold',
         marginTop: 0,
         textAlign: 'center',
-        color:'#3d2b1f',
+        color:'white',
     };
 
     const stilStranice = {
