@@ -98,16 +98,16 @@ const IstorijaProizvoda = () => {
                         <Link to="/Profil" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Profil</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/KarticaKorisnika" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Dodavanje kartice</Link>
+                        <Link to="/KarticaKorisnika" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Kartica</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Pregled računa</Link>
+                        <Link to="" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Račun</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Uplata i konverzija valuta</Link>
+                        <Link to="" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Konverzija</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/IstorijaProizvoda" className="nav-link active" style={{ color: 'yellow', fontWeight: "bold" }}>Istorijat kupovina</Link>
+                        <Link to="/IstorijaProizvoda" className="nav-link active" style={{ color: 'yellow', fontWeight: "bold" }}>Istorija kupovine</Link>
                     </li>
                 </ul>
             </div>
