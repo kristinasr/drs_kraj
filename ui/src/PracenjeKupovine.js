@@ -20,7 +20,7 @@ const PracenjeKupovine = () => {
         prihvatiPodatke();
     }, []);
 
-    const stilKontejnera = {
+    const stilProstora = {
         textAlign: 'center',
         backgroundColor: 'white',
         borderRadius: '5px'
@@ -104,8 +104,8 @@ const PracenjeKupovine = () => {
                     </li>
                 </ul>
             </div>
-            <div className='pracenjeKupovina'>
-                <div className="kontejner" style={stilKontejnera}>
+            <div className='pracenjeKupovine'>
+                <div className="prostor" style={stilProstora}>
                     <div className="forma" style={stilForme}>
                         <h1 style={stilNaslova}>Praćenje kupovina</h1>
                         <table style={stilTabele}>

@@ -11,30 +11,30 @@ const PotvrdaKupovine = ({ showModal, handleOpenModal, handleCloseModal, nazivPr
   const [valuta, postaviOdabranuValutu] = useState('');
 
   useEffect(() => {
-    const prihvatiPodatke = async () => {
-      try {
-        const response = await fetch(`https://open.er-api.com/v6/latest/${valuta}`);
-        const data = await response.json();
-        const konvertovanaCena = (data.rates[valuta] / data.rates[valutaProizvoda]) * cenaProizvoda;
-        podesiKonvertovanuCenu(konvertovanaCena.toFixed(2));
-      } catch (error) {
-        console.error('Greška:', error);
-      }
-    };
+      const prihvatiPodatke = async () => {
+          try {
+            const response = await fetch(`https://open.er-api.com/v6/latest/${valuta}`);
+            const data = await response.json();
+            const konvertovanaCena = (data.rates[valuta] / data.rates[valutaProizvoda]) * cenaProizvoda;
+            podesiKonvertovanuCenu(konvertovanaCena.toFixed(2));
+          } catch (error) {
+            console.error('Greška:', error);
+          }
+      };
 
-    if (showModal) {
-      prihvatiPodatke();
-    }
+      if (showModal) {
+          prihvatiPodatke();
+      }
   }, [showModal, cenaProizvoda, valutaProizvoda, valuta]);
 
   useEffect(() => {
-    const sveValute = async () => {
-      const response = await axios.get('https://open.er-api.com/v6/latest');
-      const valute = Object.keys(response.data.rates);
-      postaviValute(valute);
-    };
+      const sveValute = async () => {
+          const response = await axios.get('https://open.er-api.com/v6/latest');
+          const valute = Object.keys(response.data.rates);
+          postaviValute(valute);
+      };
 
-    sveValute();
+      sveValute();
   }, []);
 
   const stilZaUnos = {
@@ -45,7 +45,7 @@ const PotvrdaKupovine = ({ showModal, handleOpenModal, handleCloseModal, nazivPr
     marginLeft: '10px',
   };
 
-  const stilKontejnera = {
+  const stilProstora = {
     marginBottom: '20px',
   };
 
@@ -59,7 +59,7 @@ const PotvrdaKupovine = ({ showModal, handleOpenModal, handleCloseModal, nazivPr
         <Modal.Title>{nazivProizvoda}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <div style={stilKontejnera}>
+        <div style={stilProstora}>
           <span>Odaberite valutu u kojoj želite da platite:</span>
           <select style={stilValuta} value={valuta} onChange={(e) => postaviOdabranuValutu(e.target.value)}>
             {valute.map((valuta, index) => (
@@ -69,7 +69,7 @@ const PotvrdaKupovine = ({ showModal, handleOpenModal, handleCloseModal, nazivPr
             ))}
           </select>
         </div>
-        <div style={stilKontejnera}>
+        <div style={stilProstora}>
           Cena za odabranu valutu je: {konvertovanaCena} {valuta}
         </div>
         <div>

@@ -9,7 +9,7 @@ const Prijava = () => {
     const [lozinka, podesiLozinku] = useState('');
     const redirekcija = useNavigate();
 
-    const stilKontejnera = {
+    const stilProstora = {
         textAlign: 'center',
         backgroundColor: '#836953',
         width: '350px',
@@ -110,7 +110,7 @@ const Prijava = () => {
                 </ul>
             </div>
             <div className='prijava'>
-                <div className="kontejner" style={stilKontejnera}>
+                <div className="prostor" style={stilProstora}>
                     <div className="forma" style={stilForme}>
                         <h1 style={stilNaslova}>Prijava</h1>
                         <table style={{ margin: 'auto', borderSpacing: '0 5px', borderCollapse: 'separate' }}>

@@ -28,7 +28,7 @@ const IzmenaProfila = () => {
         prihvatiPodatke();
     }, []);
 
-    const stilKontejnera = {
+    const stilProstora = {
         textAlign: 'center',
         backgroundColor: '#836953',
         width: '350px',
@@ -61,6 +61,7 @@ const IzmenaProfila = () => {
         color: 'white',
         border: '0.5px solid #3d2b1f',
         backgroundColor: '#3d2b1f',
+
     };
 
     const stilNaslova = {
@@ -154,11 +155,14 @@ const IzmenaProfila = () => {
                         <Link to="/KarticaKorisnika" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Kartica</Link>
                     </li>
                     <li className="nav-item">
+                        <Link to="/Racun" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Pregled računa</Link>
+                    </li>
+                    <li className="nav-item">
                         <Link to="/IstorijaProizvoda" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Istorija kupovine</Link>
                     </li>
                 </ul>
             </div>
-            <div className="kontejner" style={stilKontejnera}>
+            <div className="prostor" style={stilProstora}>
                 <div className="forma" style={stilForme}>
                     <h1 style={stilNaslova}>Pregled profila</h1>
                     <table style={{ margin: 'auto', borderSpacing: '0 5px', borderCollapse: 'separate' }}>

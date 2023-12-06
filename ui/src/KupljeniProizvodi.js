@@ -20,7 +20,7 @@ const IstorijaProizvoda = () => {
         prihvatiPodatke();
     }, []);
 
-    const stilKontejnera = {
+    const stilProstora = {
         textAlign: 'center',
         backgroundColor: 'white',
         borderRadius: '5px',
@@ -102,12 +102,15 @@ const IstorijaProizvoda = () => {
                         <Link to="/KarticaKorisnika" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Kartica</Link>
                     </li>
                     <li className="nav-item">
+                        <Link to="/Racun" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Pregled računa</Link>
+                    </li>
+                    <li className="nav-item">
                         <Link to="/IstorijaProizvoda" className="nav-link active" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Istorija kupovine</Link>
                     </li>
                 </ul>
             </div>
             <div className='pracenjeKupovine'>
-                <div className="kontejner" style={stilKontejnera}>
+                <div className="prostor" style={stilProstora}>
                     <div className="forma" style={stilForme}>
                         <h1 style={stilNaslova}>Kupljeni proizvodi</h1>
                         <table style={stilTabele}>

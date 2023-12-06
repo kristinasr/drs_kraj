@@ -336,5 +336,17 @@ def dodajKarticu():
 
     return jsonify(response_data), 200
 
+@app.route('/Racun', methods=['GET'])
+def prikaziRacun():
+
+    data = {
+        'cardNum' : '1234567891234567',
+        'dateExp': '04/24',
+        'balance': '100000.00',
+        'valuta': 'RSD',
+    }
+
+    return jsonify(data)
+
 if __name__ == "__main__":
     app.run(debug=True,port=5000)

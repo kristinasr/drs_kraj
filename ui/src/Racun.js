@@ -1,23 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const DodavanjeKartice = () => {
+const PrikaziRacun = () => {
+
     const [cardNum, postaviCardNum] = useState('');
     const [dateExp, postaviDateExp] = useState('');
-    const [cvv, postaviCVV] = useState('');
-    const redirekcija = useNavigate();
+    const [balance, postaviBalance] = useState('');
+    const [valuta, postaviValutu] = useState('');
+    const [podaci, podesiPodatke] = useState([]);
 
     const stilProstora = {
         textAlign: 'center',
         backgroundColor: '#836953',
         width: '350px',
-        padding: '20px',
-        borderRadius: '8px',
-        boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
-        border:'1px inset #3d2b1f',
+        padding: '15px',
+        borderRadius: '5px',
+        border:'1px inset #3d2b1f'
     };
 
     const stilForme = {
@@ -38,20 +38,8 @@ const DodavanjeKartice = () => {
         width: '100%',
         padding: '10px',
         marginBottom: '15px',
-        boxSizing: 'border-box',
-        border: '1px solid #ccc',
-        borderRadius: '4px',
-    };
-
-    const stilDugmeta = {
-        fontFamily: 'Calibri',
-        fontWeight: 'bold',
-        width: '200px',
-        height: '40px',
-        marginLeft: '50px',
-        color:'white',
-        backgroundColor:'#3d2b1f',
-        border: '0.5px inset #3d2b1f',
+        border: '1px solid #3d2b1f',
+        borderRadius: '3px',
     };
 
     const stilNaslova = {
@@ -69,37 +57,35 @@ const DodavanjeKartice = () => {
         backgroundPosition: 'center',
         height: '100vh',
         display: 'flex',
-        alignItems: 'center',
         justifyContent: 'center',
+        alignItems: 'center',
     };
 
     const stilNavBara = {
         position: 'fixed',
         top: 0,
         width: '100%',
-        zIndex: 1000,
     }
 
-    const dodajKarticu = () => {
-        if (!cardNum || !dateExp || !cvv) {
-            alert('Sva polja moraju biti popunjena!');
-        } else if (!/^[0-9]{16}$/.test(cardNum)) {
-            alert('Polje mora sadrzati 16 brojeva!');
-        } else if (!/^(0[1-9]|1[0-2])\/[0-9]{2}$/.test(dateExp)) {
-            alert('Polje mora biti popunjeno u fomratu MM/YY!');
-        } else if (!/^[0-9]{3}$/.test(cvv)) {
-            alert('Polje mora sadrzati 3 broja!');
-        } else {
-            axios
-                .post('http://127.0.0.1:5000/KarticaKorisnika', {
-                    cardNum: cardNum,
-                    dateExp: dateExp,
-                    cvv: cvv,
-                })
-            alert('Uspesno dodavanje kartice. Cekanje na verifikaciju...');
-            redirekcija('/');
-        }
-    };
+    useEffect(() => {
+        const prihvatiPodatke = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/Racun');
+                podesiPodatke(response.data);
+            } catch (error) {
+                console.error('Greška: ', error);
+            }
+        };
+
+        prihvatiPodatke();
+    }, []);
+
+    useEffect(() => {
+        postaviCardNum(podaci.cardNum || '');
+        postaviDateExp(podaci.dateExp || '');
+        postaviBalance(podaci.balance || '');
+        postaviValutu(podaci.valuta || '');
+    }, [podaci]);
 
     return (
         <div style={stilStranice}>
@@ -112,10 +98,10 @@ const DodavanjeKartice = () => {
                         <Link to="/Profil" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Profil</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/KarticaKorisnika" className="nav-link active" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Kartica</Link>
+                        <Link to="/KarticaKorisnika" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Kartica</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/Racun" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Pregled računa</Link>
+                        <Link to="/Racun" className="nav-link active" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Pregled računa</Link>
                     </li>
                     <li className="nav-item">
                         <Link to="/IstorijaProizvoda" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Istorija kupovina</Link>
@@ -123,7 +109,7 @@ const DodavanjeKartice = () => {
                 </ul>
             </div>
             <div style={stilProstora}>
-                <h2 style={stilNaslova}>Dodajte Vašu karticu</h2>
+                <h2 style={stilNaslova}>Stanje računa</h2>
                 <form style={stilForme}>
                     <label style={stilLabele} htmlFor="cardNum">
                         Broj kartice:
@@ -132,37 +118,37 @@ const DodavanjeKartice = () => {
                         style={stilUnosa}
                         type="text"
                         id="cardNum"
+                        maxLength={16}
                         value={cardNum}
-                        onChange={(e) => postaviCardNum(e.target.value)}
                     />
-                    <label style={stilLabele} htmlFor="dateExp">
+                    <label style={stilLabele}>
                         Datum isteka:
                     </label>
                     <input
                         style={stilUnosa}
                         type="text"
                         id="dateExp"
+                        maxLength={5}
                         value={dateExp}
-                        onChange={(e) => postaviDateExp(e.target.value)}
                     />
-                    <label style={stilLabele} htmlFor="cvv">
-                        CVV:
+                    <label style={stilLabele}>
+                        Stanje:
                     </label>
                     <input
                         style={stilUnosa}
                         type="text"
-                        id="cvv"
-                        maxLength={3}
-                        value={cvv}
-                        onChange={(e) => postaviCVV(e.target.value)}
+                        id="balance"
+                        value={balance}
                     />
+                    <label style={stilLabele}>
+                        Valuta:
+                    </label>
                     <input
-                        className="btn btn-outline-primary"
-                        id="prijavaDugme"
-                        style={stilDugmeta}
-                        type="submit"
-                        value="Dodaj"
-                        onClick={dodajKarticu}
+                        style={stilUnosa}
+                        type="text"
+                        id="valuta"
+                        maxLength={3}
+                        value={valuta}
                     />
                 </form>
             </div>
@@ -170,4 +156,4 @@ const DodavanjeKartice = () => {
     );
 };
 
-export default DodavanjeKartice;
+export default PrikaziRacun;

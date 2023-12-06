@@ -15,7 +15,7 @@ const Registracija = () => {
     const [lozinka, podesiLozinku] = useState('');
     const redirekcija = useNavigate();
 
-    const stilKontejnera = {
+    const stilProstora = {
         textAlign: 'center',
         backgroundColor: '#836953',
         width: '450px',
@@ -130,7 +130,7 @@ const Registracija = () => {
                     </li>
                 </ul>
             </div>
-            <div className="kontejner" style={stilKontejnera}>
+            <div className="prostor" style={stilProstora}>
                 <div className="forma" style={stilForme}>
                     <h1 style={stilNaslova}>Registracija</h1>
                     <table style={{ margin: 'auto', borderSpacing: '0 5px', borderCollapse: 'separate' }}>

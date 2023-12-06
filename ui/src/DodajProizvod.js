@@ -14,7 +14,7 @@ const DodajProizvod = () => {
     const [slika, podesiSliku] = useState('');
     const redirekcija = useNavigate();
 
-    const stilKontejnera = {
+    const stilProstora = {
         textAlign: 'center',
         backgroundColor: '#836953',
         marginLeft: '550px',
@@ -122,7 +122,7 @@ const DodajProizvod = () => {
                         </li>
                     </ul>
                 </div>
-                <div className="kontejner" style={stilKontejnera}>
+                <div className="prostor" style={stilProstora}>
                     <div className="forma" style={stilForme}>
                         <h1 style={stilNaslova}>Proizvod</h1>
                         <table style={{ margin: 'auto', borderSpacing: '0 5px', borderCollapse: 'separate' }}>
