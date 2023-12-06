@@ -100,13 +100,7 @@ const PracenjeKupovine = () => {
                         <Link to="/Proizvod" className="nav-link" style={{ color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Dodavanje proizvoda</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="" className="nav-link" style={{ color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Povećanje količine proizvoda</Link>
-                    </li>
-                    <li className="nav-item">
                         <Link to="/UzivoKupovina" className="nav-link active" style={{ color: 'white', fontWeight: "#3d2b1f", backgroundColor: 'black', fontFamily: 'Calibri' }}>Uživo praćenje kupovina</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link to="" className="nav-link" style={{ color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Verifikacija naloga</Link>
                     </li>
                 </ul>
             </div>
