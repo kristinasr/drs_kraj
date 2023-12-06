@@ -75,7 +75,7 @@ const DodajProizvod = () => {
 
     useEffect(() => {
         const sveValute = async () => {
-            const response = await axios.get('https://open.er-api.com/v6/latest');
+            const response = await axios.get('https://api.exchangerate-api.com/v4/latest/USD');
             const valute = Object.keys(response.data.rates);
             postaviValute(valute);
         };

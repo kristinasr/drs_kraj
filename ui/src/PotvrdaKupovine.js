@@ -13,7 +13,7 @@ const PotvrdaKupovine = ({ showModal, handleOpenModal, handleCloseModal, nazivPr
   useEffect(() => {
       const prihvatiPodatke = async () => {
           try {
-            const response = await fetch(`https://open.er-api.com/v6/latest/${valuta}`);
+            const response = await fetch(`https://api.exchangerate-api.com/v4/latest/${valuta}`);
             const data = await response.json();
             const konvertovanaCena = (data.rates[valuta] / data.rates[valutaProizvoda]) * cenaProizvoda;
             podesiKonvertovanuCenu(konvertovanaCena.toFixed(2));
@@ -29,7 +29,7 @@ const PotvrdaKupovine = ({ showModal, handleOpenModal, handleCloseModal, nazivPr
 
   useEffect(() => {
       const sveValute = async () => {
-          const response = await axios.get('https://open.er-api.com/v6/latest');
+          const response = await axios.get('https://api.exchangerate-api.com/v4/latest/USD');
           const valute = Object.keys(response.data.rates);
           postaviValute(valute);
       };
