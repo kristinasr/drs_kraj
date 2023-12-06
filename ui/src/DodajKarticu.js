@@ -17,6 +17,7 @@ const DodavanjeKartice = () => {
         padding: '20px',
         borderRadius: '8px',
         boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
+        border:'1px inset #3d2b1f',
     };
 
     const stilForme = {
@@ -24,15 +25,16 @@ const DodavanjeKartice = () => {
     };
 
     const stilZaLabelu = {
-        fontFamily: 'Times New Roman',
+        fontFamily: 'Calibri',
         fontWeight: 'bold',
         marginTop: '10px',
         display: 'block',
+        color:'#3d2b1f',
     };
 
     const stilZaUnos = {
-        fontFamily: 'Times New Roman',
-        color: 'blue',
+        fontFamily: 'Calibri',
+        color: 'black',
         width: '100%',
         padding: '10px',
         marginBottom: '15px',
@@ -42,19 +44,22 @@ const DodavanjeKartice = () => {
     };
 
     const stilZaDugme = {
-        fontFamily: 'Times New Roman',
+        fontFamily: 'Calibri',
         fontWeight: 'bold',
         width: '200px',
-        height: '50px',
+        height: '40px',
         marginLeft: '50px',
+        color:'#3d2b1f',
+        backgroundColor:'white',
+        border: '0.5px inset #3d2b1f',
     };
 
     const stilNaslova = {
-        fontFamily: 'Times New Roman',
+        fontFamily: 'Calibri',
         fontWeight: 'bold',
         marginTop: '0',
         marginBottom: '20px',
-        color: '#007BFF',
+        color: '#3d2b1f',
     };
 
     const stilCeleStranice = {
@@ -101,22 +106,22 @@ const DodavanjeKartice = () => {
             <div style={stilZaNavBar}>
                 <ul className="nav nav-pills nav-fill">
                     <li className="nav-item">
-                        <Link to="/" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Početna</Link>
+                        <Link to="/" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Početna</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/Profil" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Profil</Link>
+                        <Link to="/Profil" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Profil</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/KarticaKorisnika" className="nav-link active" style={{ color: 'yellow', fontWeight: "bold" }}>Dodavanje kartice</Link>
+                        <Link to="/KarticaKorisnika" className="nav-link active" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Kartica</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Pregled računa</Link>
+                        <Link to="" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Račun</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Uplata i konverzija valuta</Link>
+                        <Link to="" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Konverzija valuta</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/IstorijaProizvoda" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Istorijat kupovina</Link>
+                        <Link to="/IstorijaProizvoda" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Istorija kupovina</Link>
                     </li>
                 </ul>
             </div>

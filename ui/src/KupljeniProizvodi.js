@@ -10,7 +10,7 @@ const IstorijaProizvoda = () => {
     useEffect(() => {
         const prihvatiPodatke = async () => {
             try {
-                const odgovor = await axios.get('http://localhost:5000/Istorijat');
+                const odgovor = await axios.get('http://localhost:5000/IstorijaProizvoda');
                 podesiPodatke(odgovor.data);
             } catch (error) {
                 console.error('Greška: ', error);
@@ -23,7 +23,8 @@ const IstorijaProizvoda = () => {
     const stilKontejnera = {
         textAlign: 'center',
         backgroundColor: 'white',
-        borderRadius: '5px'
+        borderRadius: '5px',
+        border:'1px inset #3d2b1f',
     };
 
     const stilForme = {
@@ -32,11 +33,11 @@ const IstorijaProizvoda = () => {
     };
 
     const stilNaslova = {
-        fontFamily: 'Times New Roman',
+        fontFamily: 'Calibri',
         fontWeight: 'bold',
-        marginTop: 0,
+        marginTop: 15,
         textAlign: 'center',
-        color: '#007BFF',
+        color: '#3d2b1f',
     };
 
     const stilTabele = {
@@ -46,23 +47,23 @@ const IstorijaProizvoda = () => {
         borderRadius: '8px',
         overflow: 'hidden',
         boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
-        border: '1px solid #ddd',
     };
 
     const stilZaglavlja = {
-        border: '3px solid #ddd',
+        border: '1px solid #3d2b1f',
         textAlign: 'center',
         padding: '12px',
-        backgroundColor: 'blue',
+        backgroundColor: '#3d2b1f',
         color: 'white',
     };
 
     const stilRedaUTabeli = {
-        border: '3px solid #ddd',
+        border: '3px solid #cd9575',
         textAlign: 'center',
         padding: '12px',
-        backgroundColor: '#bfc1c2',
-        fontWeight: 'bold'
+        backgroundColor: '#edc9af',
+        fontWeight: 'bold',
+        fontFamily:'Calibri',
     };
 
     const stilCeleStranice = {
@@ -92,22 +93,22 @@ const IstorijaProizvoda = () => {
             <div style={stilZaNavBar}>
                 <ul className="nav nav-pills nav-fill">
                     <li className="nav-item">
-                        <Link to="/" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Početna</Link>
+                        <Link to="/" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Početna</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/Profil" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Profil</Link>
+                        <Link to="/Profil" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Profil</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/KarticaKorisnika" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Kartica</Link>
+                        <Link to="/KarticaKorisnika" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Kartica</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Račun</Link>
+                        <Link to="" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Račun</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Konverzija</Link>
+                        <Link to="" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Konverzija</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/IstorijaProizvoda" className="nav-link active" style={{ color: 'yellow', fontWeight: "bold" }}>Istorija kupovine</Link>
+                        <Link to="/IstorijaProizvoda" className="nav-link active" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Istorija kupovine</Link>
                     </li>
                 </ul>
             </div>
@@ -118,8 +119,8 @@ const IstorijaProizvoda = () => {
                         <table style={stilTabele}>
                             <thead>
                                 <tr>
-                                    <th style={stilZaglavlja}>Slika proizvoda</th>
-                                    <th style={stilZaglavlja}>Naziv proizvoda</th>
+                                    <th style={stilZaglavlja}>Slika</th>
+                                    <th style={stilZaglavlja}>Naziv</th>
                                     <th style={stilZaglavlja}>Cena</th>
                                     <th style={stilZaglavlja}>Valuta</th>
                                     <th style={stilZaglavlja}>Količina</th>

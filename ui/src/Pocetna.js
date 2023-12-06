@@ -58,11 +58,11 @@ const Pocetna = () => {
                 podesiPodatke(odgovor.data.proizvodi);
                 const email = odgovor.data.email;
 
-                if (email == '') {
+                if (email === '') {
                     podesiUlogu('/');
                 }
-                else if (email == 'secernisanns@gmail.com') {
-                    podesiUlogu('/Profil');
+                else if (email === 'secernisanns@gmail.com') {
+                    podesiUlogu('/Proizvod');
                 }
                 else {
                     podesiUlogu('/Profil');
@@ -91,7 +91,7 @@ const Pocetna = () => {
                 </ul>
             </div>
             <div style={stilZaProfil}>
-                <Link to="/Profil">
+                <Link to={uloga}>
                     <img src="Pozadine/user.jpg" alt="Profile" style={{ width: '70px', height: '70px', borderRadius: '50%' }} />
                 </Link>
             </div>

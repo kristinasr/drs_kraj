@@ -1,10 +1,10 @@
-import datetime
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from EmailObaveštenje import slanje_emaila
 from Proizvod import Proizvod
 from Korisnik import Korisnik
 from putanjaDoSlike import odrediPutanju
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -79,6 +79,16 @@ Korisnici = [
         brojTelefona= '024567876',
         email= 'secernisanns@gmail.com',
         lozinka= 'secernisan1234!'
+    ),
+    Korisnik(
+        ime= 'Marko',
+        prezime= 'Markovic',
+        adresa= 'Strazilovska 11',
+        grad= 'Novi Sad',
+        drzava= 'Srbija',
+        brojTelefona= '0658947561',
+        email= 'marko.markovic@gmail.com',
+        lozinka= 'marko1234'
     )
 ]
 
@@ -289,10 +299,10 @@ def kupljeno():
 
     p = Proizvod(
          naziv = 'Cherry', 
-        cena = 590, 
-        valuta = 'RSD',
-        kolicina = 20, 
-        slika = 'Proizvodi/cherry.jpg'
+         cena = 590, 
+         valuta = 'RSD',
+         kolicina = 1, 
+         slika = 'Proizvodi/cherry.jpg'
     )
 
     data = [

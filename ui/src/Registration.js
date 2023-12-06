@@ -18,7 +18,7 @@ const Registracija = () => {
     const stilKontejnera = {
         textAlign: 'center',
         backgroundColor: 'white',
-        width: '500px',
+        width: '450px',
         height: '410px',
         border: '3px inset #3d2b1f',
     };

@@ -46,11 +46,11 @@ const PracenjeKupovine = () => {
         borderRadius: '8px',
         overflow: 'hidden',
         boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
-        border: '1px solid #ddd',
+        border: '1px solid #cd9575',
     };
 
     const stilZaglavlja = {
-        border: '3px solid #ddd',
+        border: '3px solid #cd9575',
         textAlign: 'center',
         padding: '20px',
         backgroundColor: '#3d2b1f',
@@ -59,10 +59,10 @@ const PracenjeKupovine = () => {
     };
 
     const stilRedaUTabeli = {
-        border: '3px solid #ddd',
+        border: '3px solid #cd9575',
         textAlign: 'center',
         padding: '12px',
-        backgroundColor: 'white',
+        backgroundColor: '#edc9af',
         fontWeight: 'bold',
         fontFamily: 'Calibri',
     };

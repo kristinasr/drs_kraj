@@ -21,7 +21,7 @@ const DodajProizvod = () => {
         width: '380px',
         height: '280px',
         borderRadius: '5px',
-        border: '3px inset #3d2b1f',
+        border: '1px inset #3d2b1f',
     };
 
     const stilForme = {
@@ -38,7 +38,7 @@ const DodajProizvod = () => {
 
     const stilZaUnos = {
         fontFamily: 'Calibri',
-        color: 'blue',
+        color: 'black',
     };
 
     const stilZaDugme = {
