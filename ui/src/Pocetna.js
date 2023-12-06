@@ -62,7 +62,7 @@ const Pocetna = () => {
                     podesiUlogu('/');
                 }
                 else if (email == 'secernisanns@gmail.com') {
-                    podesiUlogu('/Proizvod');
+                    podesiUlogu('/Profil');
                 }
                 else {
                     podesiUlogu('/Profil');
@@ -91,8 +91,8 @@ const Pocetna = () => {
                 </ul>
             </div>
             <div style={stilZaProfil}>
-                <Link to={uloga}>
-                    <img src="/profil.jpg" alt="Profile" style={{ width: '50px', height: '50px', borderRadius: '50%' }} />
+                <Link to="/Profil">
+                    <img src="Pozadine/user.jpg" alt="Profile" style={{ width: '70px', height: '70px', borderRadius: '50%' }} />
                 </Link>
             </div>
             <div className="kontejner" style={stilKontejneraZaKartice}>
