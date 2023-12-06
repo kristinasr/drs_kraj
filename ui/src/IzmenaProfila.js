@@ -30,35 +30,37 @@ const IzmenaProfila = () => {
 
     const stilKontejnera = {
         textAlign: 'center',
-        backgroundColor: 'white',
-        width: '320px',
+        backgroundColor: '#836953',
+        width: '350px',
         height: '400px',
-        border:'3px inset #3d2b1f',
+        border:'1px inset #3d2b1f',
+        borderRadius:'5px',
+        marginTop: 10,
     };
 
     const stilForme = {
         display: 'inline-block',
         textAlign: 'left',
-        
     };
 
-    const stilZaLabelu = {
+    const stilLabele = {
         fontFamily: 'Calibri',
         fontWeight: 'bold',
         marginTop: 0,
-        color:'#3d2b1f',
+        color:'white',
     };
 
-    const stilZaUnos = {
+    const stilUnosa = {
         fontFamily: 'Calibri',
         color: 'black',
     };
 
-    const stilZaDugme = {
+    const stilDugmeta = {
         fontFamily: 'Calibri',
         fontWeight: 'bold',
-        color: '#3d2b1f',
+        color: 'white',
         border: '0.5px solid #3d2b1f',
+        backgroundColor: '#3d2b1f',
     };
 
     const stilNaslova = {
@@ -66,10 +68,10 @@ const IzmenaProfila = () => {
         fontWeight: 'bold',
         marginTop: 0,
         textAlign: 'center',
-        color:'#3d2b1f',
+        color:'white',
     };
 
-    const stilCeleStranice = {
+    const stilStranice = {
         textAlign: 'center',
         backgroundImage: `url('Pozadine/pozadinaPocetna.jpg')`,
         backgroundSize: 'cover',
@@ -80,7 +82,7 @@ const IzmenaProfila = () => {
         justifyContent: 'center',
     };
 
-    const stilZaNavBar = {
+    const stilNavBara = {
         position: 'fixed',
         top: 0,
         width: '100%',
@@ -139,8 +141,8 @@ const IzmenaProfila = () => {
     }, [podaci]);
 
     return (
-        <div style={stilCeleStranice}>
-            <div style={stilZaNavBar}>
+        <div style={stilStranice}>
+            <div style={stilNavBara}>
                 <ul className="nav nav-pills nav-fill">
                     <li className="nav-item">
                         <Link to="/" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Početna</Link>
@@ -168,43 +170,43 @@ const IzmenaProfila = () => {
                     <h1 style={stilNaslova}>Pregled profila</h1>
                     <table style={{ margin: 'auto', borderSpacing: '0 5px', borderCollapse: 'separate' }}>
                         <tr>
-                            <td style={stilZaLabelu}>Ime:</td>
-                            <td><input style={stilZaUnos} value={ime} onChange={(e) => podesiIme(e.target.value)} type="text" id="ime" className="ime" maxLength="25" /></td>
+                            <td style={stilLabele}>Ime:</td>
+                            <td><input style={stilUnosa} value={ime} onChange={(e) => podesiIme(e.target.value)} type="text" id="ime" className="ime" maxLength="25" /></td>
                         </tr>
                         <tr>
-                            <td style={stilZaLabelu}>Prezime:</td>
-                            <td><input style={stilZaUnos} value={prezime} onChange={(e) => podesiPrezime(e.target.value)} type="text" id="prezime" className="prezime" maxLength="25" /></td>
+                            <td style={stilLabele}>Prezime:</td>
+                            <td><input style={stilUnosa} value={prezime} onChange={(e) => podesiPrezime(e.target.value)} type="text" id="prezime" className="prezime" maxLength="25" /></td>
                         </tr>
                         <tr>
-                            <td style={stilZaLabelu}>Adresa:</td>
-                            <td><input style={stilZaUnos} value={adresa} onChange={(e) => podesiAdresu(e.target.value)} type="text" id="adresa" className="adresa" maxLength="25" /></td>
+                            <td style={stilLabele}>Adresa:</td>
+                            <td><input style={stilUnosa} value={adresa} onChange={(e) => podesiAdresu(e.target.value)} type="text" id="adresa" className="adresa" maxLength="25" /></td>
                         </tr>
                         <tr>
-                            <td style={stilZaLabelu}>Grad:</td>
-                            <td><input style={stilZaUnos} value={grad} onChange={(e) => podesiGrad(e.target.value)} type="text" id="grad" className="grad" maxLength="25" /></td>
+                            <td style={stilLabele}>Grad:</td>
+                            <td><input style={stilUnosa} value={grad} onChange={(e) => podesiGrad(e.target.value)} type="text" id="grad" className="grad" maxLength="25" /></td>
                         </tr>
                         <tr>
-                            <td style={stilZaLabelu}>Država:</td>
-                            <td><input style={stilZaUnos} value={drzava} onChange={(e) => podesiDrzavu(e.target.value)} type="text" id="drzava" className="drzava" maxLength="25" /></td>
+                            <td style={stilLabele}>Država:</td>
+                            <td><input style={stilUnosa} value={drzava} onChange={(e) => podesiDrzavu(e.target.value)} type="text" id="drzava" className="drzava" maxLength="25" /></td>
                         </tr>
                         <tr>
-                            <td style={stilZaLabelu}>Broj telefona:</td>
-                            <td><input style={stilZaUnos} value={brojTelefona} onChange={(e) => podesiBrojTelefona(e.target.value)} type="text" id="brtelefona" className="brtelefona" maxLength="25" /></td>
+                            <td style={stilLabele}>Broj telefona:</td>
+                            <td><input style={stilUnosa} value={brojTelefona} onChange={(e) => podesiBrojTelefona(e.target.value)} type="text" id="brtelefona" className="brtelefona" maxLength="25" /></td>
                         </tr>
                         <tr>
-                            <td style={stilZaLabelu}>Email:</td>
-                            <td><input style={stilZaUnos} value={email} onChange={(e) => podesiEmail(e.target.value)} type="email" id="email" className="email" maxLength="30" /></td>
+                            <td style={stilLabele}>Email:</td>
+                            <td><input style={stilUnosa} value={email} onChange={(e) => podesiEmail(e.target.value)} type="email" id="email" className="email" maxLength="30" /></td>
                         </tr>
                         <tr>
-                            <td style={stilZaLabelu}>Lozinka:</td>
-                            <td><input style={stilZaUnos} value={lozinka} onChange={(e) => podesiLozinku(e.target.value)} type="password" id="lozinka" className="lozinka" maxLength="18" /></td>
+                            <td style={stilLabele}>Lozinka:</td>
+                            <td><input style={stilUnosa} value={lozinka} onChange={(e) => podesiLozinku(e.target.value)} type="password" id="lozinka" className="lozinka" maxLength="18" /></td>
                         </tr>
                         <tr>
                             <td colSpan="2" align="right" style={{ padding: '0 40px 0 0' }}>
                                 <input
                                     className="btn btn-outline-primary"
                                     id="izmeniDugme"
-                                    style={stilZaDugme}
+                                    style={stilDugmeta}
                                     type="submit"
                                     value="Izmeni"
                                     onClick={sacuvajIzmene}

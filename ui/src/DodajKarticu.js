@@ -12,7 +12,7 @@ const DodavanjeKartice = () => {
 
     const stilKontejnera = {
         textAlign: 'center',
-        backgroundColor: 'white',
+        backgroundColor: '#836953',
         width: '350px',
         padding: '20px',
         borderRadius: '8px',
@@ -24,15 +24,15 @@ const DodavanjeKartice = () => {
         textAlign: 'left',
     };
 
-    const stilZaLabelu = {
+    const stilLabele = {
         fontFamily: 'Calibri',
         fontWeight: 'bold',
         marginTop: '10px',
         display: 'block',
-        color:'#3d2b1f',
+        color:'white',
     };
 
-    const stilZaUnos = {
+    const stilUnosa = {
         fontFamily: 'Calibri',
         color: 'black',
         width: '100%',
@@ -43,14 +43,14 @@ const DodavanjeKartice = () => {
         borderRadius: '4px',
     };
 
-    const stilZaDugme = {
+    const stilDugmeta = {
         fontFamily: 'Calibri',
         fontWeight: 'bold',
         width: '200px',
         height: '40px',
         marginLeft: '50px',
-        color:'#3d2b1f',
-        backgroundColor:'white',
+        color:'white',
+        backgroundColor:'#3d2b1f',
         border: '0.5px inset #3d2b1f',
     };
 
@@ -59,10 +59,10 @@ const DodavanjeKartice = () => {
         fontWeight: 'bold',
         marginTop: '0',
         marginBottom: '20px',
-        color: '#3d2b1f',
+        color: 'white',
     };
 
-    const stilCeleStranice = {
+    const stilStranice = {
         textAlign: 'center',
         backgroundImage: `url('Pozadine/pozadinaPocetna.jpg')`,
         backgroundSize: 'cover',
@@ -73,7 +73,7 @@ const DodavanjeKartice = () => {
         justifyContent: 'center',
     };
 
-    const stilZaNavBar = {
+    const stilNavBara = {
         position: 'fixed',
         top: 0,
         width: '100%',
@@ -102,8 +102,8 @@ const DodavanjeKartice = () => {
     };
 
     return (
-        <div style={stilCeleStranice}>
-            <div style={stilZaNavBar}>
+        <div style={stilStranice}>
+            <div style={stilNavBara}>
                 <ul className="nav nav-pills nav-fill">
                     <li className="nav-item">
                         <Link to="/" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Početna</Link>
@@ -126,35 +126,35 @@ const DodavanjeKartice = () => {
                 </ul>
             </div>
             <div style={stilKontejnera}>
-                <h2 style={stilNaslova}>Dodajte Vasu karticu</h2>
+                <h2 style={stilNaslova}>Dodajte Vašu karticu</h2>
                 <form style={stilForme}>
-                    <label style={stilZaLabelu} htmlFor="cardNum">
+                    <label style={stilLabele} htmlFor="cardNum">
                         Broj kartice:
                     </label>
                     <input
-                        style={stilZaUnos}
+                        style={stilUnosa}
                         type="text"
                         id="cardNum"
                         value={cardNum}
                         onChange={(e) => postaviCardNum(e.target.value)}
                     />
 
-                    <label style={stilZaLabelu} htmlFor="dateExp">
+                    <label style={stilLabele} htmlFor="dateExp">
                         Datum isteka:
                     </label>
                     <input
-                        style={stilZaUnos}
+                        style={stilUnosa}
                         type="text"
                         id="dateExp"
                         value={dateExp}
                         onChange={(e) => postaviDateExp(e.target.value)}
                     />
 
-                    <label style={stilZaLabelu} htmlFor="cvv">
+                    <label style={stilLabele} htmlFor="cvv">
                         CVV:
                     </label>
                     <input
-                        style={stilZaUnos}
+                        style={stilUnosa}
                         type="text"
                         id="cvv"
                         maxLength={3}
@@ -165,7 +165,7 @@ const DodavanjeKartice = () => {
                     <input
                         className="btn btn-outline-primary"
                         id="prijavaDugme"
-                        style={stilZaDugme}
+                        style={stilDugmeta}
                         type="submit"
                         value="Dodaj karticu"
                         onClick={dodajKarticu}

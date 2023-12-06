@@ -11,10 +11,11 @@ const Prijava = () => {
 
     const stilKontejnera = {
         textAlign: 'center',
-        backgroundColor: 'white',
+        backgroundColor: '#836953',
         width: '350px',
         height: '190px',
-        border: '3px inset #3d2b1f',
+        border: '1px inset #3d2b1f',
+        borderRadius:'5px',
     };
 
     const stilForme = {
@@ -22,24 +23,24 @@ const Prijava = () => {
         textAlign: 'left',
     };
 
-    const stilZaLabelu = {
+    const stilLabele = {
         fontFamily: 'Calibri',
         fontWeight: 'bold',
         marginTop: 0,
-        color:'#3d2b1f',
+        color:'white',
     };
 
-    const stilZaUnos = {
+    const stilUnosa = {
         fontFamily: 'Calibri',
-        color: '#3d2b1f',
+        color: 'black',
     };
 
-    const stilZaDugme = {
+    const stilDugmeta = {
         fontFamily: 'Calibri',
         fontWeight: 'bold',
         border: '0.5px solid #3d2b1f',
-        backgroundColor:'white',
-        color:'#3d2b1f',
+        backgroundColor:'#3d2b1f',
+        color:'white',
     };
 
     const stilNaslova = {
@@ -47,10 +48,10 @@ const Prijava = () => {
         fontWeight: 'bold',
         marginTop: 0,
         textAlign: 'center',
-        color: '#3d2b1f',
+        color: 'white',
     };
 
-    const stilCeleStranice = {
+    const stilStranice = {
         textAlign: 'center',
         backgroundImage: `url('Pozadine/pozadinaPocetna.jpg')`,
         backgroundSize: 'cover',
@@ -61,7 +62,7 @@ const Prijava = () => {
         justifyContent: 'center',
     };
 
-    const stilZaNavBar = {
+    const stilNavBara = {
         position: 'fixed',
         top: 0,
         width: '100%',
@@ -93,8 +94,8 @@ const Prijava = () => {
     }
 
     return (
-        <div style={stilCeleStranice}>
-            <div style={stilZaNavBar}>
+        <div style={stilStranice}>
+            <div style={stilNavBara}>
                 <ul className="nav nav-pills nav-fill">
                     <li className="nav-item">
                         <Link to="/" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri'  }}>Početna</Link>
@@ -114,10 +115,10 @@ const Prijava = () => {
                         <h1 style={stilNaslova}>Prijava</h1>
                         <table style={{ margin: 'auto', borderSpacing: '0 5px', borderCollapse: 'separate' }}>
                             <tr>
-                                <th style={stilZaLabelu}>Email:</th>
+                                <th style={stilLabele}>Email:</th>
                                 <td>
                                     <input
-                                        style={stilZaUnos}
+                                        style={stilUnosa}
                                         type="email"
                                         id="email"
                                         className="email"
@@ -128,10 +129,10 @@ const Prijava = () => {
                                 </td>
                             </tr>
                             <tr>
-                                <th style={stilZaLabelu}>Lozinka:</th>
+                                <th style={stilLabele}>Lozinka:</th>
                                 <td>
                                     <input
-                                        style={stilZaUnos}
+                                        style={stilUnosa}
                                         type="password"
                                         id="lozinka"
                                         className="lozinka"
@@ -146,7 +147,7 @@ const Prijava = () => {
                                     <input
                                         className="btn btn-outline-primary"
                                         id="prijavaDugme"
-                                        style={stilZaDugme}
+                                        style={stilDugmeta}
                                         type="submit"
                                         value="Prijavi se"
                                         onClick={prijavaKorisnika}

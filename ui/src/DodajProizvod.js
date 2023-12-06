@@ -16,7 +16,7 @@ const DodajProizvod = () => {
 
     const stilKontejnera = {
         textAlign: 'center',
-        backgroundColor: 'white',
+        backgroundColor: '#836953',
         marginLeft: '550px',
         width: '380px',
         height: '280px',
@@ -29,23 +29,23 @@ const DodajProizvod = () => {
         textAlign: 'left',
     };
 
-    const stilZaLabelu = {
+    const stilLabele = {
         fontFamily: 'Calibri',
         fontWeight: 'bold',
         marginTop: 0,
-        color: '#3d2b1f',
+        color: 'white',
     };
 
-    const stilZaUnos = {
+    const stilUnosa = {
         fontFamily: 'Calibri',
         color: 'black',
     };
 
-    const stilZaDugme = {
+    const stilDugmeta = {
         fontFamily: 'Calibri',
         fontWeight: 'bold',
-        color:'#3d2b1f',
-        backgroundColor:'white',
+        color:'white',
+        backgroundColor:'#3d2b1f',
         border:'0.5px solid #3d2b1f',
     };
 
@@ -57,7 +57,7 @@ const DodajProizvod = () => {
         color:'#3d2b1f',
     };
 
-    const stilCeleStranice = {
+    const stilStranice = {
         textAlign: 'center',
         backgroundImage: `url('Pozadine/pozadinaPocetna.jpg')`,
         backgroundSize: 'cover',
@@ -66,7 +66,7 @@ const DodajProizvod = () => {
         alignItems: 'center',
     };
 
-    const stilZaNavBar = {
+    const stilNavBara = {
         position: 'fixed',
         top: 0,
         width: '100%',
@@ -107,9 +107,9 @@ const DodajProizvod = () => {
     }
 
     return (
-        <div style={stilCeleStranice}>
+        <div style={stilStranice}>
             <div className='proizvod'>
-                <div style={stilZaNavBar}>
+                <div style={stilNavBara}>
                     <ul className="nav nav-pills nav-fill">
                         <li className="nav-item">
                             <Link to="/" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Početna</Link>
@@ -133,10 +133,10 @@ const DodajProizvod = () => {
                         <h1 style={stilNaslova}>Proizvod</h1>
                         <table style={{ margin: 'auto', borderSpacing: '0 5px', borderCollapse: 'separate' }}>
                             <tr>
-                                <th style={stilZaLabelu}>Naziv:</th>
+                                <th style={stilLabele}>Naziv:</th>
                                 <td>
                                     <input
-                                        style={stilZaUnos}
+                                        style={stilUnosa}
                                         type="text"
                                         id="naziv"
                                         className="naziv"
@@ -146,11 +146,11 @@ const DodajProizvod = () => {
                                 </td>
                             </tr>
                             <tr>
-                                <th style={stilZaLabelu}>Cena:</th>
+                                <th style={stilLabele}>Cena:</th>
                                 <td>
                                     <div style={{ display: 'flex', gap: '15px' }}>
                                         <input
-                                            style={stilZaUnos}
+                                            style={stilUnosa}
                                             type="number"
                                             id="cena"
                                             className="cena"
@@ -168,10 +168,10 @@ const DodajProizvod = () => {
                                 </td>
                             </tr>
                             <tr>
-                                <th style={stilZaLabelu}>Količina:</th>
+                                <th style={stilLabele}>Količina:</th>
                                 <td>
                                     <input
-                                        style={stilZaUnos}
+                                        style={stilUnosa}
                                         type="number"
                                         id="kolicina"
                                         className="kolicina"
@@ -181,7 +181,7 @@ const DodajProizvod = () => {
                                 </td>
                             </tr>
                             <tr>
-                                <th style={stilZaLabelu}>Slika:</th>
+                                <th style={stilLabele}>Slika:</th>
                                 <td>
                                     <td>
                                         <input
@@ -198,7 +198,7 @@ const DodajProizvod = () => {
                                     <input
                                         className="btn btn-outline-primary"
                                         id="dodajDugme"
-                                        style={stilZaDugme}
+                                        style={stilDugmeta}
                                         type="submit"
                                         value="Dodaj"
                                         onClick={dodavanjeProizvoda}

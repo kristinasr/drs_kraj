@@ -49,7 +49,7 @@ const PracenjeKupovine = () => {
         border: '1px solid #cd9575',
     };
 
-    const stilZaglavlja = {
+    const stilZaglavljaTabele = {
         border: '3px solid #cd9575',
         textAlign: 'center',
         padding: '20px',
@@ -58,7 +58,7 @@ const PracenjeKupovine = () => {
         fontFamily: 'Calibri',
     };
 
-    const stilRedaUTabeli = {
+    const stilReda = {
         border: '3px solid #cd9575',
         textAlign: 'center',
         padding: '12px',
@@ -67,7 +67,7 @@ const PracenjeKupovine = () => {
         fontFamily: 'Calibri',
     };
 
-    const stilCeleStranice = {
+    const stilStranice = {
         textAlign: 'center',
         backgroundImage: `url('Pozadine/pozadinaPocetna.jpg')`,
         backgroundSize: 'cover',
@@ -77,7 +77,7 @@ const PracenjeKupovine = () => {
         justifyContent: 'center',
     };
 
-    const stilZaNavBar = {
+    const stilNavBara = {
         position: 'fixed',
         top: 0,
         width: '100%',
@@ -85,13 +85,13 @@ const PracenjeKupovine = () => {
     }
     
     const stilSlike = {
-        width: '80px',
+        width: '100px',
         height: 'auto%',
     }
 
     return (
-        <div style={stilCeleStranice} >
-            <div style={stilZaNavBar}>
+        <div style={stilStranice} >
+            <div style={stilNavBara}>
                 <ul className="nav nav-pills nav-fill">
                     <li className="nav-item">
                         <Link to="/" className="nav-link" style={{ color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Početna</Link>
@@ -110,32 +110,32 @@ const PracenjeKupovine = () => {
                     </li>
                 </ul>
             </div>
-            <div className='uzivoPracenjeKupovina'>
+            <div className='pracenjeKupovina'>
                 <div className="kontejner" style={stilKontejnera}>
                     <div className="forma" style={stilForme}>
-                        <h1 style={stilNaslova}>Praćenje kupovina uživo</h1>
+                        <h1 style={stilNaslova}>Praćenje kupovina</h1>
                         <table style={stilTabele}>
                             <thead>
                                 <tr>
-                                    <th style={stilZaglavlja}>Slika proizvoda</th>
-                                    <th style={stilZaglavlja}>Naziv proizvoda</th>
-                                    <th style={stilZaglavlja}>Cena</th>
-                                    <th style={stilZaglavlja}>Valuta</th>
-                                    <th style={stilZaglavlja}>Kupac (email)</th>
-                                    <th style={stilZaglavlja}>Vreme kupovine</th>
+                                    <th style={stilZaglavljaTabele}>Slika</th>
+                                    <th style={stilZaglavljaTabele}>Naziv</th>
+                                    <th style={stilZaglavljaTabele}>Cena</th>
+                                    <th style={stilZaglavljaTabele}>Valuta</th>
+                                    <th style={stilZaglavljaTabele}>Kupac</th>
+                                    <th style={stilZaglavljaTabele}>Vreme kupovine</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {podaci.map((item, index) => (
                                     <tr key={index}>
-                                        <td style={stilRedaUTabeli}>
+                                        <td style={stilReda}>
                                             <img style={stilSlike} src={item.slika} alt="" />
                                         </td>
-                                        <td style={stilRedaUTabeli}>{item.nazivProizvoda}</td>
-                                        <td style={stilRedaUTabeli}>{item.cena}</td>
-                                        <td style={stilRedaUTabeli}>{item.valuta}</td>
-                                        <td style={stilRedaUTabeli}>{item.kupac}</td>
-                                        <td style={stilRedaUTabeli}>{item.vreme}</td>
+                                        <td style={stilReda}>{item.nazivProizvoda}</td>
+                                        <td style={stilReda}>{item.cena}</td>
+                                        <td style={stilReda}>{item.valuta}</td>
+                                        <td style={stilReda}>{item.kupac}</td>
+                                        <td style={stilReda}>{item.vreme}</td>
                                     </tr>
                                 ))}
                             </tbody>

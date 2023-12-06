@@ -13,14 +13,14 @@ const Pocetna = () => {
     const [uloga, podesiUlogu] = useState([]);
    // const [isLogged, setIsLogged] = useState(false);
 
-    const stilKontejneraZaKartice = {
+    const stilProstoraZaProizvode = {
         display: 'flex',
         justifyContent: 'center',
         flexWrap: 'wrap',
         gap: '25px',
     };
 
-    const stilCeleStranice = {
+    const stilStranice = {
         textAlign: 'center',
         backgroundSize: 'cover',
         backgroundImage: `url('Pozadine/pozadinaPocetna.jpg')`,
@@ -36,14 +36,13 @@ const Pocetna = () => {
         flexDirection: 'column',
     };
 
-    const stilZaNavBar = {
+    const stilNavBara = {
         position: 'fixed',
         top: 0,
         width: '105%',
-        zIndex: 1000,
     }
 
-    const stilZaProfil = {
+    const stilProfila = {
         position: 'fixed',
         top: 0,
         right: 0,
@@ -76,8 +75,8 @@ const Pocetna = () => {
     }, []);
 
     return (
-        <div className='pocetnaStranica' style={stilCeleStranice}>
-            <div style={stilZaNavBar}>
+        <div className='pocetnaStranica' style={stilStranice}>
+            <div style={stilNavBara}>
                 <ul className="nav nav-pills nav-fill">
                     <li className="nav-item">
                         <Link to="/" className="nav-link active" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Početna</Link>
@@ -90,12 +89,12 @@ const Pocetna = () => {
                     </li>
                 </ul>
             </div>
-            <div style={stilZaProfil}>
+            <div style={stilProfila}>
                 <Link to={uloga}>
                     <img src="Pozadine/user.jpg" alt="Profile" style={{ width: '70px', height: '70px', borderRadius: '50%' }} />
                 </Link>
             </div>
-            <div className="kontejner" style={stilKontejneraZaKartice}>
+            <div className="prostor" style={stilProstoraZaProizvode}>
                 {podaci.map((proizvod, index) => (
                     <PrikazProizvoda key={index} proizvod={proizvod} />
                 ))}
