@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 const Pocetna = () => {
 
     const [podaci, podesiPodatke] = useState([]);
-    const [uloga, podesiUlogu] = useState([]);
+    const [vrstaKorisnika, podesiVrstuKorisnika] = useState([]);
    // const [isLogged, setIsLogged] = useState(false);
 
     const stilProstoraZaProizvode = {
@@ -58,13 +58,13 @@ const Pocetna = () => {
                 const email = odgovor.data.email;
 
                 if (email === '') {
-                    podesiUlogu('/');
+                    podesiVrstuKorisnika('/');
                 }
                 else if (email === 'secernisanns@gmail.com') {
-                    podesiUlogu('/Proizvod');
+                    podesiVrstuKorisnika('/Proizvod');
                 }
                 else {
-                    podesiUlogu('/Profil');
+                    podesiVrstuKorisnika('/Profil');
                 }
             } catch (error) {
                 console.error('Greška:', error);
@@ -90,7 +90,7 @@ const Pocetna = () => {
                 </ul>
             </div>
             <div style={stilProfila}>
-                <Link to={uloga}>
+                <Link to={vrstaKorisnika}>
                     <img src="Pozadine/user.jpg" alt="Profile" style={{ width: '70px', height: '70px', borderRadius: '50%' }} />
                 </Link>
             </div>
