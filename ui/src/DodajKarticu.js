@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const DodavanjeKartice = () => {
-    const [cardNum, postaviCardNum] = useState('');
-    const [dateExp, postaviDateExp] = useState('');
+    const [brojKartice, postavibrojKartice] = useState('');
+    const [datumIsteka, postavidatumIsteka] = useState('');
     const [cvv, postaviCVV] = useState('');
     const redirekcija = useNavigate();
 
@@ -81,19 +81,19 @@ const DodavanjeKartice = () => {
     }
 
     const dodajKarticu = () => {
-        if (!cardNum || !dateExp || !cvv) {
+        if (!brojKartice || !datumIsteka || !cvv) {
             alert('Sva polja moraju biti popunjena!');
-        } else if (!/^[0-9]{16}$/.test(cardNum)) {
+        } else if (!/^[0-9]{16}$/.test(brojKartice)) {
             alert('Polje mora sadrzati 16 brojeva!');
-        } else if (!/^(0[1-9]|1[0-2])\/[0-9]{2}$/.test(dateExp)) {
+        } else if (!/^(0[1-9]|1[0-2])\/[0-9]{2}$/.test(datumIsteka)) {
             alert('Polje mora biti popunjeno u fomratu MM/YY!');
         } else if (!/^[0-9]{3}$/.test(cvv)) {
             alert('Polje mora sadrzati 3 broja!');
         } else {
             axios
                 .post('http://127.0.0.1:5000/KarticaKorisnika', {
-                    cardNum: cardNum,
-                    dateExp: dateExp,
+                    brojKartice: brojKartice,
+                    datumIsteka: datumIsteka,
                     cvv: cvv,
                 })
             alert('Uspesno dodavanje kartice. Cekanje na verifikaciju...');
@@ -125,25 +125,25 @@ const DodavanjeKartice = () => {
             <div style={stilProstora}>
                 <h2 style={stilNaslova}>Dodajte Vašu karticu</h2>
                 <form style={stilForme}>
-                    <label style={stilLabele} htmlFor="cardNum">
+                    <label style={stilLabele} htmlFor="brojKartice">
                         Broj kartice:
                     </label>
                     <input
                         style={stilUnosa}
                         type="text"
-                        id="cardNum"
-                        value={cardNum}
-                        onChange={(e) => postaviCardNum(e.target.value)}
+                        id="brojKartice"
+                        value={brojKartice}
+                        onChange={(e) => postavibrojKartice(e.target.value)}
                     />
-                    <label style={stilLabele} htmlFor="dateExp">
+                    <label style={stilLabele} htmlFor="datumIsteka">
                         Datum isteka:
                     </label>
                     <input
                         style={stilUnosa}
                         type="text"
-                        id="dateExp"
-                        value={dateExp}
-                        onChange={(e) => postaviDateExp(e.target.value)}
+                        id="datumIsteka"
+                        value={datumIsteka}
+                        onChange={(e) => postavidatumIsteka(e.target.value)}
                     />
                     <label style={stilLabele} htmlFor="cvv">
                         CVV:

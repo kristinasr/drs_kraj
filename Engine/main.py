@@ -1,14 +1,11 @@
-from flask import Flask, request, jsonify
-from flask_cors import CORS
 from EmailObaveštenje import slanje_emaila
 from Proizvod import Proizvod
 from Korisnik import Korisnik
+from Kartica import *
 from putanjaDoSlike import odrediPutanju
 from datetime import datetime
-
-app = Flask(__name__)
-
-CORS(app, supports_credentials=True)
+from databaseFunctions import *
+from config import request, jsonify, app
 
 Proizvodi = [
     Proizvod(
@@ -69,8 +66,7 @@ Proizvodi = [
     )
 ]
 
-Korisnici = [
-    Korisnik(
+admin = Korisnik(
         ime= 'admin',
         prezime= 'admin',
         adresa= 'Balzakova 65',
@@ -79,18 +75,12 @@ Korisnici = [
         brojTelefona= '024567876',
         email= 'secernisanns@gmail.com',
         lozinka= 'secernisan1234!'
-    ),
-    Korisnik(
-        ime= 'Marko',
-        prezime= 'Markovic',
-        adresa= 'Strazilovska 11',
-        grad= 'Novi Sad',
-        drzava= 'Srbija',
-        brojTelefona= '0658947561',
-        email= 'marko.markovic@gmail.com',
-        lozinka= 'marko1234'
     )
-]
+
+karticaAdmin = Kartica('9876543210987654', '17/27', '987', '0', 'RSD', admin.email, "DA")
+
+korisnici = procitajKorisnikaIzBaze()
+proizvodi = procitajProizvodIzBaze()
 
 prijavljenKorisnik = None
 
@@ -102,10 +92,7 @@ def prijava():
 
     global prijavljenKorisnik
 
-    for korisnik in Korisnici:
-        if korisnik.email == email:
-            prijavljenKorisnik = korisnik
-            break
+    prijavljenKorisnik = pronadjiKorisnikaPoEmailu(email)
     
     app.logger.info(f"\nEmail: {email}\nLozinka: {lozinka}")
 
@@ -128,6 +115,9 @@ def registracija():
     brojTelefona = request.json['brojTelefona']
     email = request.json['email']
     lozinka = request.json['lozinka']
+
+    novi_korisnik = Korisnik(ime, prezime, adresa, grad, drzava,brojTelefona, email, lozinka)
+    dodajKorisnikaUBazu(novi_korisnik)
 
     app.logger.info(f"\nIme: {ime}\nPrezime: {prezime}\nAdresa: {adresa}\nGrad: {grad}\nDrzava: {drzava}\nBroj Telefona: {brojTelefona}\nEmail: {email}\nLozinka: {lozinka}")
     
@@ -162,8 +152,9 @@ def dodajProizvod():
 
     slika = odrediPutanju(slika)
 
-    Proizvodi.append(Proizvod(naziv, cena, valuta, kolicina, slika))
-    
+    novi_proizvod = Proizvod(naziv, cena, valuta, kolicina, slika)
+    dodajProizvodUBazu(novi_proizvod)
+
     app.logger.info(f"\nNaziv proivoda: {naziv}\nCena: {cena}\nValuta: {valuta}\nKolicina: {kolicina}\nSlika: {slika}")
 
     response = {
@@ -189,7 +180,7 @@ def izmenaProfila():
 
     global prijavljenKorisnik
 
-    for korisnik in Korisnici:
+    for korisnik in korisnici:
         if korisnik.ime != ime:
             prijavljenKorisnik.ime = ime
 
@@ -214,6 +205,9 @@ def izmenaProfila():
         if korisnik.lozinka != lozinka:
             prijavljenKorisnik.lozinka = lozinka
 
+    korisnik = Korisnik(ime, prezime, adresa, grad, drzava, brojTelefona, email, lozinka)
+    izmeniKorisnikaUBazi(korisnik)
+
     app.logger.info(f"Email: {email}, Lozinka: {lozinka}")
     app.logger.info(f"Ime: {ime}, Prezime: {prezime}, Adresa: {adresa}, Grad: {grad}, Drzava: {drzava}, Broj Telefona: {brojTelefona}, Email: {email}, Lozinka: {lozinka}")
 
@@ -233,20 +227,27 @@ def izmenaProfila():
 
 @app.route('/UzivoKupovina', methods=['GET'])
 def get_data():
+
+    proizvodi = procitajProizvodIzBaze()
+
     data = [
         {
             'slika': proizvod.slika,
             'nazivProizvoda': proizvod.naziv,
             'cena': proizvod.cena,
             'valuta': proizvod.valuta,
-            'kupac' : 'marko.markovic@gmail.com'
+            'kupac' : 'marko@gmail.com'
         }
-        for proizvod in Proizvodi
+        for proizvod in proizvodi
     ]
+
     return jsonify(data)
 
 @app.route('/', methods=['GET'])
 def prikazProizvoda():
+
+    proizvodi = procitajProizvodIzBaze()
+
     data = [
         {
             'naziv': proizvod.naziv,
@@ -255,7 +256,7 @@ def prikazProizvoda():
             'kolicina': proizvod.kolicina,
             'slika': proizvod.slika,
         }
-        for proizvod in Proizvodi
+        for proizvod in proizvodi
     ]
 
     global prijavljenKorisnik
@@ -321,16 +322,19 @@ def kupljeno():
 @app.route('/KarticaKorisnika', methods=['POST'])
 def dodajKarticu():
 
-    cardNum = request.json['cardNum']
-    dateExp = request.json['dateExp']
+    brojKartice = request.json['brojKartice']
+    datumIsteka = request.json['datumIsteka']
     cvv = request.json.get('cvv')
 
-    app.logger.info(f"\nBroj kartice: {cardNum}\nDatum isteka: {dateExp}\nCVV: {cvv}")
+    kartica = Kartica(brojKartice=brojKartice, datumIsteka=datumIsteka, ccv=cvv, stanjeNaRacunu=0.0, valuta="RSD", odobrena="NE")
+    dodajKarticuUBazu(kartica)
+
+    app.logger.info(f"\nBroj kartice: {brojKartice}\nDatum isteka: {datumIsteka}\nCVV: {cvv}")
 
     response_data = {
-        "message": "Podaci uspesno primljeni",
-        "cardNum": cardNum,
-        "dateExp": dateExp,
+        "message": "Podaci uspešno primljeni!",
+        "brojKartice": brojKartice,
+        "datumIsteka": datumIsteka,
         "cvv": cvv,
     }
 
@@ -340,9 +344,9 @@ def dodajKarticu():
 def prikaziRacun():
 
     data = {
-        'cardNum' : '1234567891234567',
-        'dateExp': '04/24',
-        'balance': '100000.00',
+        'brojKartice' : '1234567891234567',
+        'datumIsteka': '04/24',
+        'stanje': '100000.00',
         'valuta': 'RSD',
     }
 

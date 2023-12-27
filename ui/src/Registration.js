@@ -76,28 +76,28 @@ const Registracija = () => {
 
     const registracijaKorisnika = () => {
         if (ime.length === 0 || /\d/.test(ime) || !/^[a-zA-Z\s]*$/.test(ime)) {
-            alert("Polje mora biti popunjeno!")
+            alert("Polje za ime mora biti popunjeno!")
         }
         else if (prezime.length === 0 || /\d/.test(prezime) || !/^[a-zA-Z\s]*$/.test(prezime)) {
-            alert("Polje mora biti popunjeno!")
+            alert("Polje za prezime mora biti popunjeno!")
         }
         else if (adresa.length === 0 || !/^[a-zA-Z0-9\s]+$/.test(adresa)) {
-            alert("Polje mora biti popunjeno!")
+            alert("Polje za adresu mora biti popunjeno!")
         }
         else if (grad.length === 0|| /\d/.test(grad) || !/^[a-zA-Z\s]*$/.test(grad)) {
-            alert("Polje mora biti popunjeno!")
+            alert("Polje za grad mora biti popunjeno!")
         }
         else if (drzava.length === 0 || /\d/.test(drzava) || !/^[a-zA-Z\s]*$/.test(drzava)) {
-            alert("Polje mora biti popunjeno!")
+            alert("Polje za drzavu mora biti popunjeno!")
         }
         else if (brojTelefona.length === 0 || /^[a-zA-Z]*$/.test(brojTelefona)) {
-            alert("Polje mora biti popunjeno!")
+            alert("Polje za telefon mora biti popunjeno!")
         }
         else if (email.length === 0 || !/^[a-zA-Z0-9@.]*$/.test(email)) {
-            alert("Polje mora biti popunjeno!")
+            alert("Polje za email mora biti popunjeno!")
         }
         else if (lozinka.length === 0 || lozinka.length < 6) {
-            alert("Polje mora biti popunjeno!")
+            alert("Polje za lozinku mora biti popunjeno!")
         }
         else {
             axios.post('http://127.0.0.1:5000/Registracija', {

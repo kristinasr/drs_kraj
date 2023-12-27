@@ -5,9 +5,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const PrikaziRacun = () => {
 
-    const [cardNum, postaviCardNum] = useState('');
-    const [dateExp, postaviDateExp] = useState('');
-    const [balance, postaviBalance] = useState('');
+    const [brojKartice, postavibrojKartice] = useState('');
+    const [datumIsteka, postavidatumIsteka] = useState('');
+    const [stanje, postavistanje] = useState('');
     const [valuta, postaviValutu] = useState('');
     const [podaci, podesiPodatke] = useState([]);
 
@@ -81,9 +81,9 @@ const PrikaziRacun = () => {
     }, []);
 
     useEffect(() => {
-        postaviCardNum(podaci.cardNum || '');
-        postaviDateExp(podaci.dateExp || '');
-        postaviBalance(podaci.balance || '');
+        postavibrojKartice(podaci.brojKartice || '');
+        postavidatumIsteka(podaci.datumIsteka || '');
+        postavistanje(podaci.stanje || '');
         postaviValutu(podaci.valuta || '');
     }, [podaci]);
 
@@ -111,15 +111,15 @@ const PrikaziRacun = () => {
             <div style={stilProstora}>
                 <h2 style={stilNaslova}>Stanje računa</h2>
                 <form style={stilForme}>
-                    <label style={stilLabele} htmlFor="cardNum">
+                    <label style={stilLabele} htmlFor="brojKartice">
                         Broj kartice:
                     </label>
                     <input
                         style={stilUnosa}
                         type="text"
-                        id="cardNum"
+                        id="brojKartice"
                         maxLength={16}
-                        value={cardNum}
+                        value={brojKartice}
                     />
                     <label style={stilLabele}>
                         Datum isteka:
@@ -127,9 +127,9 @@ const PrikaziRacun = () => {
                     <input
                         style={stilUnosa}
                         type="text"
-                        id="dateExp"
+                        id="datumIsteka"
                         maxLength={5}
-                        value={dateExp}
+                        value={datumIsteka}
                     />
                     <label style={stilLabele}>
                         Stanje:
@@ -137,8 +137,8 @@ const PrikaziRacun = () => {
                     <input
                         style={stilUnosa}
                         type="text"
-                        id="balance"
-                        value={balance}
+                        id="stanje"
+                        value={stanje}
                     />
                     <label style={stilLabele}>
                         Valuta:
