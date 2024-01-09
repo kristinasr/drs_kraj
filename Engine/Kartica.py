@@ -1,5 +1,5 @@
 from config import db
-
+# srecna nova
 class Kartica(db.Model):
     table = "kartica",
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
