@@ -225,6 +225,26 @@ def izmenaProfila():
 
     return jsonify(response), 200
 
+@app.route('/Profil', methods=['GET'])
+def izmeniProfil():
+    global prijavljenKorisnik
+
+    data = {}
+
+    if prijavljenKorisnik is not None:
+        data = {
+            "ime": prijavljenKorisnik.ime,
+            "prezime": prijavljenKorisnik.prezime,
+            "adresa": prijavljenKorisnik.adresa,
+            "grad": prijavljenKorisnik.grad,
+            "drzava": prijavljenKorisnik.drzava,
+            "brojTelefona": prijavljenKorisnik.brojTelefona,
+            "email": prijavljenKorisnik.email,
+            "lozinka": prijavljenKorisnik.lozinka
+        }
+
+    return jsonify(data)
+
 @app.route('/UzivoKupovina', methods=['GET'])
 def get_data():
 
@@ -273,27 +293,6 @@ def prikazProizvoda():
         }
 
     return jsonify(korisnickiProizvodi)
-
-@app.route('/Profil', methods=['GET'])
-def izmeniProfil():
-    global prijavljenKorisnik
-
-    data = {}
-
-    if prijavljenKorisnik is not None:
-        data = {
-            "ime": prijavljenKorisnik.ime,
-            "prezime": prijavljenKorisnik.prezime,
-            "adresa": prijavljenKorisnik.adresa,
-            "grad": prijavljenKorisnik.grad,
-            "drzava": prijavljenKorisnik.drzava,
-            "brojTelefona": prijavljenKorisnik.brojTelefona,
-            "email": prijavljenKorisnik.email,
-            "lozinka": prijavljenKorisnik.lozinka
-        }
-
-    return jsonify(data)
-
 
 @app.route('/IstorijaProizvoda', methods=['GET'])
 def kupljeno():
