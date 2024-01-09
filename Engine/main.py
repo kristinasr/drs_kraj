@@ -82,6 +82,7 @@ karticaAdmin = Kartica('9876543210987654', '17/27', '987', '0', 'RSD', admin.ema
 korisnici = procitajKorisnikaIzBaze()
 proizvodi = procitajProizvodIzBaze()
 
+kupovine = []
 prijavljenKorisnik = None
 
 @app.route('/Prijava', methods=['POST'])
@@ -93,16 +94,27 @@ def prijava():
     global prijavljenKorisnik
 
     prijavljenKorisnik = pronadjiKorisnikaPoEmailu(email)
+    korisnik = autentifikacijaKorisnika(email, lozinka)
     
     app.logger.info(f"\nEmail: {email}\nLozinka: {lozinka}")
 
-    response = {
-        "message": "Uspešna prijava!",
-        "email": email,
-        "lozinka": lozinka
-    }
+    if prijavljenKorisnik is not None and korisnik is not None:
+        response = {
+            "message": "Prijava je uspešna !!"
+        }
+        return jsonify(response), 200
 
-    return jsonify(response), 200
+    if prijavljenKorisnik is not None and korisnik is None:
+        response = {
+            "message": "Prijava nije uspešna. Verovatno ste uneli pogrešnu lozniku !!"
+        }
+        return jsonify(response), 200
+
+    elif korisnik is None and prijavljenKorisnik is None:
+        response = {
+            "message": "Prijava nije uspešna. Niste se registrovali !!"
+        }
+        return jsonify(response), 200
 
 @app.route('/Registracija', methods=['POST'])
 def registracija():
