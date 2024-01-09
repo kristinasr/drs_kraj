@@ -20,7 +20,7 @@ class Kartica(db.Model):
         self.vlasnik = vlasnik
         self.odobrena = odobrena
 
-def serializacija_kartice(kartica):
+def serijalizacija_kartice(kartica):
     return {
         'brojKartice': kartica.brojKartice,
         'datumIsteka': kartica.datumIsteka,

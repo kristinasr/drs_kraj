@@ -111,7 +111,7 @@ def procitajKarticuIzBaze():
         kartica = Kartica.query.all()
         return kartica
 
-def IzmeniKarticeUBazi(postojeca_kartica):
+def izmeniKarticeUBazi(postojeca_kartica):
     with app.app_context():
         kartica = Kartica.query.filter_by(brojKartice=postojeca_kartica.brojKartice).first()
 
