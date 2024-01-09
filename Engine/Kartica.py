@@ -19,3 +19,21 @@ class Kartica(db.Model):
         self.valuta = valuta
         self.vlasnik = vlasnik
         self.odobrena = odobrena
+
+def serializacija_kartice(kartica):
+    return {
+        'brojKartice': kartica.brojKartice,
+        'datumIsteka': kartica.datumIsteka,
+        'ccv': kartica.ccv,
+        'stanje': kartica.stanje,
+        'valuta': kartica.valuta,
+        'vlasnik': kartica.vlasnik,
+        'odobrena': kartica.odobrena
+    }
+    
+
+def proveraValuta(self, valuta):
+    if self.valuta == valuta:
+        return True
+    else:
+        return False

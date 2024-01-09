@@ -38,6 +38,18 @@ create table kartica
     FOREIGN KEY (vlasnik) REFERENCES korisnik(email)
 );
 
+CREATE TABLE kupovina (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    datumKupovine VARCHAR(50),
+    proizvod VARCHAR(50),
+    kupac VARCHAR(50),
+    kolicina INT,
+    cenaKupovine FLOAT,
+    valuta VARCHAR(50),
+    FOREIGN KEY (kupac) REFERENCES Korisnik(email),
+    FOREIGN KEY (proizvod) REFERENCES Proizvod(naziv)
+);
+
 insert into korisnik (ime, prezime, adresa, grad, drzava, brojTelefona, email, lozinka) values ("admin", "admin", "Balzakova 65", "Subotica", "Srbija", "024567876", "secernisanns@gmail.com", "secernisan1234!");
 
 insert into proizvod (naziv, cena, valuta, kolicina, slika) values ("Nugat", 520, "RSD", 5, "Proizvodi/nugat.jpg");
