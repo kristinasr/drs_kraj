@@ -245,24 +245,6 @@ def izmeniProfil():
 
     return jsonify(data)
 
-@app.route('/UzivoKupovina', methods=['GET'])
-def get_data():
-
-    proizvodi = procitajProizvodIzBaze()
-
-    data = [
-        {
-            'slika': proizvod.slika,
-            'nazivProizvoda': proizvod.naziv,
-            'cena': proizvod.cena,
-            'valuta': proizvod.valuta,
-            'kupac' : 'marko@gmail.com'
-        }
-        for proizvod in proizvodi
-    ]
-
-    return jsonify(data)
-
 @app.route('/', methods=['GET'])
 def prikazProizvoda():
 
@@ -293,6 +275,24 @@ def prikazProizvoda():
         }
 
     return jsonify(korisnickiProizvodi)
+
+@app.route('/UzivoKupovina', methods=['GET'])
+def get_data():
+
+    proizvodi = procitajProizvodIzBaze()
+
+    data = [
+        {
+            'slika': proizvod.slika,
+            'nazivProizvoda': proizvod.naziv,
+            'cena': proizvod.cena,
+            'valuta': proizvod.valuta,
+            'kupac' : 'marko@gmail.com'
+        }
+        for proizvod in proizvodi
+    ]
+
+    return jsonify(data)
 
 @app.route('/IstorijaProizvoda', methods=['GET'])
 def kupljeno():
