@@ -99,22 +99,22 @@ def prijava():
     app.logger.info(f"\nEmail: {email}\nLozinka: {lozinka}")
 
     if prijavljenKorisnik is not None and korisnik is not None:
-        response = {
-            "message": "Prijava je uspešna !!"
+        response_data = {
+            "message": "Prijava je uspešna!"
         }
-        return jsonify(response), 200
+        return jsonify(response_data), 200
 
     if prijavljenKorisnik is not None and korisnik is None:
-        response = {
-            "message": "Prijava nije uspešna. Verovatno ste uneli pogrešnu lozniku !!"
+        response_data = {
+            "message": "Prijava nije uspešna. Uneli ste pogresan email ili lozinku!"
         }
-        return jsonify(response), 200
+        return jsonify(response_data), 200
 
     elif korisnik is None and prijavljenKorisnik is None:
-        response = {
-            "message": "Prijava nije uspešna. Niste se registrovali !!"
+        response_data = {
+            "message": "Prijava nije moguca. Korisnik nije registrovan!"
         }
-        return jsonify(response), 200
+        return jsonify(response_data), 200
 
 @app.route('/Registracija', methods=['POST'])
 def registracija():
@@ -128,7 +128,7 @@ def registracija():
     email = request.json['email']
     lozinka = request.json['lozinka']
 
-    novi_korisnik = Korisnik(ime, prezime, adresa, grad, drzava,brojTelefona, email, lozinka)
+    novi_korisnik = Korisnik(ime, prezime, adresa, grad, drzava, brojTelefona, email, lozinka)
     dodajKorisnikaUBazu(novi_korisnik)
 
     app.logger.info(f"\nIme: {ime}\nPrezime: {prezime}\nAdresa: {adresa}\nGrad: {grad}\nDrzava: {drzava}\nBroj Telefona: {brojTelefona}\nEmail: {email}\nLozinka: {lozinka}")
@@ -139,7 +139,7 @@ def registracija():
 
     slanje_emaila(title, body, na_email)
     
-    response = {
+    response_data = {
         "message": "Podaci su uspešno primljeni!",
         "email": email,
         "lozinka": lozinka,
@@ -151,7 +151,7 @@ def registracija():
         "brojTelefona": brojTelefona
     }
 
-    return jsonify(response), 200
+    return jsonify(response_data), 200
 
 @app.route('/Proizvod', methods=['POST'])
 def dodajProizvod():
@@ -169,7 +169,7 @@ def dodajProizvod():
 
     app.logger.info(f"\nNaziv proivoda: {naziv}\nCena: {cena}\nValuta: {valuta}\nKolicina: {kolicina}\nSlika: {slika}")
 
-    response = {
+    response_data = {
         "message": "Uspešno dodat proizvod!",
         "naziv": naziv,
         "cena": cena,
@@ -177,7 +177,7 @@ def dodajProizvod():
         "kolicina": kolicina,
     }
 
-    return jsonify(response), 200
+    return jsonify(response_data), 200
 
 @app.route('/Profil', methods=['POST'])
 def izmenaProfila():
@@ -223,7 +223,7 @@ def izmenaProfila():
     app.logger.info(f"Email: {email}, Lozinka: {lozinka}")
     app.logger.info(f"Ime: {ime}, Prezime: {prezime}, Adresa: {adresa}, Grad: {grad}, Drzava: {drzava}, Broj Telefona: {brojTelefona}, Email: {email}, Lozinka: {lozinka}")
 
-    response = {
+    response_data = {
         "message": "Izmena profila je uspešna!",
         "email": email,
         "lozinka": lozinka,
@@ -235,16 +235,16 @@ def izmenaProfila():
         "brojTelefona": brojTelefona
     }
 
-    return jsonify(response), 200
+    return jsonify(response_data), 200
 
 @app.route('/Profil', methods=['GET'])
 def izmeniProfil():
     global prijavljenKorisnik
 
-    data = {}
+    response_data = {}
 
     if prijavljenKorisnik is not None:
-        data = {
+        response_data = {
             "ime": prijavljenKorisnik.ime,
             "prezime": prijavljenKorisnik.prezime,
             "adresa": prijavljenKorisnik.adresa,
@@ -255,14 +255,14 @@ def izmeniProfil():
             "lozinka": prijavljenKorisnik.lozinka
         }
 
-    return jsonify(data)
+    return jsonify(response_data)
 
 @app.route('/', methods=['GET'])
 def prikazProizvoda():
 
     proizvodi = procitajProizvodIzBaze()
 
-    data = [
+    response_data = [
         {
             'naziv': proizvod.naziv,
             'cena': proizvod.cena,
@@ -275,24 +275,25 @@ def prikazProizvoda():
 
     global prijavljenKorisnik
     korisnickiProizvodi = {}
+
     if prijavljenKorisnik is not None:
         kartica = pronadjiKarticuVlasnika(prijavljenKorisnik.email)
         if kartica is not None:
             korisnickiProizvodi = {
                 'email': prijavljenKorisnik.email,
-                'proizvodi': data,
+                'proizvodi': response_data,
                 'kartica': serijalizacija_kartice(kartica)
         }
         else:
             korisnickiProizvodi = {
                 'email': prijavljenKorisnik.email,
-                'proizvodi': data,
+                'proizvodi': response_data,
                 'kartica': ''
             }
     else:
         korisnickiProizvodi = {
             'email': '',
-            'proizvodi': data,
+            'proizvodi': response_data,
             'kartica': ''
         }
 
@@ -304,7 +305,7 @@ def uzivoKupovina():
     proizvodi = procitajProizvodIzBaze()
     kupovine = procitajKupovinuIzBaze()
 
-    response = [
+    response_data = [
         {
             'nazivProizvoda': proizvod.naziv,
             'cena': proizvod.cena,
@@ -315,7 +316,7 @@ def uzivoKupovina():
         for proizvod in proizvodi
     ]
 
-    return jsonify(response)
+    return jsonify(response_data)
 
 @app.route('/IstorijaProizvoda', methods=['GET'])
 def kupljeno():
@@ -328,11 +329,10 @@ def kupljeno():
         if k.kupac == prijavljenKorisnik.email:
             proizvod = pronadjiProizvodPoNazivu(k.proizvod)
             if k.proizvod == proizvod.naziv:
-                kupljen_proizvod = Proizvod(k.proizvod, proizvod.cena,
-                                   proizvod.valuta, k.kolicina, proizvod.slika)
+                kupljen_proizvod = Proizvod(k.proizvod, proizvod.cena, proizvod.valuta, k.kolicina, proizvod.slika)
                 kupljeni_proizvodi[kupljen_proizvod] = k.datumKupovine
 
-    response = [
+    response_data = [
         {
             'slika': p.slika,
             'nazivProizvoda': p.naziv,
@@ -344,7 +344,7 @@ def kupljeno():
         for p in kupljeni_proizvodi
     ]
 
-    return jsonify(response)
+    return jsonify(response_data)
 
 @app.route('/KarticaKorisnika', methods=['POST'])
 def dodajKarticu():
@@ -367,8 +367,6 @@ def dodajKarticu():
 
     return jsonify(response_data), 200
 
-
-
 @app.route('/Racun', methods=['GET'])
 def prikaziRacun():
      
@@ -376,22 +374,22 @@ def prikaziRacun():
     if prijavljenKorisnik is not None:
         kartica = pronadjiKarticuVlasnika(prijavljenKorisnik.email)
 
-    if kartica is not None and kartica.odobrena == 'Da':
-        response = {
+    if kartica is not None and kartica.odobrena == 'DA':
+        response_data = {
             'brojKartice': kartica.brojKartice,
             'datumIsteka': kartica.datumIsteka,
             'stanje': kartica.stanjeNaRacunu,
             'valuta': kartica.valuta
         }
-        return jsonify(response)
+        return jsonify(response_data)
     else:
-        response = {
+        response_data = {
             'brojKartice': '',
             'datumIsteka': '',
             'stanje': '',
             'valuta': ''
         }
-    return jsonify(response), 200
+    return jsonify(response_data), 200
 
 @app.route('/IzmenaKolicine', methods=['PUT'])
 def izmeniKolicinu():
@@ -402,9 +400,8 @@ def izmeniKolicinu():
     kolicina = request.json['kolicina']
     slika = request.json['slika']
 
-    # Izmjena proizvoda u bazi
-    p = Proizvod(naziv, cena, valuta, kolicina, slika)
-    izmeniProizvodUBazi(p)
+    proizvod = Proizvod(naziv, cena, valuta, kolicina, slika)
+    izmeniProizvodUBazi(proizvod)
 
     response_data = {
         "message": "Podaci uspesno primljeni",
@@ -421,7 +418,7 @@ def izmenaKolicine():
 
     proizvodi = procitajProizvodIzBaze()
 
-    response = [
+    response_data = [
         {
             'naziv': proizvod.naziv,
             'cena': proizvod.cena,
@@ -432,26 +429,24 @@ def izmenaKolicine():
         for proizvod in proizvodi
     ]
 
-    return jsonify(response), 200
+    return jsonify(response_data), 200
 
 @app.route('/Verifikacija', methods=['GET'])
 def verifikujKarticu():
 
     kartice = procitajKarticuIzBaze()
-    serijalizovane_kartice = [serijalizacija_kartice(
-        kartica) for kartica in kartice]
+    serijalizovane_kartice = [serijalizacija_kartice(kartica) for kartica in kartice]
     posalji_kartice = []
 
-    # Slanje podataka o karticama 
     for k in serijalizovane_kartice:
-        if k['vlasnik'] != "secernisanns@gmail.com" and k['odobrena'] != 'Da':
+        if k['vlasnik'] != "secernisanns@gmail.com" and k['odobrena'] != 'DA':
             posalji_kartice.append(k)
 
-    response = {
+    response_data = {
         'kartice': posalji_kartice
     }
 
-    return jsonify(response), 200
+    return jsonify(response_data), 200
 
 @app.route('/Konverzija', methods=['PUT'])
 def konverzija():
@@ -465,18 +460,16 @@ def konverzija():
     kartica.stanjeNaRacunu = stanje
     kartica.valuta = valuta
 
-    # Ažuriranje stanja na kartici
-    izmeniKarticeUBazi(kartica)
+    izmeniKarticuUBazi(kartica)
 
-    response = {
+    response_data = {
         'massage': 'Podaci uspešno primljeni'
     }
 
-    return jsonify(response), 200
+    return jsonify(response_data), 200
 
 @app.route('/Uplata', methods=['PUT'])
 def uplata():
-
     email = request.json['email']
     brojKartice = request.json['brojKartice']
     iznos = request.json['iznos']
@@ -487,39 +480,35 @@ def uplata():
     if valuta == '':
         valuta = kartica.valuta
 
-    # Ažuriranje stanja na kartici
     if proveraValuta(kartica, valuta):
         konvertovanIznos = float(iznos)
-        kartica.stanjeNaRacunu += konvertovanIznos
-        izmeniKarticeUBazi(kartica)
+        kartica.stanje += konvertovanIznos
+        izmeniKarticuUBazi(kartica)
     else:
-        print("Valute nisu iste !!")
+        print("Valute se ne poklapaju!")
 
-    response = {
-        'message': 'Podaci uspešno primljeni'
+    response_data = {
+        'message': 'Podaci su uspešno primljeni!'
     }
 
-    return jsonify(response), 200
+    return jsonify(response_data), 200
 
 @app.route('/Naruci', methods=['POST'])
 def naruciProizvod():
-
     global kupovine
+
     nazivProizvoda = request.json['nazivProizvoda']
     cena = request.json['cena']
     cena = request.json['cena']
     valuta = request.json['valuta']
     kolicina = request.json['kolicina']
-    zaradaAdmina = request.json['zaradaAdmina']
+    zarada = request.json['zarada']
 
-    kupovina = Kupovina(str(datetime.now()), nazivProizvoda,
-                        prijavljenKorisnik.email, kolicina, cena, valuta)
+    kupovina = Kupovina(nazivProizvoda, prijavljenKorisnik.email, kolicina, cena, valuta, str(datetime.now()))
     kupovine.append(kupovina)
 
-    # Poziv za nit
     pokreni_proces(kupovine)
 
-    # Ažuriranje podataka u bazi
     for kupovina in kupovine:
         proizvod = pronadjiProizvodPoNazivu(kupovina.proizvod)
         if proizvod is not None:
@@ -528,40 +517,39 @@ def naruciProizvod():
 
         kartica = pronadjiKarticuVlasnika(kupovina.kupac)
         if kartica is not None:
-            stanje = float(kartica.stanjeNaRacunu)
+            stanje = float(kartica.stanje)
             stanje -= (float(kupovina.cenaKupovine) * int(kupovina.kolicina))
             kartica.stanjeNaRacunu = str(stanje)
-            izmeniKarticeUBazi(kartica)
+            izmeniKarticuUBazi(kartica)
 
-        zarada = float(karticaAdmin.stanjeNaRacunu)
-        zarada += float(zaradaAdmina)
-        karticaAdmin.stanjeNaRacunu = str(zarada)
-        izmeniKarticeUBazi(karticaAdmin)
+        zarada = float(karticaAdmin.stanje)
+        zarada += float(zarada)
+        karticaAdmin.stanje = str(zarada)
+        izmeniKarticuUBazi(karticaAdmin)
 
-    response = {
+    response_data = {
         'message': 'Podaci uspešno primljeni'
     }
 
-    return jsonify(response), 200
+    return jsonify(response_data), 200
 
 @app.route('/UplataKonverzija', methods=['GET'])
 def uplataiKonverzija():
-
     kartica = None
+
     if (prijavljenKorisnik != None):
         kartica = pronadjiKarticuVlasnika(prijavljenKorisnik.email)
 
-    # Slanje podataka o kartici
     if (kartica != None):
-        data = {
+        response_data = {
             'kartica': serijalizacija_kartice(kartica)
         }
-        return jsonify(data)
+        return jsonify(response_data)
     else:
-        response = {
+        response_data = {
             'kartica': ''
         }
-        return jsonify(response), 200
+        return jsonify(response_data), 200
 
 
 if __name__ == "__main__":

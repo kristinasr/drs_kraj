@@ -38,14 +38,14 @@ create table kartica
     FOREIGN KEY (vlasnik) REFERENCES korisnik(email)
 );
 
-CREATE TABLE kupovina (
+create table kupovina (
     id INT PRIMARY KEY not null AUTO_INCREMENT,
-    datumKupovine VARCHAR(50),
-    proizvod VARCHAR(50),
-    kupac VARCHAR(50),
-    kolicina INT,
-    cenaKupovine FLOAT,
-    valuta VARCHAR(50),
+    proizvod varchar(45),
+    kupac varchar(45),
+    kolicina int not null,
+    cena float,
+    valuta varchar(45),
+    datumKupovine varchar(45),
     FOREIGN KEY (kupac) REFERENCES Korisnik(email),
     FOREIGN KEY (proizvod) REFERENCES Proizvod(naziv)
 );

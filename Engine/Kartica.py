@@ -1,5 +1,5 @@
 from config import db
-# srecna nova
+
 class Kartica(db.Model):
     table = "kartica",
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -31,7 +31,6 @@ def serijalizacija_kartice(kartica):
         'odobrena': kartica.odobrena
     }
     
-
 def proveraValuta(self, valuta):
     if self.valuta == valuta:
         return True
