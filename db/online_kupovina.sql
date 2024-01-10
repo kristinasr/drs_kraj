@@ -39,7 +39,7 @@ create table kartica
 );
 
 CREATE TABLE kupovina (
-    id INT IDENTITY(1,1) PRIMARY KEY,
+    id INT PRIMARY KEY not null AUTO_INCREMENT,
     datumKupovine VARCHAR(50),
     proizvod VARCHAR(50),
     kupac VARCHAR(50),
