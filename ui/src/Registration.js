@@ -118,7 +118,7 @@ const Registracija = () => {
     return (
         <div style={stilStranice}>
             <div style={stilNavBara}>
-                <ul className="nav nav-pills nav-fill">
+                <ul className="nav nav-tabs nav-fill">
                     <li className="nav-item">
                         <Link to="/" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Početna</Link>
                     </li>
@@ -130,8 +130,8 @@ const Registracija = () => {
                     </li>
                 </ul>
             </div>
-            <div className="prostor" style={stilProstora}>
-                <div className="forma" style={stilForme}>
+            <div className="form-group" style={stilProstora}>
+                <div className="form-group" style={stilForme}>
                     <h1 style={stilNaslova}>Registracija</h1>
                     <table style={{ margin: 'auto', borderSpacing: '0 5px', borderCollapse: 'separate' }}>
                         <tr>
@@ -169,7 +169,7 @@ const Registracija = () => {
                         <tr>
                             <td colSpan="2" align="center">
                                 <input
-                                    className="btn btn-outline-primary"
+                                    className="btn btn-outline"
                                     id="registracijaDugme"
                                     style={stilDugmeta}
                                     type="submit"

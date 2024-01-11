@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
-import PrikazProizvoda from './Kartica';
+import PrikazProizvoda from './PrikazProizvoda';
 import axios from 'axios';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -39,7 +39,8 @@ const Pocetna = () => {
     const stilNavBara = {
         position: 'fixed',
         top: 0,
-        width: '105%',
+        width: '100%',
+        right: 0,
     }
 
     const stilProfila = {
@@ -78,7 +79,7 @@ const Pocetna = () => {
     return (
         <div className='pocetnaStranica' style={stilStranice}>
             <div style={stilNavBara}>
-                <ul className="nav nav-pills nav-fill">
+                <ul className="nav nav-tabs nav-justified">
                     <li className="nav-item">
                         <Link to="/" className="nav-link active" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Početna</Link>
                     </li>

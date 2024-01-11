@@ -26,7 +26,7 @@ const PrikazProizvoda = ({ proizvod, kartica }) => {
 
     return (
         <div className="card" style={stilKartice}>
-            <img src={proizvod.slika} className="card-img-top" alt={proizvod.naziv} style={stilSlike} />
+            <img src={proizvod.slika} className="card-img" alt={proizvod.naziv} style={stilSlike} />
             <div className="card-body" style={{ marginTop: '50px' }}>
                 <h4 className="card-title">{proizvod.naziv}</h4>
             </div>
@@ -34,7 +34,7 @@ const PrikazProizvoda = ({ proizvod, kartica }) => {
                 <li className="list-group-item">Cena: {proizvod.cena} {proizvod.valuta}</li>
                 <li className="list-group-item">Količina: {proizvod.kolicina}</li>
                 <li className="list-group-item">
-                    <button  style={stilDugmeta} className="btn btn-outline-primary" onClick={handleOpenModal}>Naruči</button>
+                    <button  style={stilDugmeta} className="btn btn-outline-success" onClick={handleOpenModal}>Naruči</button>
                 </li>
                 <PotvrdaKupovine showModal={showModal} handleCloseModal={handleCloseModal} nazivProizvoda={proizvod.naziv} cenaProizvoda={proizvod.cena} valutaProizvoda={proizvod.valuta} kartica={kartica}/>
             </ul>

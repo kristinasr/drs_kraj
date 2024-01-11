@@ -91,7 +91,7 @@ const IstorijaProizvoda = () => {
     return (
         <div style={stilStranice} >
             <div style={stilNavBara}>
-                <ul className="nav nav-pills nav-fill">
+                <ul className="nav nav-tabs nav-fill">
                     <li className="nav-item">
                         <Link to="/" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Početna</Link>
                     </li>
