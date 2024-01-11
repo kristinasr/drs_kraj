@@ -46,8 +46,8 @@ create table kupovina (
     cena float,
     valuta varchar(45),
     datumKupovine varchar(45),
-    FOREIGN KEY (kupac) REFERENCES Korisnik(email),
-    FOREIGN KEY (proizvod) REFERENCES Proizvod(naziv)
+    FOREIGN KEY (kupac) REFERENCES korisnik(email),
+    FOREIGN KEY (proizvod) REFERENCES proizvod(naziv)
 );
 
 insert into korisnik (ime, prezime, adresa, grad, drzava, brojTelefona, email, lozinka) values ("admin", "admin", "Balzakova 65", "Subotica", "Srbija", "024567876", "secernisanns@gmail.com", "secernisan1234!");

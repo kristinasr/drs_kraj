@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import PotvrdaKupovine from './PotvrdaKupovine';
 
-const PrikazProizvoda = ({ proizvod }) => {
+const PrikazProizvoda = ({ proizvod, kartica }) => {
 
     const [showModal, setShowModal] = useState(false);
     const handleOpenModal = () => setShowModal(true);
@@ -36,7 +36,7 @@ const PrikazProizvoda = ({ proizvod }) => {
                 <li className="list-group-item">
                     <button  style={stilDugmeta} className="btn btn-outline-primary" onClick={handleOpenModal}>Naruči</button>
                 </li>
-                <PotvrdaKupovine showModal={showModal} handleCloseModal={handleCloseModal} nazivProizvoda={proizvod.naziv} cenaProizvoda={proizvod.cena} valutaProizvoda={proizvod.valuta} />
+                <PotvrdaKupovine showModal={showModal} handleCloseModal={handleCloseModal} nazivProizvoda={proizvod.naziv} cenaProizvoda={proizvod.cena} valutaProizvoda={proizvod.valuta} kartica={kartica}/>
             </ul>
         </div>
     );

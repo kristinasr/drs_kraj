@@ -10,6 +10,7 @@ const Pocetna = () => {
 
     const [podaci, podesiPodatke] = useState([]);
     const [vrstaKorisnika, podesiVrstuKorisnika] = useState([]);
+    const [kartica, podesiKartice] = useState([]);
    // const [isLogged, setIsLogged] = useState(false);
 
     const stilProstoraZaProizvode = {
@@ -54,6 +55,7 @@ const Pocetna = () => {
             try {
                 const odgovor = await axios.get('http://localhost:5000/');
                 podesiPodatke(odgovor.data.proizvodi);
+                podesiKartice(odgovor.data.kartica)
                 const email = odgovor.data.email;
 
                 if (email === '') {
@@ -95,7 +97,7 @@ const Pocetna = () => {
             </div>
             <div className="prostor" style={stilProstoraZaProizvode}>
                 {podaci.map((proizvod, index) => (
-                    <PrikazProizvoda key={index} proizvod={proizvod} />
+                    <PrikazProizvoda key={index} proizvod={proizvod} kartica={kartica}/>
                 ))}
             </div>
         </div>

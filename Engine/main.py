@@ -353,7 +353,7 @@ def dodajKarticu():
     datumIsteka = request.json['datumIsteka']
     cvv = request.json.get('cvv')
 
-    kartica = Kartica(brojKartice=brojKartice, datumIsteka=datumIsteka, ccv=cvv, stanjeNaRacunu=0.0, valuta="RSD", odobrena="NE")
+    kartica = Kartica(brojKartice=brojKartice, datumIsteka=datumIsteka, cvv=cvv, stanjeNaRacunu=0.0, valuta="RSD", odobrena="NE")
     dodajKarticuUBazu(kartica)
 
     app.logger.info(f"\nBroj kartice: {brojKartice}\nDatum isteka: {datumIsteka}\nCVV: {cvv}")
