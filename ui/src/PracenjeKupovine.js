@@ -5,13 +5,13 @@ import { Link } from 'react-router-dom';
 
 const PracenjeKupovine = () => {
 
-    const [podaci, podesiPodatke] = useState([]);
+    const [podaci, setPodatke] = useState([]);
 
     useEffect(() => {
         const prihvatiPodatke = async () => {
             try {
                 const response = await axios.get('http://localhost:5000/UzivoKupovina');
-                podesiPodatke(response.data);
+                setPodatke(response.data);
             } catch (error) {
                 console.error('Greška: ', error);
             }

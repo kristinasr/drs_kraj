@@ -5,11 +5,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const PrikaziRacun = () => {
 
-    const [brojKartice, postavibrojKartice] = useState('');
-    const [datumIsteka, postavidatumIsteka] = useState('');
-    const [stanje, postavistanje] = useState('');
-    const [valuta, postaviValutu] = useState('');
-    const [podaci, podesiPodatke] = useState([]);
+    const [brojKartice, setbrojKartice] = useState('');
+    const [datumIsteka, setdatumIsteka] = useState('');
+    const [stanje, setstanje] = useState('');
+    const [valuta, setValutu] = useState('');
+    const [podaci, setPodatke] = useState([]);
 
     const stilProstora = {
         textAlign: 'center',
@@ -71,7 +71,7 @@ const PrikaziRacun = () => {
         const prihvatiPodatke = async () => {
             try {
                 const response = await axios.get('http://localhost:5000/Racun');
-                podesiPodatke(response.data);
+                setPodatke(response.data);
             } catch (error) {
                 console.error('Greška: ', error);
             }
@@ -81,10 +81,10 @@ const PrikaziRacun = () => {
     }, []);
 
     useEffect(() => {
-        postavibrojKartice(podaci.brojKartice || '');
-        postavidatumIsteka(podaci.datumIsteka || '');
-        postavistanje(podaci.stanje || '');
-        postaviValutu(podaci.valuta || '');
+        setbrojKartice(podaci.brojKartice || '');
+        setdatumIsteka(podaci.datumIsteka || '');
+        setstanje(podaci.stanje || '');
+        setValutu(podaci.valuta || '');
     }, [podaci]);
 
     return (

@@ -5,8 +5,8 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const Prijava = () => {
 
-    const [email, podesiEmail] = useState('');
-    const [lozinka, podesiLozinku] = useState('');
+    const [email, setEmail] = useState('');
+    const [lozinka, setLozinku] = useState('');
     const redirekcija = useNavigate();
 
     const stilProstora = {
@@ -124,7 +124,7 @@ const Prijava = () => {
                                         className="email"
                                         maxLength="25"
                                         value={email}
-                                        onChange={(e) => podesiEmail(e.target.value)}
+                                        onChange={(e) => setEmail(e.target.value)}
                                     />
                                 </td>
                             </tr>
@@ -138,7 +138,7 @@ const Prijava = () => {
                                         className="lozinka"
                                         maxLength="18"
                                         value={lozinka}
-                                        onChange={(e) => podesiLozinku(e.target.value)}
+                                        onChange={(e) => setLozinku(e.target.value)}
                                     />
                                 </td>
                             </tr>

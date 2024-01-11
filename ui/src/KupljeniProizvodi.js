@@ -5,13 +5,13 @@ import { Link } from 'react-router-dom';
 
 const IstorijaProizvoda = () => {
 
-    const [podaci, podesiPodatke] = useState([]);
+    const [podaci, setPodatke] = useState([]);
 
     useEffect(() => {
         const prihvatiPodatke = async () => {
             try {
                 const odgovor = await axios.get('http://localhost:5000/IstorijaProizvoda');
-                podesiPodatke(odgovor.data);
+                setPodatke(odgovor.data);
             } catch (error) {
                 console.error('Greška: ', error);
             }

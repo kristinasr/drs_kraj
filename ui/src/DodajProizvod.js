@@ -6,12 +6,12 @@ import { Link } from 'react-router-dom';
 
 const DodajProizvod = () => {
 
-    const [naziv, podesiNaziv] = useState('');
-    const [cena, podesiCenu] = useState('');
-    const [kolicina, podesiKolicinu] = useState('');
-    const [valute, postaviValute] = useState([]);
-    const [valuta, postaviOdabranuValutu] = useState('');
-    const [slika, podesiSliku] = useState('');
+    const [naziv, setNaziv] = useState('');
+    const [cena, setCenu] = useState('');
+    const [kolicina, setKolicinu] = useState('');
+    const [valute, setValute] = useState([]);
+    const [valuta, setOdabranuValutu] = useState('');
+    const [slika, setSliku] = useState('');
     const redirekcija = useNavigate();
 
     const stilProstora = {
@@ -77,7 +77,7 @@ const DodajProizvod = () => {
         const sveValute = async () => {
             const response = await axios.get('https://api.exchangerate-api.com/v4/latest/USD');
             const valute = Object.keys(response.data.rates);
-            postaviValute(valute);
+            setValute(valute);
         };
 
         sveValute();
@@ -135,7 +135,7 @@ const DodajProizvod = () => {
                                         id="naziv"
                                         className="naziv"
                                         value={naziv}
-                                        onChange={(e) => podesiNaziv(e.target.value)}
+                                        onChange={(e) => setNaziv(e.target.value)}
                                     />
                                 </td>
                             </tr>
@@ -149,9 +149,9 @@ const DodajProizvod = () => {
                                             id="cena"
                                             className="cena"
                                             value={cena}
-                                            onChange={(e) => podesiCenu(e.target.value)}
+                                            onChange={(e) => setCenu(e.target.value)}
                                         />
-                                        <select value={valuta} onChange={(e) => postaviOdabranuValutu(e.target.value)}>
+                                        <select value={valuta} onChange={(e) => setOdabranuValutu(e.target.value)}>
                                             {valute.map((valuta, index) => (
                                                 <option key={index} value={valuta}>
                                                     {valuta}
@@ -170,7 +170,7 @@ const DodajProizvod = () => {
                                         id="kolicina"
                                         className="kolicina"
                                         value={kolicina}
-                                        onChange={(e) => podesiKolicinu(e.target.value)}
+                                        onChange={(e) => setKolicinu(e.target.value)}
                                     />
                                 </td>
                             </tr>
@@ -182,7 +182,7 @@ const DodajProizvod = () => {
                                             type="file"
                                             accept="image/*"
                                             value={slika}
-                                            onChange={(e) => podesiSliku(e.target.value)}
+                                            onChange={(e) => setSliku(e.target.value)}
                                         />
                                     </td>
                                 </td>

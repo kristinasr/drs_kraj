@@ -5,10 +5,10 @@ import axios from 'axios';
 
 const PotvrdaKupovine = ({ showModal, handleOpenModal, handleCloseModal, nazivProizvoda, cenaProizvoda, valutaProizvoda }) => {
 
-  const [konvertovanaCena, podesiKonvertovanuCenu] = useState(null);
-  const [kolicina, podesiKolicinu] = useState('');
-  const [valute, postaviValute] = useState([]);
-  const [valuta, postaviOdabranuValutu] = useState('');
+  const [konvertovanaCena, setKonvertovanuCenu] = useState(null);
+  const [kolicina, setKolicinu] = useState('');
+  const [valute, setValute] = useState([]);
+  const [valuta, setOdabranuValutu] = useState('');
 
   useEffect(() => {
       const prihvatiPodatke = async () => {
@@ -16,7 +16,7 @@ const PotvrdaKupovine = ({ showModal, handleOpenModal, handleCloseModal, nazivPr
             const response = await fetch(`https://api.exchangerate-api.com/v4/latest/${valuta}`);
             const data = await response.json();
             const konvertovanaCena = (data.rates[valuta] / data.rates[valutaProizvoda]) * cenaProizvoda;
-            podesiKonvertovanuCenu(konvertovanaCena.toFixed(2));
+            setKonvertovanuCenu(konvertovanaCena.toFixed(2));
           } catch (error) {
             console.error('Greška:', error);
           }
@@ -31,7 +31,7 @@ const PotvrdaKupovine = ({ showModal, handleOpenModal, handleCloseModal, nazivPr
       const sveValute = async () => {
           const response = await axios.get('https://api.exchangerate-api.com/v4/latest/USD');
           const valute = Object.keys(response.data.rates);
-          postaviValute(valute);
+          setValute(valute);
       };
 
       sveValute();
@@ -61,7 +61,7 @@ const PotvrdaKupovine = ({ showModal, handleOpenModal, handleCloseModal, nazivPr
       <Modal.Body>
         <div style={stilProstora}>
           <span>Odaberite valutu u kojoj želite da platite:</span>
-          <select style={stilValuta} value={valuta} onChange={(e) => postaviOdabranuValutu(e.target.value)}>
+          <select style={stilValuta} value={valuta} onChange={(e) => setOdabranuValutu(e.target.value)}>
             {valute.map((valuta, index) => (
               <option key={index} value={valuta}>
                 {valuta}
@@ -78,7 +78,7 @@ const PotvrdaKupovine = ({ showModal, handleOpenModal, handleCloseModal, nazivPr
             style={stilZaUnos}
             type="number"
             value={kolicina}
-            onChange={(e) => podesiKolicinu(e.target.value)}
+            onChange={(e) => setKolicinu(e.target.value)}
             id="kolicina"
             name="kolicina"
           />

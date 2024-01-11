@@ -5,14 +5,14 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const Registracija = () => {
 
-    const [ime, podesiIme] = useState('');
-    const [prezime, podesiPrezime] = useState('');
-    const [adresa, podesiAdresu] = useState('');
-    const [grad, podesiGrad] = useState('');
-    const [drzava, podesiDrzavu] = useState('');
-    const [brojTelefona, podesiBrojTelefona] = useState('');
-    const [email, podesiEmail] = useState('');
-    const [lozinka, podesiLozinku] = useState('');
+    const [ime, setIme] = useState('');
+    const [prezime, setPrezime] = useState('');
+    const [adresa, setAdresu] = useState('');
+    const [grad, setGrad] = useState('');
+    const [drzava, setDrzavu] = useState('');
+    const [brojTelefona, setBrojTelefona] = useState('');
+    const [email, setEmail] = useState('');
+    const [lozinka, setLozinku] = useState('');
     const redirekcija = useNavigate();
 
     const stilProstora = {
@@ -136,35 +136,35 @@ const Registracija = () => {
                     <table style={{ margin: 'auto', borderSpacing: '0 5px', borderCollapse: 'separate' }}>
                         <tr>
                             <td style={stilLabele}>Ime:</td>
-                            <td><input style={stilUnosa} value={ime} onChange={(e) => podesiIme(e.target.value)} type="text" id="ime" className="ime" maxLength="25" /></td>
+                            <td><input style={stilUnosa} value={ime} onChange={(e) => setIme(e.target.value)} type="text" id="ime" className="ime" maxLength="25" /></td>
                         </tr>
                         <tr>
                             <td style={stilLabele}>Prezime:</td>
-                            <td><input style={stilUnosa} value={prezime} onChange={(e) => podesiPrezime(e.target.value)} type="text" id="prezime" className="prezime" maxLength="25" /></td>
+                            <td><input style={stilUnosa} value={prezime} onChange={(e) => setPrezime(e.target.value)} type="text" id="prezime" className="prezime" maxLength="25" /></td>
                         </tr>
                         <tr>
                             <td style={stilLabele}>Adresa:</td>
-                            <td><input style={stilUnosa} value={adresa} onChange={(e) => podesiAdresu(e.target.value)} type="text" id="adresa" className="adresa" maxLength="25" /></td>
+                            <td><input style={stilUnosa} value={adresa} onChange={(e) => setAdresu(e.target.value)} type="text" id="adresa" className="adresa" maxLength="25" /></td>
                         </tr>
                         <tr>
                             <td style={stilLabele}>Grad:</td>
-                            <td><input style={stilUnosa} value={grad} onChange={(e) => podesiGrad(e.target.value)} type="text" id="grad" className="grad" maxLength="25" /></td>
+                            <td><input style={stilUnosa} value={grad} onChange={(e) => setGrad(e.target.value)} type="text" id="grad" className="grad" maxLength="25" /></td>
                         </tr>
                         <tr>
                             <td style={stilLabele}>Država:</td>
-                            <td><input style={stilUnosa} value={drzava} onChange={(e) => podesiDrzavu(e.target.value)} type="text" id="drzava" className="drzava" maxLength="25" /></td>
+                            <td><input style={stilUnosa} value={drzava} onChange={(e) => setDrzavu(e.target.value)} type="text" id="drzava" className="drzava" maxLength="25" /></td>
                         </tr>
                         <tr>
                             <td style={stilLabele}>Broj telefona:</td>
-                            <td><input style={stilUnosa} value={brojTelefona} onChange={(e) => podesiBrojTelefona(e.target.value)} type="text" id="brojtelefona" className="brojtelefona" maxLength="25" /></td>
+                            <td><input style={stilUnosa} value={brojTelefona} onChange={(e) => setBrojTelefona(e.target.value)} type="text" id="brojtelefona" className="brojtelefona" maxLength="25" /></td>
                         </tr>
                         <tr>
                             <td style={stilLabele}>Email:</td>
-                            <td><input style={stilUnosa} value={email} onChange={(e) => podesiEmail(e.target.value)} type="email" id="email" className="email" maxLength="30" /></td>
+                            <td><input style={stilUnosa} value={email} onChange={(e) => setEmail(e.target.value)} type="email" id="email" className="email" maxLength="30" /></td>
                         </tr>
                         <tr>
                             <td style={stilLabele}>Lozinka:</td>
-                            <td><input style={stilUnosa} value={lozinka} onChange={(e) => podesiLozinku(e.target.value)} type="password" id="lozinka" className="lozinka" maxLength="18" /></td>
+                            <td><input style={stilUnosa} value={lozinka} onChange={(e) => setLozinku(e.target.value)} type="password" id="lozinka" className="lozinka" maxLength="18" /></td>
                         </tr>
                         <tr>
                             <td colSpan="2" align="center">

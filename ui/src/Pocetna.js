@@ -8,9 +8,9 @@ import { useEffect } from 'react';
 
 const Pocetna = () => {
 
-    const [podaci, podesiPodatke] = useState([]);
-    const [vrstaKorisnika, podesiVrstuKorisnika] = useState([]);
-    const [kartica, podesiKartice] = useState([]);
+    const [podaci, setPodatke] = useState([]);
+    const [vrstaKorisnika, setVrstuKorisnika] = useState([]);
+    const [kartica, setKartice] = useState([]);
    // const [isLogged, setIsLogged] = useState(false);
 
     const stilProstoraZaProizvode = {
@@ -54,18 +54,18 @@ const Pocetna = () => {
         const prihvatiPodatke = async () => {
             try {
                 const odgovor = await axios.get('http://localhost:5000/');
-                podesiPodatke(odgovor.data.proizvodi);
-                podesiKartice(odgovor.data.kartica)
+                setPodatke(odgovor.data.proizvodi);
+                setKartice(odgovor.data.kartica)
                 const email = odgovor.data.email;
 
                 if (email === '') {
-                    podesiVrstuKorisnika('/');
+                    setVrstuKorisnika('/');
                 }
                 else if (email === 'secernisanns@gmail.com') {
-                    podesiVrstuKorisnika('/Proizvod');
+                    setVrstuKorisnika('/Proizvod');
                 }
                 else {
-                    podesiVrstuKorisnika('/Profil');
+                    setVrstuKorisnika('/Profil');
                 }
             } catch (error) {
                 console.error('Greška:', error);

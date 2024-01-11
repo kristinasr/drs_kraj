@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const DodavanjeKartice = () => {
-    const [brojKartice, postavibrojKartice] = useState('');
-    const [datumIsteka, postavidatumIsteka] = useState('');
-    const [cvv, postaviCVV] = useState('');
+    const [brojKartice, setbrojKartice] = useState('');
+    const [datumIsteka, setdatumIsteka] = useState('');
+    const [cvv, setCVV] = useState('');
     const redirekcija = useNavigate();
 
     const stilProstora = {
@@ -133,7 +133,7 @@ const DodavanjeKartice = () => {
                         type="text"
                         id="brojKartice"
                         value={brojKartice}
-                        onChange={(e) => postavibrojKartice(e.target.value)}
+                        onChange={(e) => setbrojKartice(e.target.value)}
                     />
                     <label style={stilLabele} htmlFor="datumIsteka">
                         Datum isteka:
@@ -143,7 +143,7 @@ const DodavanjeKartice = () => {
                         type="text"
                         id="datumIsteka"
                         value={datumIsteka}
-                        onChange={(e) => postavidatumIsteka(e.target.value)}
+                        onChange={(e) => setdatumIsteka(e.target.value)}
                     />
                     <label style={stilLabele} htmlFor="cvv">
                         CVV:
@@ -154,7 +154,7 @@ const DodavanjeKartice = () => {
                         id="cvv"
                         maxLength={3}
                         value={cvv}
-                        onChange={(e) => postaviCVV(e.target.value)}
+                        onChange={(e) => setCVV(e.target.value)}
                     />
                     <input
                         className="btn btn-outline-primary"
