@@ -69,12 +69,12 @@ const Prijava = () => {
         zIndex: 1000,
     }
 
-    const prijavaKorisnika = () => {
+    const prijava = () => {
         if (email.length === 0 || !/^[a-zA-Z0-9@.]*$/.test(email)) {
-            alert("Email mora biti popunjen !!")
+            alert("Polje za email mora biti popunjeno!")
         }
         else if (lozinka.length === 0) {
-            alert("Lozinka mora biti popunjena !!")
+            alert("Polje za lozinku mora biti popunjeno!")
         }
         else {
             axios.post('http://127.0.0.1:5000/Prijava', {
@@ -87,7 +87,7 @@ const Prijava = () => {
                 redirekcija('/Proizvod');
             }
             else {
-                alert("Prijava je uspešna!")
+                alert("Prijava korisnika je uspešna!")
                 redirekcija('/');
             }
         }
@@ -96,7 +96,7 @@ const Prijava = () => {
     return (
         <div style={stilStranice}>
             <div style={stilNavBara}>
-                <ul className="nav nav-tabs nav-fill">
+                <ul className="nav nav-tabs nav-justified">
                     <li className="nav-item">
                         <Link to="/" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri'  }}>Početna</Link>
                     </li>
@@ -150,7 +150,7 @@ const Prijava = () => {
                                         style={stilDugmeta}
                                         type="submit"
                                         value="Prijavi se"
-                                        onClick={prijavaKorisnika}
+                                        onClick={prijava}
                                     />
                                 </td>
                             </tr>

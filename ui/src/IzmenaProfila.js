@@ -90,30 +90,30 @@ const IzmenaProfila = () => {
         zIndex: 1000,
     }
 
-    const sacuvajIzmene = () => {
+    const izmeni = () => {
         if (ime.length === 0 || /\d/.test(ime) || !/^[a-zA-Z\s]*$/.test(ime)) {
-            alert("Ime mora biti popunjeno!")
+            alert("Polje za ime mora biti popunjeno!")
         }
         else if (prezime.length === 0 || /\d/.test(prezime) || !/^[a-zA-Z\s]*$/.test(prezime)) {
-            alert("Prezime mora biti popunjeno!")
+            alert("Polje za prezime mora biti popunjeno!")
         }
         else if (adresa.length === 0 || !/^[a-zA-Z0-9\s]+$/.test(adresa)) {
-            alert("Adresa mora biti popunjena!")
+            alert("Polje za adresu mora biti popunjeno!")
         }
         else if (grad.length === 0 || /\d/.test(grad) || !/^[a-zA-Z\s]*$/.test(grad)) {
-            alert("Grad mora biti popunjen!")
+            alert("Polje za grad mora biti popunjeno!")
         }
         else if (drzava.length === 0 || /\d/.test(drzava) || !/^[a-zA-Z\s]*$/.test(drzava)) {
-            alert("Država mora biti popunjena!")
+            alert("Polje za državu mora biti popunjeno!")
         }
         else if (brojTelefona.length === 0 || /^[a-zA-Z]*$/.test(brojTelefona)) {
-            alert("Broj telefona mora biti popunjen!")
+            alert("Polje za broj telefona mora biti popunjeno!")
         }
         else if (email.length === 0 || !/^[a-zA-Z0-9@.]*$/.test(email)) {
-            alert("Email mora biti popunjen!")
+            alert("Polje za email mora biti popunjeno!")
         }
         else if (lozinka.length === 0) {
-            alert("Lozinka mora biti popunjena!")
+            alert("Polje za lozinku mora biti popunjeno!")
         }
         else {
             axios.post('http://127.0.0.1:5000/Profil', {
@@ -144,7 +144,7 @@ const IzmenaProfila = () => {
     return (
         <div style={stilStranice}>
             <div style={stilNavBara}>
-                <ul className="nav nav-tabs nav-fill">
+                <ul className="nav nav-tabs nav-justified">
                     <li className="nav-item">
                         <Link to="/" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Početna</Link>
                     </li>
@@ -206,7 +206,7 @@ const IzmenaProfila = () => {
                                     style={stilDugmeta}
                                     type="submit"
                                     value="Izmeni"
-                                    onClick={sacuvajIzmene}
+                                    onClick={izmeni}
                                 />
                             </td>
                         </tr>

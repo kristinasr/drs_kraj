@@ -85,13 +85,13 @@ const DodajProizvod = () => {
 
     const dodavanjeProizvoda = () => {
         if (naziv.length === 0) {
-            alert("Naziv proizvoda mora biti popunjen !!")
+            alert("Polje za naziv proizvoda mora biti popunjeno!")
         }
         else if (cena.length === 0) {
-            alert("Cena proizvoda mora biti popunjena !!")
+            alert("Polje za cenu proizvoda mora biti popunjeno!")
         }
         else if (kolicina.length === 0) {
-            alert("Količina proizvoda mora biti popunjena !!")
+            alert("Polje za količinu proizvoda mora biti popunjeno!")
         }
         else {
             axios.post('http://127.0.0.1:5000/Proizvod', {
@@ -101,7 +101,7 @@ const DodajProizvod = () => {
                 kolicina: kolicina,
                 slika: slika
             })
-            alert("Uspešno ste dodali proizvod !!")
+            alert("Proizvod je uspešno dodat!")
             redirekcija('/');
         }
     }
@@ -110,7 +110,7 @@ const DodajProizvod = () => {
         <div style={stilStranice}>
             <div className='proizvod'>
                 <div style={stilNavBara}>
-                    <ul className="nav nav-tabs nav-fill">
+                    <ul className="nav nav-tabs nav-justified">
                         <li className="nav-item">
                             <Link to="/" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Početna</Link>
                         </li>

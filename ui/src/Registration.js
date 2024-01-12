@@ -74,7 +74,7 @@ const Registracija = () => {
         width: '100%',
     }
 
-    const registracijaKorisnika = () => {
+    const registracija = () => {
         if (ime.length === 0 || /\d/.test(ime) || !/^[a-zA-Z\s]*$/.test(ime)) {
             alert("Polje za ime mora biti popunjeno!")
         }
@@ -118,7 +118,7 @@ const Registracija = () => {
     return (
         <div style={stilStranice}>
             <div style={stilNavBara}>
-                <ul className="nav nav-tabs nav-fill">
+                <ul className="nav nav-tabs nav-justified">
                     <li className="nav-item">
                         <Link to="/" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Početna</Link>
                     </li>
@@ -169,12 +169,12 @@ const Registracija = () => {
                         <tr>
                             <td colSpan="2" align="center">
                                 <input
-                                    className="btn btn-outline"
+                                    className="btn btn-outline-success"
                                     id="registracijaDugme"
                                     style={stilDugmeta}
                                     type="submit"
                                     value="Registracija"
-                                    onClick={registracijaKorisnika}
+                                    onClick={registracija}
                                 />
                             </td>
                         </tr>

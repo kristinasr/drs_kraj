@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -8,7 +7,6 @@ const DodavanjeKartice = () => {
     const [brojKartice, setbrojKartice] = useState('');
     const [datumIsteka, setdatumIsteka] = useState('');
     const [cvv, setCVV] = useState('');
-    const redirekcija = useNavigate();
 
     const stilProstora = {
         textAlign: 'center',
@@ -80,7 +78,7 @@ const DodavanjeKartice = () => {
         zIndex: 1000,
     }
 
-    const dodajKarticu = () => {
+    const dodavanjeKarticu = () => {
         if (!brojKartice || !datumIsteka || !cvv) {
             alert('Sva polja moraju biti popunjena!');
         } else if (!/^[0-9]{16}$/.test(brojKartice)) {
@@ -96,15 +94,14 @@ const DodavanjeKartice = () => {
                     datumIsteka: datumIsteka,
                     cvv: cvv,
                 })
-            alert('Uspesno dodavanje kartice. Cekanje na verifikaciju...');
-            redirekcija('/');
+            alert('Uspešno dodavanje kartice. Čekanje na verifikaciju...');
         }
     };
 
     return (
         <div style={stilStranice}>
             <div style={stilNavBara}>
-                <ul className="nav nav-tabs nav-fill">
+                <ul className="nav nav-tabs nav-justified">
                     <li className="nav-item">
                         <Link to="/" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Početna</Link>
                     </li>
@@ -162,7 +159,7 @@ const DodavanjeKartice = () => {
                         style={stilDugmeta}
                         type="submit"
                         value="Dodaj"
-                        onClick={dodajKarticu}
+                        onClick={dodavanjeKarticu}
                     />
                 </form>
             </div>
