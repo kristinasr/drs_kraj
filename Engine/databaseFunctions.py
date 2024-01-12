@@ -24,10 +24,12 @@ def procitajKorisnikaIzBaze():
 def pronadjiKorisnikaPoEmailu(email):
     with app.app_context():
         korisnik = Korisnik.query.filter_by(email=email).first()
+        
         if korisnik is not None:
             return korisnik
         else:
             print(f"Korisnik sa email-om {email} ne postoji u bazi podataka!")
+            return None
 
 def autentifikacijaKorisnika(email, lozinka):
     with app.app_context():
