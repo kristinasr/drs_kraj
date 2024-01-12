@@ -43,7 +43,7 @@ const VerifikacijaKartice = ({ kartica }) => {
         marginTop: '5px'
     };
 
-    // Slanje podataka na server, da je kartica odobrena
+    
     const verifikacija = () => {
         axios.put('http://127.0.0.1:5000/Verifikacija', {
             email: kartica.vlasnik,

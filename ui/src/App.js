@@ -11,6 +11,7 @@ import IstorijaProizvoda from './KupljeniProizvodi';
 import PrikaziRacun from './Racun';
 import IzmenaKolicine from './IzmenaKolicine';
 import Verifikacija from './Verifikacija';
+import Konverzija from './Konverzija';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/Racun" element={<PrikaziRacun />} ></Route>
           <Route path="/Kolicina" element={<IzmenaKolicine />} ></Route>
           <Route path="/Verifikacija" element={<Verifikacija />} ></Route>
+          <Route path="/Konverzija" element={<Konverzija />} ></Route>
         </Routes>
       </BrowserRouter>
     </div>

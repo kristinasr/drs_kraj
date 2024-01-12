@@ -17,7 +17,7 @@ const Verifikacija = () => {
     };
 
     const stilCeleStranice = {
-        backgroundImage: `url('Pozadine/verifikacija.jpg')`,
+        backgroundImage: `url('Pozadine/pozadinaPocetna.jpg')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         height: '100vh',
