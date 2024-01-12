@@ -9,6 +9,9 @@ const PotvrdaKupovine = ({ showModal, handleOpenModal, handleCloseModal, nazivPr
   const [kolicina, setKolicinu] = useState('');
   const [valute, setValute] = useState([]);
   const [valuta, setOdabranuValutu] = useState('');
+  const [stanje, setStanje] = useState('');
+  const [stanje2, setStanje2] = useState('');
+  const [zarada, setZaradu] = useState('');
 
   useEffect(() => {
       const prihvatiPodatke = async () => {
@@ -37,6 +40,28 @@ const PotvrdaKupovine = ({ showModal, handleOpenModal, handleCloseModal, nazivPr
       sveValute();
   }, []);
 
+  useEffect(() => {
+    const konverzija = async () => {
+      try {
+        const response = await fetch(`https://open.er-api.com/v6/latest/${valuta}`);
+        const data = await response.json();
+        const konvertovanoStanje = (data.rates[valuta] / data.rates[kartica.valuta]) * kartica.stanje;
+        setStanje(konvertovanoStanje.toFixed(2));
+        const konvertovanoStanje2 = (data.rates['USD'] / data.rates[valuta]) * (kolicina * konvertovanaCena);
+        setZaradu(konvertovanoStanje2.toFixed(2));
+        const konvertovanoStanje3 = (data.rates[kartica.valuta] / data.rates[valuta]) * konvertovanaCena;
+        setStanje2(konvertovanoStanje3.toFixed(2));
+      } catch (error) {
+        console.error('Greška:', error);
+      }
+    };
+
+    if (valuta !== '') {
+      konverzija();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [valuta, kolicina]);
+
   const stilZaUnos = {
     fontFamily: 'Calibri',
     textAlign: 'center',
@@ -51,6 +76,48 @@ const PotvrdaKupovine = ({ showModal, handleOpenModal, handleCloseModal, nazivPr
 
   const stilValuta = {
     marginLeft: '10px',
+  };
+
+
+  const naruci = () => {
+    if (kartica.valuta === valuta) {
+      if (kartica.stanje >= (kolicina * konvertovanaCena)) {
+        axios.post('http://127.0.0.1:5000/Naruci', {
+          nazivProizvoda: nazivProizvoda,
+          cena: konvertovanaCena,
+          valuta: valuta,
+          kolicina: kolicina,
+          zarada: zarada
+        })
+        alert("Uspešno ste naručili proizvod.");
+        window.location.reload();
+      }
+      else {
+        alert("Nemate dovoljno sredstava na računu.");
+      }
+    }
+    else {
+      if (stanje >= (kolicina * konvertovanaCena)) {
+        axios.post('http://127.0.0.1:5000/Naruci', {
+          nazivProizvoda: nazivProizvoda,
+          cena: stanje2,
+          valuta: valuta,
+          kolicina: kolicina,
+          zarada: zarada
+        })
+        alert("Uspešno ste naručili proizvod.");
+        window.location.reload();
+      }
+      else {
+        alert("Nemate dovoljno sredstava na računu.");
+      }
+    }
+  }
+
+  
+  const dugmeNaruci = () => {
+    naruci();
+    handleCloseModal();
   };
 
   return (
