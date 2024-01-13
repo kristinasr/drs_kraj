@@ -134,7 +134,7 @@ def pronadjiKarticuVlasnika(vlasnik):
         if kartica is not None:
             return kartica
         else:
-            print(f"Kartica ciji je vlasnik {vlasnik} ne postoji u bazi podataka!")
+            print(f"Kartica čiji je vlasnik {vlasnik} ne postoji u bazi podataka!")
             return None
 
 def dodajKupovinu(novaKupovina):

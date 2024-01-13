@@ -20,7 +20,7 @@ class Kartica(db.Model):
         self.vlasnik = vlasnik
         self.odobrena = odobrena
 
-def serijalizacija_kartice(kartica):
+def podaci_kartice(kartica):
     return {
         'brojKartice': kartica.brojKartice,
         'datumIsteka': kartica.datumIsteka,
@@ -31,7 +31,7 @@ def serijalizacija_kartice(kartica):
         'odobrena': kartica.odobrena
     }
     
-def proveraValuta(self, valuta):
+def proveraValute(self, valuta):
     if self.valuta == valuta:
         return True
     else:
