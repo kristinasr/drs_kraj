@@ -43,7 +43,7 @@ const PotvrdaKupovine = ({ showModal, handleOpenModal, handleCloseModal, nazivPr
   useEffect(() => {
     const konverzija = async () => {
       try {
-        const response = await fetch(`https://open.er-api.com/v6/latest/${valuta}`);
+        const response = await fetch(`https://api.exchangerate-api.com/v4/latest/${valuta}`);
         const data = await response.json();
         const konvertovanoStanje = (data.rates[valuta] / data.rates[kartica.valuta]) * kartica.stanje;
         setStanje(konvertovanoStanje.toFixed(2));
@@ -59,10 +59,9 @@ const PotvrdaKupovine = ({ showModal, handleOpenModal, handleCloseModal, nazivPr
     if (valuta !== '') {
       konverzija();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [valuta, kolicina]);
 
-  const stilZaUnos = {
+  const stilUnosa = {
     fontFamily: 'Calibri',
     textAlign: 'center',
     color: 'black',
@@ -113,7 +112,6 @@ const PotvrdaKupovine = ({ showModal, handleOpenModal, handleCloseModal, nazivPr
       }
     }
   }
-
   
   const dugmeNaruci = () => {
     naruci();
@@ -142,7 +140,7 @@ const PotvrdaKupovine = ({ showModal, handleOpenModal, handleCloseModal, nazivPr
         <div>
           <span>Količina proizvoda:</span>
           <input
-            style={stilZaUnos}
+            style={stilUnosa}
             type="number"
             value={kolicina}
             onChange={(e) => setKolicinu(e.target.value)}
@@ -152,7 +150,7 @@ const PotvrdaKupovine = ({ showModal, handleOpenModal, handleCloseModal, nazivPr
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleCloseModal}>
+        <Button variant="secondary" onClick={dugmeNaruci}>
           Potvrdi porudžbinu
         </Button>
       </Modal.Footer>

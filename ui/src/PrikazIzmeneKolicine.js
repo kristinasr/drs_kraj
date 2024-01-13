@@ -15,35 +15,35 @@ const PrikazIzmeneKolicine = ({ proizvod }) => {
         height: '80%'
     };
 
-    const IzgledDugma = {
-
+    const stilDugmeta = {
         width: '40px',
-        height: '40px'
-    }
-
-    const stilZaDugme = {
-        ...IzgledDugma,
-        textAlign: 'center',
-        marginLeft: '20px'
+        height: '40px',
+        color:'black',
+        border: '0.5px inset #3d2b1f',
+        fontFamily: 'Calibri',
+        fontWeight: 'bold',
     };
 
+    const izmenaDugme = {
+        color:'black',
+        border: '0.5px inset #3d2b1f',
+        fontFamily: 'Calibri',
+    }
     
     const povecavanjeKolicine = () => {
         setKolicina(kolicina + 1);
     }
 
-   
     const smanjivanjeKolicine = () => {
         if (kolicina > 0) {
             setKolicina(kolicina - 1);
         }
         if (kolicina <= 0) {
-            alert("Ne mozete smanjiti kolicinu!");
+            alert("Ne mozete smanjiti kolicinu proizvoda!");
         }
     }
 
-    
-    const potvrdiIzmenu = () => {
+    const potvrdiIzmenuKolicineProizvoda = () => {
         axios.put('http://127.0.0.1:5000/Kolicina', {
             naziv: proizvod.naziv,
             cena: proizvod.cena,
@@ -51,7 +51,7 @@ const PrikazIzmeneKolicine = ({ proizvod }) => {
             kolicina: kolicina,
             slika: proizvod.slika
         })
-        alert("Izmena kolicine je uspesna!");
+        alert("Izmena kolicine proizvoda je uspesna!");
     }
 
     return (
@@ -64,11 +64,11 @@ const PrikazIzmeneKolicine = ({ proizvod }) => {
                 <li className="list-group-item">Cena: {proizvod.cena} {proizvod.valuta}</li>
                 <li className="list-group-item">Količina: {kolicina}</li>
                 <li className="list-group-item">
-                    <button className="btn btn-outline-primary" style={IzgledDugma} onClick={povecavanjeKolicine}>+</button>
-                    <button className="btn btn-outline-primary" style={stilZaDugme} onClick={smanjivanjeKolicine}>-</button>
+                    <button className="btn btn-outline-success" style={stilDugmeta} onClick={povecavanjeKolicine}>+</button>
+                    <button className="btn btn-outline-success" style={stilDugmeta} onClick={smanjivanjeKolicine}>-</button>
                 </li>
                 <li className="list-group-item">
-                    <button className="btn btn-outline-primary" onClick={potvrdiIzmenu}>Potvrdi izmenu</button>
+                    <button className="btn btn-outline-success" style={izmenaDugme} onClick={potvrdiIzmenuKolicineProizvoda}>Izmeni</button>
                 </li>
             </ul>
         </div>

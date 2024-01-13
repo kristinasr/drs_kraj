@@ -110,7 +110,7 @@ def izmeniKarticuUBazi(postojecaKartica):
         kartica = Kartica.query.filter_by(brojKartice=postojecaKartica.brojKartice).first()
         if kartica is not None:
             kartica.datumIsteka = postojecaKartica.datumIsteka
-            kartica.ccv = postojecaKartica.ccv
+            kartica.cvv = postojecaKartica.cvv
             kartica.stanje = postojecaKartica.stanje
             kartica.valuta = postojecaKartica.valuta
             kartica.odobrena = postojecaKartica.odobrena
@@ -152,14 +152,14 @@ def pronadjiKupovinePoKupcu(kupac):
         kupovine = Kupovina.query.filter_by(kupac=kupac).all()
         return kupovine
 
-def dodajKupovineUListu(kupovine):
+def kupljeniProizvodiInfo(kupovine):
     time.sleep(60)
     body = ""
     with app.app_context():
         for kupovina in kupovine:
             db.session.add(kupovina)
             if len(kupovine) > 0:
-                body += f"Podaci o kupovinama:\nNaziv proizvoda: {kupovina.proizvod}\nKupac: {kupovina.kupac}\nNaručena količina: {kupovina.kolicina}\nCena proizvoda: {kupovina.cena}\nDatum kupovine: {kupovina.datumKupovine}\nUkupan iznos: {float(kupovina.cena) * int(kupovina.kolicina)}\nValuta: {kupovina.valuta}\n"
+                body += f"Kupovina:\nProizvod: {kupovina.proizvod}\nKupac: {kupovina.kupac}\nKoličina: {kupovina.kolicina}\nCena: {kupovina.cena}\nDatum kupovine: {kupovina.datumKupovine}\nUkupan iznos: {float(kupovina.cena) * int(kupovina.kolicina)}\nValuta: {kupovina.valuta}\n"
         db.session.commit()
 
     if body != "":
@@ -169,6 +169,6 @@ def dodajKupovineUListu(kupovine):
 
     kupovine.clear()
 
-def pokreni_proces(kupovine):
-    proces = threading.Thread(target=dodajKupovineUListu, args=(kupovine,))
+def proces_kupovine(kupovine):
+    proces = threading.Thread(target=kupljeniProizvodiInfo, args=(kupovine,))
     proces.start()

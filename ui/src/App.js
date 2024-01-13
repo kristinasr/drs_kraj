@@ -12,6 +12,7 @@ import PrikaziRacun from './Racun';
 import IzmenaKolicine from './IzmenaKolicine';
 import Verifikacija from './Verifikacija';
 import Konverzija from './Konverzija';
+import Odjava from './Odjava';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/" element={<Pocetna />} ></Route>
           <Route path="/Prijava" element={<Prijava />} ></Route>
           <Route path="/Registracija" element={<Registracija />} ></Route>
+          <Route path="/Odjava" element={<Odjava />} ></Route>
           <Route path="/Proizvod" element={<DodajProizvod />} ></Route>
           <Route path="/Profil" element={<IzmenaProfila />} ></Route>
           <Route path="/UzivoKupovina" element={<PracenjeKupovine />} ></Route>

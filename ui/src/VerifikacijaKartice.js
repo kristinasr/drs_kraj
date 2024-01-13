@@ -5,42 +5,41 @@ const VerifikacijaKartice = ({ kartica }) => {
 
     const stilKartice = {
         width: '300px',
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-        borderRadius: '10px',
-        overflow: 'hidden',
-        margin: '20px',
-        transition: 'transform 0.3s',
-        '&:hover': {
-            transform: 'scale(1.05)'
-        }
+        borderRadius: '8px',
+        margin: '80px',
     };
 
     const stilNaslova = {
-        fontFamily: 'Times New Roman',
+        fontFamily: 'Calibri',
         fontWeight: 'bold',
         marginTop: '0',
-        color: '#007BFF',
+        color: '#3d2b1f',
         fontSize: '30px',
-        borderBottom: '3px solid #007BFF',
-        padding: '10px',
+        borderBottom: '1px inset #3d2b1f',
+        padding: '5px',
         marginLeft: '15px',
         width: 'fit-content'
     };
 
-    const stil = {
+    const stilListe = {
         fontWeight: 'bold',
         marginRight: '10px',
-        marginLeft: '0'
+        marginLeft: '0',
+        fontFamily: 'Calibri',
+        color: '#3d2b1f'
     };
 
-    const stilZaDugme = {
-        fontFamily: 'Times New Roman',
+    const stilDugmeta = {
+        fontFamily: 'Calibri',
         fontWeight: 'bold',
         padding: '10px 20px',
         borderRadius: '5px',
         cursor: 'pointer',
         marginLeft: '55px',
-        marginTop: '5px'
+        marginTop: '5px',
+        color: 'white',
+        backgroundColor: '#3d2b1f',
+        border: '#3d2b1f'
     };
 
     
@@ -51,20 +50,21 @@ const VerifikacijaKartice = ({ kartica }) => {
             odobrena: 'DA'
         })
         alert("Kartica je odobrena.")
+        window.location.reload()
     }
 
     return (
         <div className="card" style={stilKartice}>
             <ul className="list-group list-group-flush">
                 <li className="list-group-item" style={stilNaslova}>Verifikacija:</li>
-                <li className="list-group-item"><span style={stil}>Email:</span> {kartica.vlasnik}</li>
-                <li className="list-group-item"><span style={stil}>Broj kartice:</span> {kartica.brojKartice}</li>
-                <li className="list-group-item"><span style={stil}>Datum isteka:</span> {kartica.datumIsteka}</li>
-                <li className="list-group-item"><span style={stil}>CVV:</span> {kartica.cvv}</li>
-                <li className="list-group-item"><span style={stil}>Stanje:</span> {kartica.stanje}</li>
-                <li className="list-group-item"><span style={stil}>Valuta:</span> {kartica.valuta}</li>
+                <li className="list-group-item"><span style={stilListe}>Email:</span> {kartica.vlasnik}</li>
+                <li className="list-group-item"><span style={stilListe}>Broj kartice:</span> {kartica.brojKartice}</li>
+                <li className="list-group-item"><span style={stilListe}>Datum isteka:</span> {kartica.datumIsteka}</li>
+                <li className="list-group-item"><span style={stilListe}>CVV:</span> {kartica.cvv}</li>
+                <li className="list-group-item"><span style={stilListe}>Stanje:</span> {kartica.stanje}</li>
+                <li className="list-group-item"><span style={stilListe}>Valuta:</span> {kartica.valuta}</li>
                 <li className="list-group-item">
-                    <button className="btn btn-outline-primary" style={stilZaDugme} onClick={verifikacija}>Verifikujte Vašu karticu</button>
+                    <button className="btn btn-outline-success" style={stilDugmeta} onClick={verifikacija}>Verifikuj karticu</button>
                 </li>
             </ul>
         </div>

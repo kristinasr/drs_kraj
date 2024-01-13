@@ -83,7 +83,7 @@ const PrikaziRacun = () => {
     useEffect(() => {
         setBrojKartice(podaci.brojKartice || '');
         setDatumIsteka(podaci.datumIsteka || '');
-        setStanje(podaci.stanje || '');
+        setStanje(podaci.stanje);
         setValutu(podaci.valuta || '');
     }, [podaci]);
 
@@ -98,10 +98,13 @@ const PrikaziRacun = () => {
                         <Link to="/Profil" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Profil</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/KarticaKorisnika" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Kartica</Link>
+                        <Link to="/KarticaKorisnika" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Dodaj karticu</Link>
                     </li>
                     <li className="nav-item">
                         <Link to="/Racun" className="nav-link active" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Pregled računa</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/Konverzija" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Uplata i konverzija</Link>
                     </li>
                     <li className="nav-item">
                         <Link to="/IstorijaProizvoda" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Istorija kupovina</Link>
@@ -119,9 +122,10 @@ const PrikaziRacun = () => {
                         type="text"
                         id="brojKartice"
                         maxLength={16}
+                        readOnly={true}
                         value={brojKartice}
                     />
-                    <label style={stilLabele}>
+                    <label style={stilLabele} htmlFor="datumIsteka">
                         Datum isteka:
                     </label>
                     <input
@@ -129,9 +133,10 @@ const PrikaziRacun = () => {
                         type="text"
                         id="datumIsteka"
                         maxLength={5}
+                        readOnly={true}
                         value={datumIsteka}
                     />
-                    <label style={stilLabele}>
+                    <label style={stilLabele} htmlFor="stanje">
                         Stanje:
                     </label>
                     <input
@@ -139,8 +144,9 @@ const PrikaziRacun = () => {
                         type="text"
                         id="stanje"
                         value={stanje}
+                        readOnly={true}
                     />
-                    <label style={stilLabele}>
+                    <label style={stilLabele} htmlFor="valuta">
                         Valuta:
                     </label>
                     <input
@@ -149,6 +155,7 @@ const PrikaziRacun = () => {
                         id="valuta"
                         maxLength={3}
                         value={valuta}
+                        readOnly={true}
                     />
                 </form>
             </div>

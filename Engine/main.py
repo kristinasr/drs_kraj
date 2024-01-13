@@ -6,65 +6,66 @@ from putanjaDoSlike import odrediPutanju
 from datetime import datetime
 from databaseFunctions import *
 from config import request, jsonify, app
+from flask import redirect
 
-Proizvodi = [
-    Proizvod(
-        naziv = 'Plazma',
-        cena = 490,
-        valuta = 'RSD',
-        kolicina = 3,
-        slika = 'Proizvodi/plazma.jpg'
-    ),
-    Proizvod(
-        naziv = 'Nugat', 
-        cena = 520, 
-        valuta = 'RSD',
-        kolicina = 5, 
-        slika = 'Proizvodi/nugat.jpg'
-    ),
-    Proizvod(
-        naziv = 'Pistać Malina',
-        cena = 590,
-        valuta = 'RSD',
-        kolicina = 3,
-        slika = 'Proizvodi/pistacmalina.jpg'
-    ),
-    Proizvod(
-        naziv = 'Chocco',
-        cena = 550,
-        valuta = 'RSD',
-        kolicina = 8,
-        slika = 'Proizvodi/choco.jpg'
-    ),
-    Proizvod(
-        naziv = 'Cherry', 
-        cena = 590, 
-        valuta = 'RSD',
-        kolicina = 20, 
-        slika = 'Proizvodi/cherry.jpg'
-    ),
-     Proizvod(
-        naziv = 'Jagoda', 
-        cena = 600, 
-        valuta = 'RSD',
-        kolicina = 12, 
-        slika = 'Proizvodi/jagoda.jpg'
-    ),
-    Proizvod(
-        naziv = 'Monaliza', 
-        cena = 610, 
-        valuta = 'RSD',
-        kolicina = 2, 
-        slika = 'Proizvodi/monaliza.jpg'
-    ),
-     Proizvod(
-        naziv = 'Cheese Cake', 
-        cena = 510, 
-        valuta = 'RSD',
-        kolicina = 8, 
-        slika = 'Proizvodi/cake.jpg'
-    )
-]
+# Proizvodi = [
+#     Proizvod(
+#         naziv = 'Plazma',
+#         cena = 490,
+#         valuta = 'RSD',
+#         kolicina = 3,
+#         slika = 'Proizvodi/plazma.jpg'
+#     ),
+#     Proizvod(
+#         naziv = 'Nugat', 
+#         cena = 520, 
+#         valuta = 'RSD',
+#         kolicina = 5, 
+#         slika = 'Proizvodi/nugat.jpg'
+#     ),
+#     Proizvod(
+#         naziv = 'Pistać Malina',
+#         cena = 590,
+#         valuta = 'RSD',
+#         kolicina = 3,
+#         slika = 'Proizvodi/pistacmalina.jpg'
+#     ),
+#     Proizvod(
+#         naziv = 'Chocco',
+#         cena = 550,
+#         valuta = 'RSD',
+#         kolicina = 8,
+#         slika = 'Proizvodi/choco.jpg'
+#     ),
+#     Proizvod(
+#         naziv = 'Cherry', 
+#         cena = 590, 
+#         valuta = 'RSD',
+#         kolicina = 20, 
+#         slika = 'Proizvodi/cherry.jpg'
+#     ),
+#      Proizvod(
+#         naziv = 'Jagoda', 
+#         cena = 600, 
+#         valuta = 'RSD',
+#         kolicina = 12, 
+#         slika = 'Proizvodi/jagoda.jpg'
+#     ),
+#     Proizvod(
+#         naziv = 'Monaliza', 
+#         cena = 610, 
+#         valuta = 'RSD',
+#         kolicina = 2, 
+#         slika = 'Proizvodi/monaliza.jpg'
+#     ),
+#      Proizvod(
+#         naziv = 'Cheese Cake', 
+#         cena = 510, 
+#         valuta = 'RSD',
+#         kolicina = 8, 
+#         slika = 'Proizvodi/cake.jpg'
+#     )
+# ]
 
 admin = Korisnik(
         ime= 'admin',
@@ -84,6 +85,13 @@ proizvodi = procitajProizvodIzBaze()
 
 kupovine = []
 prijavljenKorisnik = None
+
+@app.route('/Odjava', methods=['POST'])
+def odjava():
+    global prijavljenKorisnik
+    prijavljenKorisnik = None
+
+    return redirect('/'), 200
 
 @app.route('/Prijava', methods=['POST'])
 def prijava():
@@ -149,32 +157,6 @@ def registracija():
         "grad": grad,
         "drzava": drzava,
         "brojTelefona": brojTelefona
-    }
-
-    return jsonify(response_data), 200
-
-@app.route('/Proizvod', methods=['POST'])
-def dodajProizvod():
-
-    naziv = request.json['naziv']
-    cena = request.json['cena']
-    valuta = request.json.get('valuta')
-    kolicina = request.json['kolicina']
-    slika = request.json['slika']
-
-    slika = odrediPutanju(slika)
-
-    novi_proizvod = Proizvod(naziv, cena, valuta, kolicina, slika)
-    dodajProizvodUBazu(novi_proizvod)
-
-    app.logger.info(f"\nNaziv proivoda: {naziv}\nCena: {cena}\nValuta: {valuta}\nKolicina: {kolicina}\nSlika: {slika}")
-
-    response_data = {
-        "message": "Uspešno dodat proizvod!",
-        "naziv": naziv,
-        "cena": cena,
-        "valuta": valuta,
-        "kolicina": kolicina,
     }
 
     return jsonify(response_data), 200
@@ -257,6 +239,32 @@ def izmeniProfil():
 
     return jsonify(response_data)
 
+@app.route('/Proizvod', methods=['POST'])
+def dodajProizvod():
+
+    naziv = request.json['naziv']
+    cena = request.json['cena']
+    valuta = request.json.get('valuta')
+    kolicina = request.json['kolicina']
+    slika = request.json['slika']
+
+    slika = odrediPutanju(slika)
+
+    novi_proizvod = Proizvod(naziv, cena, valuta, kolicina, slika)
+    dodajProizvodUBazu(novi_proizvod)
+
+    app.logger.info(f"\nNaziv proivoda: {naziv}\nCena: {cena}\nValuta: {valuta}\nKolicina: {kolicina}\nSlika: {slika}")
+
+    response_data = {
+        "message": "Uspešno dodat proizvod!",
+        "naziv": naziv,
+        "cena": cena,
+        "valuta": valuta,
+        "kolicina": kolicina,
+    }
+
+    return jsonify(response_data), 200
+
 @app.route('/', methods=['GET'])
 def prikazProizvoda():
 
@@ -299,15 +307,56 @@ def prikazProizvoda():
 
     return jsonify(korisnickiProizvodi), 200
 
+@app.route('/Kolicina', methods=['PUT'])
+def izmeniKolicinu():
+
+    naziv = request.json['naziv']
+    cena = request.json['cena']
+    valuta = request.json.get('valuta')
+    kolicina = request.json['kolicina']
+    slika = request.json['slika']
+
+    proizvod = Proizvod(naziv, cena, valuta, kolicina, slika)
+    izmeniProizvodUBazi(proizvod)
+
+    response_data = {
+        "message": "Izmena kolicine proizvoda je uspesna!",
+        "naziv": naziv,
+        "cena": cena,
+        "valuta": valuta,
+        "kolicina": kolicina,
+    }
+
+    return jsonify(response_data), 200
+
+@app.route('/Kolicina', methods=['GET'])
+def izmenaKolicine():
+
+    proizvodi = procitajProizvodIzBaze()
+
+    response_data = [
+        {
+            'naziv': proizvod.naziv,
+            'cena': proizvod.cena,
+            'valuta': proizvod.valuta,
+            'kolicina': proizvod.kolicina,
+            'slika': proizvod.slika,
+        }
+        for proizvod in proizvodi
+    ]
+
+    return jsonify(response_data), 200
+
 @app.route('/UzivoKupovina', methods=['GET'])
-def uzivoKupovina():
+def prikaziKupljeneProizvode():
 
     proizvodi = procitajProizvodIzBaze()
     kupovine = procitajKupovinuIzBaze()
 
     response_data = [
         {
-            'nazivProizvoda': proizvod.naziv,
+            'slika':proizvod.slika,
+            'proizvod': proizvod.naziv,
             'cena': proizvod.cena,
             'valuta': proizvod.valuta,
             'kupac': next((kupovina.kupac for kupovina in kupovine if kupovina.proizvod == proizvod.naziv), ''),
@@ -318,8 +367,48 @@ def uzivoKupovina():
 
     return jsonify(response_data)
 
+@app.route('/Naruci', methods=['POST'])
+def naruciProizvod():
+    global kupovine
+
+    proizvod = request.json['nazivProizvoda']
+    cena = request.json['cena']
+    cena = request.json['cena']
+    valuta = request.json['valuta']
+    kolicina = request.json['kolicina']
+    zarada = request.json['zarada']
+
+    kupovina = Kupovina(proizvod, prijavljenKorisnik.email, kolicina, cena, valuta, str(datetime.now()))
+    kupovine.append(kupovina)
+
+    proces_kupovine(kupovine)
+
+    for kupovina in kupovine:
+        proizvod = pronadjiProizvodPoNazivu(kupovina.proizvod)
+        if proizvod is not None:
+            proizvod.kolicina -= int(kupovina.kolicina)
+            izmeniProizvodUBazi(proizvod)
+
+        kartica = pronadjiKarticuVlasnika(kupovina.kupac)
+        if kartica is not None:
+            stanje = float(kartica.stanje)
+            stanje -= (float(kupovina.cena) * int(kupovina.kolicina))
+            kartica.stanje = str(stanje)
+            izmeniKarticuUBazi(kartica)
+
+        zarada = float(karticaAdmin.stanje)
+        zarada += float(zarada)
+        karticaAdmin.stanje = str(zarada)
+        izmeniKarticuUBazi(karticaAdmin)
+
+    response_data = {
+        'message': 'Proizvod je uspesno narucen!'
+    }
+
+    return jsonify(response_data), 200
+
 @app.route('/IstorijaProizvoda', methods=['GET'])
-def kupljeno():
+def prikaziIstorijuProizvoda():
 
     kupovine = pronadjiKupovinePoKupcu(prijavljenKorisnik.email)
     kupovine.reverse()
@@ -339,7 +428,7 @@ def kupljeno():
             'cena': p.cena,
             'valuta': p.valuta,
             'kolicina': p.kolicina,
-            'vreme': datetime.now().strftime("%Y.%m.%d %H:%M:%S")
+            'vreme': kupljeni_proizvodi[p]
         }
         for p in kupljeni_proizvodi
     ]
@@ -389,67 +478,45 @@ def prikaziRacun():
             'stanje': '',
             'valuta': ''
         }
-    return jsonify(response_data), 200
+        return jsonify(response_data), 200
 
-@app.route('/Kolicina', methods=['PUT'])
-def izmeniKolicinu():
+@app.route('/Verifikacija', methods=['PUT'])
+def verifikujKarticu():
 
-    naziv = request.json['naziv']
-    cena = request.json['cena']
-    valuta = request.json.get('valuta')
-    kolicina = request.json['kolicina']
-    slika = request.json['slika']
+    email = request.json['email']
+    brojKartice = request.json['brojKartice']
+    odobrena = request.json['odobrena']
 
-    proizvod = Proizvod(naziv, cena, valuta, kolicina, slika)
-    izmeniProizvodUBazi(proizvod)
+    kartica = pronadjiKarticuSaBrojemKartice(brojKartice)
+    kartica.odobrena = odobrena
+    izmeniKarticuUBazi(kartica)
 
     response_data = {
-        "message": "Izmena kolicine proizvoda je uspesna!",
-        "naziv": naziv,
-        "cena": cena,
-        "valuta": valuta,
-        "kolicina": kolicina,
+        "message" : "Verifikacija uspesna."
     }
 
     return jsonify(response_data), 200
 
-@app.route('/Kolicina', methods=['GET'])
-def izmenaKolicine():
-
-    proizvodi = procitajProizvodIzBaze()
-
-    response_data = [
-        {
-            'naziv': proizvod.naziv,
-            'cena': proizvod.cena,
-            'valuta': proizvod.valuta,
-            'kolicina': proizvod.kolicina,
-            'slika': proizvod.slika,
-        }
-        for proizvod in proizvodi
-    ]
-
-    return jsonify(response_data), 200
-
 @app.route('/Verifikacija', methods=['GET'])
-def verifikujKarticu():
+def verifikacijaKartica():
 
     kartice = procitajKarticuIzBaze()
-    serijalizovane_kartice = [serijalizacija_kartice(kartica) for kartica in kartice]
+    serijalizovane_kartice = [serijalizacija_kartice(
+        kartica) for kartica in kartice]
     lista_kartica = []
 
     for k in serijalizovane_kartice:
         if k['vlasnik'] != "secernisanns@gmail.com" and k['odobrena'] != 'DA':
             lista_kartica.append(k)
 
-    response_data = {
+    data = {
         'kartice': lista_kartica
     }
 
-    return jsonify(response_data), 200
+    return jsonify(data), 200
 
 @app.route('/Konverzija', methods=['PUT'])
-def konverzijaValute():
+def konvertujValutu():
 
     email = request.json['email']
     brojKartice = request.json['brojKartice']
@@ -469,7 +536,7 @@ def konverzijaValute():
     return jsonify(response_data), 200
 
 @app.route('/Uplata', methods=['PUT'])
-def uplata():
+def uplatiNaRacun():
     email = request.json['email']
     brojKartice = request.json['brojKartice']
     iznos = request.json['iznos']
@@ -488,53 +555,13 @@ def uplata():
         print("Valute se ne poklapaju!")
 
     response_data = {
-        'message': 'Uplata je uspesna!'
+        'message': 'Uplata na karticu je uspesna!'
     }
 
     return jsonify(response_data), 200
 
-@app.route('/Naruci', methods=['POST'])
-def narucivanjeProizvoda():
-    global kupovine
-
-    nazivProizvoda = request.json['nazivProizvoda']
-    cena = request.json['cena']
-    cena = request.json['cena']
-    valuta = request.json['valuta']
-    kolicina = request.json['kolicina']
-    zarada = request.json['zarada']
-
-    kupovina = Kupovina(nazivProizvoda, prijavljenKorisnik.email, kolicina, cena, valuta, str(datetime.now()))
-    kupovine.append(kupovina)
-
-    pokreni_proces(kupovine)
-
-    for kupovina in kupovine:
-        proizvod = pronadjiProizvodPoNazivu(kupovina.proizvod)
-        if proizvod is not None:
-            proizvod.kolicina -= int(kupovina.kolicina)
-            izmeniProizvodUBazi(proizvod)
-
-        kartica = pronadjiKarticuVlasnika(kupovina.kupac)
-        if kartica is not None:
-            stanje = float(kartica.stanje)
-            stanje -= (float(kupovina.cenaKupovine) * int(kupovina.kolicina))
-            kartica.stanje = str(stanje)
-            izmeniKarticuUBazi(kartica)
-
-        zarada = float(karticaAdmin.stanje)
-        zarada += float(zarada)
-        karticaAdmin.stanje = str(zarada)
-        izmeniKarticuUBazi(karticaAdmin)
-
-    response_data = {
-        'message': 'Narucivanje proizvoda je uspesno!'
-    }
-
-    return jsonify(response_data), 200
-
-@app.route('/UplataKonverzija', methods=['GET'])
-def uplataiKonverzija():
+@app.route('/UplataIKonverzija', methods=['GET'])
+def prikazUplateIKonverzije():
     kartica = None
 
     if (prijavljenKorisnik != None):
@@ -549,7 +576,7 @@ def uplataiKonverzija():
         response_data = {
             'kartica': ''
         }
-        return jsonify(response_data), 200
+        return jsonify(response_data)
 
 
 if __name__ == "__main__":

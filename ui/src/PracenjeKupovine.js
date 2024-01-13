@@ -131,7 +131,7 @@ const PracenjeKupovine = () => {
                                         <td style={stilReda}>
                                             <img style={stilSlike} src={item.slika} alt="" />
                                         </td>
-                                        <td style={stilReda}>{item.nazivProizvoda}</td>
+                                        <td style={stilReda}>{item.proizvod}</td>
                                         <td style={stilReda}>{item.cena}</td>
                                         <td style={stilReda}>{item.valuta}</td>
                                         <td style={stilReda}>{item.kupac}</td>

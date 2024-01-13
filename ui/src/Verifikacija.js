@@ -8,7 +8,7 @@ const Verifikacija = () => {
 
     const [podaci, setPodatke] = useState([]);
 
-    const stilKontejneraZaKartice = {
+    const stilProstoraZaKartice = {
         display: 'flex',
         justifyContent: 'center',
         flexWrap: 'wrap',
@@ -16,7 +16,7 @@ const Verifikacija = () => {
         marginTop: '100px'
     };
 
-    const stilCeleStranice = {
+    const stilStranice = {
         backgroundImage: `url('Pozadine/pozadinaPocetna.jpg')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
@@ -26,7 +26,7 @@ const Verifikacija = () => {
         justifyContent: 'center'
     };
 
-    const stilZaNavBar = {
+    const stilNavBara = {
         position: 'fixed',
         top: 0,
         width: '100%',
@@ -48,27 +48,27 @@ const Verifikacija = () => {
     }, []);
 
     return (
-        <div style={stilCeleStranice}>
-            <div style={stilZaNavBar}>
-                <ul className="nav nav-pills nav-fill">
+        <div style={stilStranice}>
+            <div style={stilNavBara}>
+                <ul className="nav nav-tabs nav-justified">
                     <li className="nav-item">
-                        <Link to="/" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Početna</Link>
+                        <Link to="/" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Početna</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/Proizvod" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Dodavanje proizvoda</Link>
+                        <Link to="/Proizvod" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Dodavanje proizvoda</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/Kolicina" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Povećanje količine proizvoda</Link>
+                        <Link to="/Kolicina" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Izmena količine proizvoda</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/UzivoKupovina" className="nav-link" style={{ color: 'yellow', fontWeight: "bold" }}>Uživo praćenje kupovina</Link>
+                        <Link to="/UzivoKupovina" className="nav-link" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Praćenje kupovina</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/Verifikacija" className="nav-link active" style={{ color: 'yellow', fontWeight: "bold" }}>Verifikacija naloga</Link>
+                        <Link to="/Verifikacija" className="nav-link active" style={{ borderRadius:'5px', width:'100%' ,color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Verifikacija</Link>
                     </li>
                 </ul>
             </div>
-            <div className="kontejner" style={stilKontejneraZaKartice}>
+            <div className="prostor" style={stilProstoraZaKartice}>
                 {podaci.map((kartice, index) => (
                     <VerifikacijaKartice key={index} kartica={kartice} />
                 ))}
