@@ -18,8 +18,8 @@ const DodajProizvod = () => {
         textAlign: 'center',
         backgroundColor: '#836953',
         marginLeft: '550px',
-        width: '380px',
-        height: '280px',
+        width: '400px',
+        height: '300px',
         borderRadius: '5px',
         border: '1px inset #3d2b1f',
     };
@@ -27,6 +27,7 @@ const DodajProizvod = () => {
     const stilForme = {
         display: 'inline-block',
         textAlign: 'left',
+        margin: 10,
     };
 
     const stilLabele = {

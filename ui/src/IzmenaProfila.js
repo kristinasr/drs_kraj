@@ -15,44 +15,37 @@ const IzmenaProfila = () => {
     const [lozinka, setLozinku] = useState('');
     const [podaci, setPodatke] = useState([]);
 
-    useEffect(() => {
-        const prihvatiPodatke = async () => {
-            try {
-                const response = await axios.get('http://localhost:5000/Profil');
-                setPodatke(response.data);
-            } catch (error) {
-                console.error('Greška: ', error);
-            }
-        };
-
-        prihvatiPodatke();
-    }, []);
-
     const stilProstora = {
         textAlign: 'center',
         backgroundColor: '#836953',
-        width: '350px',
-        height: '400px',
+        width: '400px',
+        height: '450px',
         border:'1px inset #3d2b1f',
         borderRadius:'5px',
-        marginTop: 10,
     };
 
     const stilForme = {
         display: 'inline-block',
         textAlign: 'left',
+        margin: 30,
     };
 
     const stilLabele = {
         fontFamily: 'Calibri',
         fontWeight: 'bold',
-        marginTop: 0,
+        marginTop: 2,
         color:'white',
+        display: 'block',
     };
 
     const stilUnosa = {
         fontFamily: 'Calibri',
         color: 'black',
+        width: '100%',
+        boxSizing: 'border-box',
+        border: '1px solid white',
+        borderRadius: '3px',
+        padding: '2px',
     };
 
     const stilDugmeta = {
@@ -61,15 +54,14 @@ const IzmenaProfila = () => {
         color: 'white',
         border: '0.5px solid #3d2b1f',
         backgroundColor: '#3d2b1f',
-
+        margin: 10,
     };
 
     const stilNaslova = {
         fontFamily: 'Calibri',
         fontWeight: 'bold',
-        marginTop: 0,
         textAlign: 'center',
-        color:'white',
+        color: 'white',
     };
 
     const stilStranice = {
@@ -89,6 +81,19 @@ const IzmenaProfila = () => {
         width: '100%',
         zIndex: 1000,
     }
+
+    useEffect(() => {
+        const prihvatiPodatke = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/Profil');
+                setPodatke(response.data);
+            } catch (error) {
+                console.error('Greška: ', error);
+            }
+        };
+
+        prihvatiPodatke();
+    }, []);
 
     const izmeni = () => {
         if (ime.length === 0 || /\d/.test(ime) || !/^[a-zA-Z\s]*$/.test(ime)) {

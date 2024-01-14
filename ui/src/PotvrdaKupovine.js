@@ -11,7 +11,23 @@ const PotvrdaKupovine = ({ showModal, handleOpenModal, handleCloseModal, nazivPr
   const [valuta, setOdabranuValutu] = useState('');
   const [stanje, setStanje] = useState('');
   const [stanje2, setStanje2] = useState('');
-  const [zarada, setZaradu] = useState('');
+  const [zaradaAdmina, setZaraduAdmina] = useState('');
+
+  const stilUnosa = {
+    fontFamily: 'Calibri',
+    textAlign: 'center',
+    color: 'black',
+    width: '100px',
+    marginLeft: '10px',
+  };
+
+  const stilProstora = {
+    marginBottom: '20px',
+  };
+
+  const stilValuta = {
+    marginLeft: '10px',
+  };
 
   useEffect(() => {
       const prihvatiPodatke = async () => {
@@ -33,8 +49,8 @@ const PotvrdaKupovine = ({ showModal, handleOpenModal, handleCloseModal, nazivPr
   useEffect(() => {
       const sveValute = async () => {
           const response = await axios.get('https://api.exchangerate-api.com/v4/latest/USD');
-          const valute = Object.keys(response.data.rates);
-          setValute(valute);
+          const valuteSve = Object.keys(response.data.rates);
+          setValute(valuteSve);
       };
 
       sveValute();
@@ -47,10 +63,10 @@ const PotvrdaKupovine = ({ showModal, handleOpenModal, handleCloseModal, nazivPr
         const data = await response.json();
         const konvertovanoStanje = (data.rates[valuta] / data.rates[kartica.valuta]) * kartica.stanje;
         setStanje(konvertovanoStanje.toFixed(2));
-        const konvertovanoStanje2 = (data.rates['USD'] / data.rates[valuta]) * (kolicina * konvertovanaCena);
-        setZaradu(konvertovanoStanje2.toFixed(2));
-        const konvertovanoStanje3 = (data.rates[kartica.valuta] / data.rates[valuta]) * konvertovanaCena;
-        setStanje2(konvertovanoStanje3.toFixed(2));
+        const konvertovanaZarada = (data.rates['USD'] / data.rates[valuta]) * (kolicina * konvertovanaCena);
+        setZaraduAdmina(konvertovanaZarada.toFixed(2));
+        const konvertovanoStanje2 = (data.rates[kartica.valuta] / data.rates[valuta]) * konvertovanaCena;
+        setStanje2(konvertovanoStanje2.toFixed(2));
       } catch (error) {
         console.error('Greška:', error);
       }
@@ -61,23 +77,6 @@ const PotvrdaKupovine = ({ showModal, handleOpenModal, handleCloseModal, nazivPr
     }
   }, [valuta, kolicina]);
 
-  const stilUnosa = {
-    fontFamily: 'Calibri',
-    textAlign: 'center',
-    color: 'black',
-    width: '100px',
-    marginLeft: '10px',
-  };
-
-  const stilProstora = {
-    marginBottom: '20px',
-  };
-
-  const stilValuta = {
-    marginLeft: '10px',
-  };
-
-
   const naruci = () => {
     if (kartica.valuta === valuta) {
       if (kartica.stanje >= (kolicina * konvertovanaCena)) {
@@ -86,7 +85,7 @@ const PotvrdaKupovine = ({ showModal, handleOpenModal, handleCloseModal, nazivPr
           cena: konvertovanaCena,
           valuta: valuta,
           kolicina: kolicina,
-          zarada: zarada
+          zaradaAdmina: zaradaAdmina
         })
         alert("Uspešno ste naručili proizvod.");
         window.location.reload();
@@ -102,7 +101,7 @@ const PotvrdaKupovine = ({ showModal, handleOpenModal, handleCloseModal, nazivPr
           cena: stanje2,
           valuta: valuta,
           kolicina: kolicina,
-          zarada: zarada
+          zaradaAdmina: zaradaAdmina
         })
         alert("Uspešno ste naručili proizvod.");
         window.location.reload();
@@ -150,8 +149,8 @@ const PotvrdaKupovine = ({ showModal, handleOpenModal, handleCloseModal, nazivPr
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={dugmeNaruci}>
-          Potvrdi porudžbinu
+        <Button variant="outline-success" onClick={dugmeNaruci}>
+          Potvrda
         </Button>
       </Modal.Footer>
     </Modal>

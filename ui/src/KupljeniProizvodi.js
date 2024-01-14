@@ -7,24 +7,10 @@ const IstorijaProizvoda = () => {
 
     const [podaci, setPodatke] = useState([]);
 
-    useEffect(() => {
-        const prihvatiPodatke = async () => {
-            try {
-                const odgovor = await axios.get('http://localhost:5000/IstorijaProizvoda');
-                setPodatke(odgovor.data);
-            } catch (error) {
-                console.error('Greška: ', error);
-            }
-        };
-
-        prihvatiPodatke();
-    }, []);
-
     const stilProstora = {
         textAlign: 'center',
         backgroundColor: 'white',
         borderRadius: '5px',
-        border:'1px inset #3d2b1f',
     };
 
     const stilForme = {
@@ -35,7 +21,7 @@ const IstorijaProizvoda = () => {
     const stilNaslova = {
         fontFamily: 'Calibri',
         fontWeight: 'bold',
-        marginTop: 15,
+        marginTop: 10,
         textAlign: 'center',
         color: '#3d2b1f',
     };
@@ -43,24 +29,23 @@ const IstorijaProizvoda = () => {
     const stilTabele = {
         width: '100%',
         borderCollapse: 'collapse',
-        marginTop: '20px',
-        borderRadius: '8px',
+        marginTop: '10px',
         overflow: 'hidden',
-        boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
     };
 
     const stilZaglavljaTabele = {
-        border: '1px solid #3d2b1f',
+        border: '2px solid #3d2b1f',
         textAlign: 'center',
-        padding: '12px',
+        padding: '10px',
         backgroundColor: '#3d2b1f',
         color: 'white',
+        fontFamily: 'Calibri',
     };
 
     const stilReda = {
-        border: '3px solid #cd9575',
+        border: '2px solid #3d2b1f',
         textAlign: 'center',
-        padding: '12px',
+        padding: '10px',
         backgroundColor: '#edc9af',
         fontWeight: 'bold',
         fontFamily:'Calibri',
@@ -87,6 +72,19 @@ const IstorijaProizvoda = () => {
         width: '100px',
         height: 'auto%',
     }
+
+    useEffect(() => {
+        const prihvatiPodatke = async () => {
+            try {
+                const odgovor = await axios.get('http://localhost:5000/IstorijaProizvoda');
+                setPodatke(odgovor.data);
+            } catch (error) {
+                console.error('Greška: ', error);
+            }
+        };
+
+        prihvatiPodatke();
+    }, []);
 
     return (
         <div style={stilStranice} >
@@ -133,7 +131,7 @@ const IstorijaProizvoda = () => {
                                         <td style={stilReda}>
                                             <img style={stilSlike} src={item.slika} alt="" />
                                         </td>
-                                        <td style={stilReda}>{item.nazivProizvoda}</td>
+                                        <td style={stilReda}>{item.proizvod}</td>
                                         <td style={stilReda}>{item.cena}</td>
                                         <td style={stilReda}>{item.valuta}</td>
                                         <td style={stilReda}>{item.kolicina}</td>

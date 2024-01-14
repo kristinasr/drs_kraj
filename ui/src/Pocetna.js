@@ -48,10 +48,10 @@ const Pocetna = () => {
     position: 'fixed',
     top: 0,
     right: 0,
-    marginRight: '30px',
-    marginTop: '40px',
+    marginRight: '10px',
+    marginTop: '0px',
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'row',
     alignItems: 'center',
   };
 
@@ -68,10 +68,10 @@ const Pocetna = () => {
   useEffect(() => {
     const prihvatiPodatke = async () => {
       try {
-        const odgovor = await axios.get('http://localhost:5000/');
-        setPodatke(odgovor.data.proizvodi);
-        setKartice(odgovor.data.kartica);
-        const email = odgovor.data.email;
+        const response = await axios.get('http://localhost:5000/');
+        setPodatke(response.data.proizvodi);
+        setKartice(response.data.kartica);
+        const email = response.data.email;
 
         if (email === '') {
           setVrstuKorisnika('/');
@@ -95,11 +95,11 @@ const Pocetna = () => {
     <div className='pocetnaStranica' style={stilStranice}>
       <div style={stilNavBara}>
         <ul className="nav nav-tabs nav-justified">
-          <li className="nav-item">
-            <Link to="/" className="nav-link active" style={{ borderRadius: '5px', width: '100%', color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Početna</Link>
-          </li>
           {!prijavljen && (
             <>
+              <li className="nav-item">
+                <Link to="/" className="nav-link active" style={{ borderRadius: '5px', width: '100%', color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Početna</Link>
+              </li>
               <li className="nav-item">
                 <Link to="/Prijava" className="nav-link" style={{ borderRadius: '5px', width: '100%', color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Prijava</Link>
               </li>
@@ -111,10 +111,14 @@ const Pocetna = () => {
         </ul>
       </div>
       <div style={stilProfila}>
-        <Link to={vrstaKorisnika}>
-          <img src="Pozadine/user.jpg" alt="Profile" style={{ width: '70px', height: '70px', borderRadius: '50%' }} />
-        </Link>
-        {prijavljen && <Odjava style={stilDugmetaOdjave} />}
+      {prijavljen && (
+        <>
+          <Link to={vrstaKorisnika}>
+            <img src="Pozadine/user.jpg" alt="Profile" style={{ width: '70px', height: '70px', borderRadius: '50%' }} />
+          </Link>
+          <Odjava style={stilDugmetaOdjave} />
+        </>
+      )}
       </div>
       <div className="prostor" style={stilProstoraZaProizvode}>
         {podaci.map((proizvod, index) => (

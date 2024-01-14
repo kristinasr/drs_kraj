@@ -14,7 +14,6 @@ const DodavanjeKartice = () => {
         width: '350px',
         padding: '20px',
         borderRadius: '8px',
-        boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
         border:'1px inset #3d2b1f',
     };
 
@@ -37,7 +36,7 @@ const DodavanjeKartice = () => {
         padding: '10px',
         marginBottom: '15px',
         boxSizing: 'border-box',
-        border: '1px solid #ccc',
+        border: '1px solid white',
         borderRadius: '4px',
     };
 
@@ -84,12 +83,11 @@ const DodavanjeKartice = () => {
         } else if (!/^[0-9]{16}$/.test(brojKartice)) {
             alert('Polje mora sadrzati 16 brojeva!');
         } else if (!/^(0[1-9]|1[0-2])\/[0-9]{2}$/.test(datumIsteka)) {
-            alert('Polje mora biti popunjeno u fomratu MM/YY!');
+            alert('Polje mora biti popunjeno u formatu MM/YY!');
         } else if (!/^[0-9]{3}$/.test(cvv)) {
             alert('Polje mora sadrzati 3 broja!');
         } else {
-            axios
-                .post('http://127.0.0.1:5000/KarticaKorisnika', {
+            axios.post('http://127.0.0.1:5000/KarticaKorisnika', {
                     brojKartice: brojKartice,
                     datumIsteka: datumIsteka,
                     cvv: cvv,

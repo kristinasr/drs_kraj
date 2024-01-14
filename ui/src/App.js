@@ -9,10 +9,10 @@ import PracenjeKupovine from './PracenjeKupovine';
 import DodavanjeKartice from './DodajKarticu';
 import IstorijaProizvoda from './KupljeniProizvodi';
 import PrikaziRacun from './Racun';
-import IzmenaKolicine from './IzmenaKolicine';
 import Verifikacija from './Verifikacija';
 import Konverzija from './Konverzija';
 import Odjava from './Odjava';
+import PrikazIzmeneKolicine from './PrikazIzmeneKolicine';
 
 function App() {
   return (
@@ -29,7 +29,7 @@ function App() {
           <Route path="/KarticaKorisnika" element={<DodavanjeKartice />} ></Route>
           <Route path="/IstorijaProizvoda" element={<IstorijaProizvoda />} ></Route>
           <Route path="/Racun" element={<PrikaziRacun />} ></Route>
-          <Route path="/Kolicina" element={<IzmenaKolicine />} ></Route>
+          <Route path="/Kolicina" element={<PrikazIzmeneKolicine />} ></Route>
           <Route path="/Verifikacija" element={<Verifikacija />} ></Route>
           <Route path="/Konverzija" element={<Konverzija />} ></Route>
         </Routes>

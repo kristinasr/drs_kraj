@@ -12,20 +12,20 @@ const Odjava = () => {
   };
 
   const stilOdjave = {
-    display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     padding: '5px',
     width: '100%',
-    color: 'white',
+    color: '#3d2b1f',
     fontWeight: 'bold',
-    backgroundColor: '#3d2b1f',
+    backgroundColor: 'white',
     fontFamily: 'Calibri',
+    borderRadius: '5px',
   };
 
   return (
     <button onClick={odjaviSe} style={stilOdjave}>
-      <img src="Pozadine/signout.png" alt="Odjava" style={{ width: '20px', height: '20px', marginRight: '5px' }} />
+      <img src="Pozadine/signout.png" alt="Odjava" style={{ width: '20px', height: '20px' }} />
       Odjava
     </button>
   );

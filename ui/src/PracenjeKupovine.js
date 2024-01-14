@@ -7,23 +7,10 @@ const PracenjeKupovine = () => {
 
     const [podaci, setPodatke] = useState([]);
 
-    useEffect(() => {
-        const prihvatiPodatke = async () => {
-            try {
-                const response = await axios.get('http://localhost:5000/UzivoKupovina');
-                setPodatke(response.data);
-            } catch (error) {
-                console.error('Greška: ', error);
-            }
-        };
-
-        prihvatiPodatke();
-    }, []);
-
     const stilProstora = {
         textAlign: 'center',
         backgroundColor: 'white',
-        borderRadius: '5px'
+        borderRadius: '5px',
     };
 
     const stilForme = {
@@ -42,26 +29,23 @@ const PracenjeKupovine = () => {
     const stilTabele = {
         width: '100%',
         borderCollapse: 'collapse',
-        marginTop: '20px',
-        borderRadius: '8px',
+        marginTop: '10px',
         overflow: 'hidden',
-        boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
-        border: '1px solid #cd9575',
     };
 
     const stilZaglavljaTabele = {
-        border: '3px solid #cd9575',
+        border: '2px solid #3d2b1f',
         textAlign: 'center',
-        padding: '20px',
+        padding: '10px',
         backgroundColor: '#3d2b1f',
         color: 'white',
         fontFamily: 'Calibri',
     };
 
     const stilReda = {
-        border: '3px solid #cd9575',
+        border: '2px solid #3d2b1f',
         textAlign: 'center',
-        padding: '12px',
+        padding: '10px',
         backgroundColor: '#edc9af',
         fontWeight: 'bold',
         fontFamily: 'Calibri',
@@ -89,6 +73,19 @@ const PracenjeKupovine = () => {
         height: 'auto%',
     }
 
+    useEffect(() => {
+        const prihvatiPodatke = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/UzivoKupovina');
+                setPodatke(response.data);
+            } catch (error) {
+                console.error('Greška: ', error);
+            }
+        };
+
+        prihvatiPodatke();
+    }, []);
+
     return (
         <div style={stilStranice} >
             <div style={stilNavBara}>
@@ -113,7 +110,7 @@ const PracenjeKupovine = () => {
             <div className='pracenjeKupovine'>
                 <div className="prostor" style={stilProstora}>
                     <div className="forma" style={stilForme}>
-                        <h1 style={stilNaslova}>Praćenje kupovina</h1>
+                        <h1 style={stilNaslova}>Kupovine</h1>
                         <table style={stilTabele}>
                             <thead>
                                 <tr>

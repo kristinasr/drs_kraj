@@ -8,7 +8,7 @@ const Verifikacija = () => {
 
     const [podaci, setPodatke] = useState([]);
 
-    const stilProstoraZaKartice = {
+    const stilProstora = {
         display: 'flex',
         justifyContent: 'center',
         flexWrap: 'wrap',
@@ -68,7 +68,7 @@ const Verifikacija = () => {
                     </li>
                 </ul>
             </div>
-            <div className="prostor" style={stilProstoraZaKartice}>
+            <div className="prostor" style={stilProstora}>
                 {podaci.map((kartice, index) => (
                     <VerifikacijaKartice key={index} kartica={kartice} />
                 ))}

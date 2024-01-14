@@ -112,7 +112,7 @@ const PrikaziRacun = () => {
                 </ul>
             </div>
             <div style={stilProstora}>
-                <h2 style={stilNaslova}>Stanje računa</h2>
+                <h2 style={stilNaslova}>Račun</h2>
                 <form style={stilForme}>
                     <label style={stilLabele} htmlFor="brojKartice">
                         Broj kartice:

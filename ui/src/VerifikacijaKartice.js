@@ -7,18 +7,20 @@ const VerifikacijaKartice = ({ kartica }) => {
         width: '300px',
         borderRadius: '8px',
         margin: '80px',
+        backgroundColor: '#3d2b1f',
     };
 
     const stilNaslova = {
         fontFamily: 'Calibri',
         fontWeight: 'bold',
         marginTop: '0',
-        color: '#3d2b1f',
+        color: 'white',
         fontSize: '30px',
-        borderBottom: '1px inset #3d2b1f',
+        borderBottom: '1px solid #3d2b1f',
         padding: '5px',
         marginLeft: '15px',
-        width: 'fit-content'
+        width: 'fit-content',
+        background: '#3d2b1f',
     };
 
     const stilListe = {
@@ -26,7 +28,7 @@ const VerifikacijaKartice = ({ kartica }) => {
         marginRight: '10px',
         marginLeft: '0',
         fontFamily: 'Calibri',
-        color: '#3d2b1f'
+        color: '#3d2b1f',
     };
 
     const stilDugmeta = {

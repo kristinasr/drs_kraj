@@ -18,8 +18,8 @@ const Registracija = () => {
     const stilProstora = {
         textAlign: 'center',
         backgroundColor: '#836953',
-        width: '450px',
-        height: '410px',
+        width: '400px',
+        height: '450px',
         border: '1px inset #3d2b1f',
         borderRadius:'5px',
     };
@@ -27,18 +27,25 @@ const Registracija = () => {
     const stilForme = {
         display: 'inline-block',
         textAlign: 'left',
+        margin: 20,
     };
 
     const stilLabele = {
         fontFamily: 'Calibri',
         fontWeight: 'bold',
-        marginTop: 0,
+        marginTop: 2,
         color:'white',
+        display: 'block',
     };
 
     const stilUnosa = {
         fontFamily: 'Calibri',
         color: 'black',
+        width: '100%',
+        boxSizing: 'border-box',
+        border: '1px solid white',
+        borderRadius: '3px',
+        padding: '2px',
     };
 
     const stilDugmeta = {
@@ -47,12 +54,12 @@ const Registracija = () => {
         backgroundColor: "#3d2b1f",
         color: 'white',
         border: '0.5px solid #3d2b1f',
+        margin: 10,
     };
 
     const stilNaslova = {
         fontFamily: 'Calibri',
         fontWeight: 'bold',
-        marginTop: 0,
         textAlign: 'center',
         color:'white',
     };

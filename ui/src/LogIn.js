@@ -13,7 +13,7 @@ const Prijava = () => {
         textAlign: 'center',
         backgroundColor: '#836953',
         width: '350px',
-        height: '190px',
+        height: '200px',
         border: '1px inset #3d2b1f',
         borderRadius:'5px',
     };
@@ -21,6 +21,7 @@ const Prijava = () => {
     const stilForme = {
         display: 'inline-block',
         textAlign: 'left',
+        margin: 10,
     };
 
     const stilLabele = {
@@ -28,11 +29,17 @@ const Prijava = () => {
         fontWeight: 'bold',
         marginTop: 0,
         color:'white',
+        display: 'block',
     };
 
     const stilUnosa = {
         fontFamily: 'Calibri',
         color: 'black',
+        width: '100%',
+        boxSizing: 'border-box',
+        border: '1px solid white',
+        borderRadius: '3px',
+        padding: '2px',
     };
 
     const stilDugmeta = {
@@ -41,12 +48,12 @@ const Prijava = () => {
         border: '0.5px solid #3d2b1f',
         backgroundColor:'#3d2b1f',
         color:'white',
+        margin: 5,
     };
 
     const stilNaslova = {
         fontFamily: 'Calibri',
         fontWeight: 'bold',
-        marginTop: 0,
         textAlign: 'center',
         color: 'white',
     };

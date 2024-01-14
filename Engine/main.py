@@ -78,7 +78,7 @@ admin = Korisnik(
         lozinka= 'secernisan1234!'
     )
 
-karticaAdmin = Kartica('9876543210987654', '17/27', '987', '0', 'RSD', admin.email, "DA")
+karticaAdmin = Kartica('9876543210987654', '17/27', '987', '0', 'USD', admin.email, "DA")
 
 korisnici = procitajKorisnikaIzBaze()
 proizvodi = procitajProizvodIzBaze()
@@ -348,50 +348,51 @@ def prikaziKupljeneProizvode():
 
     response_data = [
         {
-            'slika':proizvod.slika,
+            'slika': proizvod.slika,
             'proizvod': proizvod.naziv,
             'cena': proizvod.cena,
             'valuta': proizvod.valuta,
-            'kupac': next((kupovina.kupac for kupovina in kupovine if kupovina.proizvod == proizvod.naziv), ''),
-            'vreme': next((kupovina.datumKupovine for kupovina in kupovine if kupovina.proizvod == proizvod.naziv), '')
+            'kupac': ', '.join([kupovina.kupac for kupovina in kupovine if kupovina.proizvod == proizvod.naziv] if [kupovina.kupac for kupovina in kupovine if kupovina.proizvod == proizvod.naziv] else []),
+            'vreme': ', '.join([formatiraj_vreme(kupovina.datumKupovine) for kupovina in kupovine if kupovina.proizvod == proizvod.naziv] if [formatiraj_vreme(kupovina.datumKupovine) for kupovina in kupovine if kupovina.proizvod == proizvod.naziv] else [])  
         }
         for proizvod in proizvodi
     ]
 
     return jsonify(response_data), 200
 
+
 @app.route('/Naruci', methods=['POST'])
 def naruciProizvod():
     global kupovine
 
-    proizvod = request.json['nazivProizvoda']
+    nazivProizvoda = request.json['nazivProizvoda']
     cena = request.json['cena']
     cena = request.json['cena']
     valuta = request.json['valuta']
     kolicina = request.json['kolicina']
-    zarada = request.json['zarada']
+    zaradaAdmina = request.json['zaradaAdmina']
 
-    kupovina = Kupovina(proizvod, prijavljenKorisnik.email, kolicina, cena, valuta, str(datetime.now()))
+    kupovina = Kupovina(nazivProizvoda, prijavljenKorisnik.email, kolicina, cena, valuta, str(datetime.now()))
     kupovine.append(kupovina)
 
     proces_kupovine(kupovine)
 
     for kupovina in kupovine:
-        proizvod = pronadjiProizvodPoNazivu(kupovina.proizvod)
-        if proizvod is not None:
-            proizvod.kolicina -= int(kupovina.kolicina)
-            izmeniProizvodUBazi(proizvod)
+        proizvodIzmena = pronadjiProizvodPoNazivu(kupovina.proizvod)
+        if proizvodIzmena is not None:
+            proizvodIzmena.kolicina -= int(kupovina.kolicina)
+            izmeniProizvodUBazi(proizvodIzmena)
 
-        kartica = pronadjiKarticuVlasnika(kupovina.kupac)
-        if kartica is not None:
-            stanje = float(kartica.stanje)
-            stanje -= (float(kupovina.cena) * int(kupovina.kolicina))
-            kartica.stanje = str(stanje)
-            izmeniKarticuUBazi(kartica)
+        karticaKorisnika = pronadjiKarticuVlasnika(kupovina.kupac)
+        if karticaKorisnika is not None:
+            stanjeRacuna = float(karticaKorisnika.stanje)
+            stanjeRacuna -= (float(kupovina.cena) * int(kupovina.kolicina))
+            karticaKorisnika.stanje = str(stanjeRacuna)
+            izmeniKarticuUBazi(karticaKorisnika)
 
         zarada = float(karticaAdmin.stanje)
-        zarada += float(zarada)
-        karticaAdmin.stanje = str(zarada)
+        zarada += float(zaradaAdmina)
+        karticaAdmin.stanje = zarada
         izmeniKarticuUBazi(karticaAdmin)
 
     response_data = {
@@ -416,16 +417,21 @@ def prikaziIstorijuKupovineProizvoda():
     response_data = [
         {
             'slika': p.slika,
-            'nazivProizvoda': p.naziv,
+            'proizvod': p.naziv,
             'cena': p.cena,
             'valuta': p.valuta,
             'kolicina': p.kolicina,
-            'vreme': datetime.now().strftime("%Y.%m.%d %H:%M:%S")
+            'vreme': formatiraj_vreme(kupljeni_proizvodi[p])
         }
         for p in kupljeni_proizvodi
     ]
 
     return jsonify(response_data)
+
+def formatiraj_vreme(vreme_str):
+    datum_i_vreme = datetime.strptime(vreme_str, '%Y-%m-%d %H:%M:%S.%f')
+    formatirano_vreme = datum_i_vreme.strftime('%d.%m.%Y. %H:%M:%S')
+    return formatirano_vreme
 
 @app.route('/KarticaKorisnika', methods=['POST'])
 def dodajKarticu():
@@ -433,7 +439,7 @@ def dodajKarticu():
     datumIsteka = request.json['datumIsteka']
     cvv = request.json.get('cvv')
 
-    kartica = Kartica(brojKartice=brojKartice, datumIsteka=datumIsteka, cvv=cvv, stanje=0.0, valuta="RSD", vlasnik=prijavljenKorisnik.email, odobrena="NE")
+    kartica = Kartica(brojKartice=brojKartice, datumIsteka=datumIsteka, cvv=cvv, stanje=0.0, valuta="USD", vlasnik=prijavljenKorisnik.email, odobrena="NE")
     dodajKarticuUBazu(kartica)
 
     app.logger.info(f"\nBroj kartice: {brojKartice}\nDatum isteka: {datumIsteka}\nCVV: {cvv}")

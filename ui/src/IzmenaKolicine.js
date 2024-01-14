@@ -1,86 +1,78 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
-import PrikazIzmeneKolicine from './PrikazIzmeneKolicine'
 
-const IzmenaKolicine = () => {
+const IzmenaKolicine = ({ proizvod }) => {
 
-    const [podaci, setPodatke] = useState([]);
+    const [kolicina, setKolicina] = useState(proizvod.kolicina);
 
-    const stilProstoraKartica = {
-        display: 'flex',
-        justifyContent: 'center',
-        flexWrap: 'wrap',
-        gap: '25px'
+    const stilKartice = {
+        width: '18rem'
     };
 
-    const stilStranice = {
-        textAlign: 'center',
-        backgroundSize: 'cover',
-        backgroundImage: `url('Pozadine/pozadinaPocetna.jpg')`,
-        backgroundPosition: 'center',
-        height: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        paddingLeft: '15px',
-        paddingTop: '55px',
-        overflowY: 'auto',
-        minHeight: '100vh',
-        flexDirection: 'column'
-    };
-
-    const stilNavBara = {
-        position: 'fixed',
-        top: 0,
-        left: 0,
+    const stilSlike = {
         width: '100%',
-        zIndex: 1000
+        height: '80%'
+    };
+
+    const stilDugmeta = {
+        width: '40px',
+        height: '40px',
+        color:'black',
+        border: '0.5px inset #3d2b1f',
+        fontFamily: 'Calibri',
+        fontWeight: 'bold',
+    };
+
+    const izmenaDugme = {
+        color:'black',
+        border: '0.5px inset #3d2b1f',
+        fontFamily: 'Calibri',
+    }
+    
+    const povecavanjeKolicine = () => {
+        setKolicina(kolicina + 1);
     }
 
-   
-    useEffect(() => {
-        const prihvatiPodatke = async () => {
-            try {
-                const response = await axios.get('http://localhost:5000/Kolicina');
-                setPodatke(response.data);
-            } catch (error) {
-                console.error('Greška:', error);
-            }
-        };
+    const smanjivanjeKolicine = () => {
+        if (kolicina > 0) {
+            setKolicina(kolicina - 1);
+        }
+        if (kolicina <= 0) {
+            alert("Ne možete smanjiti količinu proizvoda!");
+        }
+    }
 
-        prihvatiPodatke();
-    }, []);
+    const potvrdiIzmenuKolicineProizvoda = () => {
+        axios.put('http://127.0.0.1:5000/Kolicina', {
+            naziv: proizvod.naziv,
+            cena: proizvod.cena,
+            valuta: proizvod.valuta,
+            kolicina: kolicina,
+            slika: proizvod.slika
+        })
+        alert("Izmena količine proizvoda je uspešna!");
+    }
 
     return (
-        <div className='pocetnaStranica' style={stilStranice}>
-            <div style={stilNavBara}>
-                <ul className="nav nav-tabs nav-justified">
-                    <li className="nav-item">
-                        <Link to="/" className="nav-link" style={{ borderRadius:'5px',color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Početna</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link to="/Proizvod" className="nav-link" style={{ borderRadius:'5px', color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Dodavanje proizvoda</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link to="/Kolicina" className="nav-link active" style={{ borderRadius:'5px', color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Izmena količine proizvoda</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link to="/UzivoKupovina" className="nav-link" style={{ borderRadius:'5px', color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Praćenje kupovina</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link to="/Verifikacija" className="nav-link" style={{ borderRadius:'5px', color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Verifikacija</Link>
-                    </li>
-                </ul>
+        <div className="card" style={stilKartice}>
+            <img src={proizvod.slika} className="card-img-top" alt={proizvod.naziv} style={stilSlike} />
+            <div className="card-body" style={{ marginTop: '50px' }}>
+                <h5 className="card-title">{proizvod.naziv}</h5>
             </div>
-            <div className="prostorKartica" style={stilProstoraKartica}>
-                {podaci.map((proizvod, index) => (
-                    <PrikazIzmeneKolicine key={index} proizvod={proizvod} />
-                ))}
-            </div>
+            <ul className="list-group list-group-flush">
+                <li className="list-group-item">Cena: {proizvod.cena} {proizvod.valuta}</li>
+                <li className="list-group-item">Količina: {kolicina}</li>
+                <li className="list-group-item">
+                    <button className="btn btn-outline-success" style={stilDugmeta} onClick={povecavanjeKolicine}>+</button>
+                    <button className="btn btn-outline-success" style={stilDugmeta} onClick={smanjivanjeKolicine}>-</button>
+                </li>
+                <li className="list-group-item">
+                    <button className="btn btn-outline-success" style={izmenaDugme} onClick={potvrdiIzmenuKolicineProizvoda}>Izmeni</button>
+                </li>
+            </ul>
         </div>
     );
-}
+};
 
 export default IzmenaKolicine;

@@ -72,7 +72,7 @@ const Konverzija = () => {
         padding: '10px',
         marginBottom: '15px',
         boxSizing: 'border-box',
-        border: '1px solid #ccc',
+        border: '1px solid white',
         borderRadius: '4px'
     };
 
@@ -108,7 +108,7 @@ const Konverzija = () => {
         marginTop: '20px',
         marginBottom: '20px',
         color: 'white',
-        marginLeft: '85px'
+        marginLeft: '90px'
     };
 
     const stilStranice = {
@@ -243,35 +243,35 @@ const Konverzija = () => {
             <div style={stilProstora1}>
                 <form style={stilForme}>
                     <h2 style={stilNaslova}>Uplata na račun</h2>
-                    <label style={stilLabele} htmlFor="email">
+                    <label style={stilLabele} htmlFor="email1">
                         Email:
                     </label>
                     <input
                         style={stilUnosa}
                         type="text"
-                        id="email"
+                        id="email1"
                         readOnly={true}
                         value={email}
                     />
-                    <label style={stilLabele} htmlFor="brojKartice">
+                    <label style={stilLabele} htmlFor="brojKartice1">
                         Broj kartice:
                     </label>
                     <input
                         style={stilUnosa}
                         type="text"
-                        id="brojKartice"
+                        id="brojKartice1"
                         maxLength={16}
                         readOnly={true}
                         value={brojKartice}
                     />
-                    <label style={stilLabele} htmlFor="iznos">
+                    <label style={stilLabele} htmlFor="iznos1">
                         Iznos:
                     </label>
                     <div style={{ display: 'flex', gap: '10px' }}>
                         <input
                             style={stilUnosa}
                             type="number"
-                            id="iznos"
+                            id="iznos1"
                             value={iznos}
                             onChange={(e) => setIznos(e.target.value)}
                         />
@@ -298,7 +298,7 @@ const Konverzija = () => {
             </div>
             <div style={stilProstora2}>
                 <form style={stilForme}>
-                    <h2 style={stilNaslova}>Konverzija</h2>
+                    <h2 style={stilNaslova}>Konverzija valuta</h2>
                     <label style={stilLabele} htmlFor="email2">
                         Email:
                     </label>

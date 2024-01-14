@@ -58,4 +58,4 @@ insert into proizvod (naziv, cena, valuta, kolicina, slika) values ("Chocco", 55
 insert into proizvod (naziv, cena, valuta, kolicina, slika) values ("Cherry", 590, "RSD", 20, "Proizvodi/cherry.jpg");
 insert into proizvod (naziv, cena, valuta, kolicina, slika) values ("Plazma", 490, "RSD", 3, "Proizvodi/plazma.jpg");
 
-insert into kartica (brojKartice, datumIsteka, cvv, stanje, valuta, vlasnik, odobrena) values ("9876543210987654", "17/27", "987", 0, "RSD", "secernisanns@gmail.com", "DA");
+insert into kartica (brojKartice, datumIsteka, cvv, stanje, valuta, vlasnik, odobrena) values ("9876543210987654", "17/27", "987", 0, "USD", "secernisanns@gmail.com", "DA");
