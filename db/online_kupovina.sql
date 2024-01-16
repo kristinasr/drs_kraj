@@ -2,7 +2,7 @@ create database online_kupovina;
 
 use online_kupovina;
 
-create table korisnik
+create table Korisnik
 (
     id INT PRIMARY KEY not null AUTO_INCREMENT,
     ime varchar(45) not null,
@@ -15,7 +15,7 @@ create table korisnik
     lozinka varchar(45) not null
 );
 
-create table proizvod
+create table Proizvod
 (
     id INT PRIMARY KEY not null AUTO_INCREMENT,
     naziv varchar(45) not null UNIQUE,
@@ -25,7 +25,7 @@ create table proizvod
     slika varchar(45) not null
 );
 
-create table kartica
+create table Kartica
 (
     id INT PRIMARY KEY not null AUTO_INCREMENT,
     brojKartice varchar(16) not null UNIQUE,
@@ -35,10 +35,10 @@ create table kartica
     valuta varchar(3) not null,
     vlasnik varchar(45) not null,
     odobrena varchar(2) not null,
-    FOREIGN KEY (vlasnik) REFERENCES korisnik(email)
+    FOREIGN KEY (vlasnik) REFERENCES Korisnik(email)
 );
 
-create table kupovina (
+create table Kupovina (
     id INT PRIMARY KEY not null AUTO_INCREMENT,
     proizvod varchar(45),
     kupac varchar(45),
@@ -46,16 +46,16 @@ create table kupovina (
     cena float,
     valuta varchar(45),
     datumKupovine varchar(45),
-    FOREIGN KEY (kupac) REFERENCES korisnik(email),
-    FOREIGN KEY (proizvod) REFERENCES proizvod(naziv)
+    FOREIGN KEY (kupac) REFERENCES Korisnik(email),
+    FOREIGN KEY (proizvod) REFERENCES Proizvod(naziv)
 );
 
-insert into korisnik (ime, prezime, adresa, grad, drzava, brojTelefona, email, lozinka) values ("admin", "admin", "Balzakova 65", "Subotica", "Srbija", "024567876", "secernisanns@gmail.com", "secernisan1234!");
+insert into Korisnik (ime, prezime, adresa, grad, drzava, brojTelefona, email, lozinka) values ("admin", "admin", "Balzakova 65", "Subotica", "Srbija", "024567876", "secernisanns@gmail.com", "secernisan1234!");
 
-insert into proizvod (naziv, cena, valuta, kolicina, slika) values ("Nugat", 520, "RSD", 5, "Proizvodi/nugat.jpg");
-insert into proizvod (naziv, cena, valuta, kolicina, slika) values ("Pistać Malina", 590, "RSD", 3, "Proizvodi/pistacmalina.jpg");
-insert into proizvod (naziv, cena, valuta, kolicina, slika) values ("Chocco", 550, "RSD", 8, "Proizvodi/choco.jpg");
-insert into proizvod (naziv, cena, valuta, kolicina, slika) values ("Cherry", 590, "RSD", 20, "Proizvodi/cherry.jpg");
-insert into proizvod (naziv, cena, valuta, kolicina, slika) values ("Plazma", 490, "RSD", 3, "Proizvodi/plazma.jpg");
+insert into Proizvod (naziv, cena, valuta, kolicina, slika) values ("Nugat", 520, "RSD", 5, "Proizvodi/nugat.jpg");
+insert into Proizvod (naziv, cena, valuta, kolicina, slika) values ("Pistać Malina", 590, "RSD", 3, "Proizvodi/pistacmalina.jpg");
+insert into Proizvod (naziv, cena, valuta, kolicina, slika) values ("Chocco", 550, "RSD", 8, "Proizvodi/choco.jpg");
+insert into Proizvod (naziv, cena, valuta, kolicina, slika) values ("Cherry", 590, "RSD", 20, "Proizvodi/cherry.jpg");
+insert into Proizvod (naziv, cena, valuta, kolicina, slika) values ("Plazma", 490, "RSD", 3, "Proizvodi/plazma.jpg");
 
-insert into kartica (brojKartice, datumIsteka, cvv, stanje, valuta, vlasnik, odobrena) values ("9876543210987654", "17/27", "987", 0, "USD", "secernisanns@gmail.com", "DA");
+insert into Kartica (brojKartice, datumIsteka, cvv, stanje, valuta, vlasnik, odobrena) values ("9876543210987654", "17/27", "987", 0, "USD", "secernisanns@gmail.com", "DA");

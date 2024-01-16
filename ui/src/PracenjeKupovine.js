@@ -45,7 +45,7 @@ const PracenjeKupovine = () => {
     const stilReda = {
         border: '2px solid #3d2b1f',
         textAlign: 'center',
-        padding: '10px',
+        padding: '8px',
         backgroundColor: '#edc9af',
         fontWeight: 'bold',
         fontFamily: 'Calibri',
@@ -70,7 +70,7 @@ const PracenjeKupovine = () => {
     
     const stilSlike = {
         width: '100px',
-        height: 'auto%',
+        height: 'auto',
     }
 
     useEffect(() => {

@@ -3,13 +3,15 @@ import { Link } from 'react-router-dom';
 import PrikazProizvoda from './PrikazProizvoda';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import Odjava from './Odjava'; // Dodajte import za Odjava
+import Odjava from './Odjava';
 
 const Pocetna = () => {
   const [podaci, setPodatke] = useState([]);
   const [vrstaKorisnika, setVrstuKorisnika] = useState([]);
   const [kartica, setKartice] = useState([]);
   const [prijavljen, setPrijavljen] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [email, setEmail] = useState("");
 
   const stilProstoraZaProizvode = {
     display: 'flex',
@@ -71,17 +73,21 @@ const Pocetna = () => {
         const response = await axios.get('http://localhost:5000/');
         setPodatke(response.data.proizvodi);
         setKartice(response.data.kartica);
-        const email = response.data.email;
+        const userEmail = response.data.email;
+        setEmail(userEmail); 
 
-        if (email === '') {
+        if (userEmail === '') {
           setVrstuKorisnika('/');
           setPrijavljen(false);
-        } else if (email === 'secernisanns@gmail.com') {
+          setIsAdmin(true);
+        } else if (userEmail === 'secernisanns@gmail.com') {
           setVrstuKorisnika('/Proizvod');
           setPrijavljen(true);
+          setIsAdmin(true);
         } else {
           setVrstuKorisnika('/Profil');
           setPrijavljen(true);
+          setIsAdmin(false);
         }
       } catch (error) {
         console.error('Greška:', error);
@@ -122,7 +128,7 @@ const Pocetna = () => {
       </div>
       <div className="prostor" style={stilProstoraZaProizvode}>
         {podaci.map((proizvod, index) => (
-          <PrikazProizvoda key={index} proizvod={proizvod} kartica={kartica} />
+          <PrikazProizvoda key={index} proizvod={proizvod} kartica={kartica} isAdmin={prijavljen && email === 'secernisanns@gmail.com' || email === ''}/>
         ))}
       </div>
     </div>

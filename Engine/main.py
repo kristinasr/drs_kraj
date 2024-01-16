@@ -367,7 +367,6 @@ def naruciProizvod():
 
     nazivProizvoda = request.json['nazivProizvoda']
     cena = request.json['cena']
-    cena = request.json['cena']
     valuta = request.json['valuta']
     kolicina = request.json['kolicina']
     zaradaAdmina = request.json['zaradaAdmina']
@@ -390,9 +389,9 @@ def naruciProizvod():
             karticaKorisnika.stanje = str(stanjeRacuna)
             izmeniKarticuUBazi(karticaKorisnika)
 
-        zarada = float(karticaAdmin.stanje)
-        zarada += float(zaradaAdmina)
-        karticaAdmin.stanje = zarada
+        zaradaAdmina = float(karticaAdmin.stanje)
+        zaradaAdmina += float(kupovina.cena) * int(kupovina.kolicina)
+        karticaAdmin.stanje = str(zaradaAdmina)
         izmeniKarticuUBazi(karticaAdmin)
 
     response_data = {

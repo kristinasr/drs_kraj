@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import PotvrdaKupovine from './PotvrdaKupovine';
 
-const PrikazProizvoda = ({ proizvod, kartica }) => {
+const PrikazProizvoda = ({ proizvod, kartica, isAdmin }) => {
 
     const [showModal, setShowModal] = useState(false);
     const handleOpenModal = () => setShowModal(true);
@@ -34,7 +34,7 @@ const PrikazProizvoda = ({ proizvod, kartica }) => {
                 <li className="list-group-item">Cena: {proizvod.cena} {proizvod.valuta}</li>
                 <li className="list-group-item">Količina: {proizvod.kolicina}</li>
                 <li className="list-group-item">
-                    <button className="btn btn-outline-success" onClick={handleOpenModal} style={stilDugmeta} >Naruči</button>
+                    <button className="btn btn-outline-success" onClick={handleOpenModal} style={stilDugmeta} disabled={isAdmin ? true : false}>Naruči</button>
                 </li>
                 <PotvrdaKupovine showModal={showModal} handleCloseModal={handleCloseModal} nazivProizvoda={proizvod.naziv} cenaProizvoda={proizvod.cena} valutaProizvoda={proizvod.valuta} kartica={kartica}/>
             </ul>

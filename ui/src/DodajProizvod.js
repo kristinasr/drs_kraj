@@ -131,7 +131,7 @@ const DodajProizvod = () => {
                 </div>
                 <div className="prostor" style={stilProstora}>
                     <div className="forma" style={stilForme}>
-                        <h1 style={stilNaslova}>Proizvod</h1>
+                        <h1 style={stilNaslova}>Novi proizvod</h1>
                         <table style={{ margin: 'auto', borderSpacing: '0 5px', borderCollapse: 'separate' }}>
                             <tr>
                                 <th style={stilLabele}>Naziv:</th>
