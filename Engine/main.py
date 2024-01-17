@@ -5,7 +5,7 @@ from Kartica import *
 from putanjaDoSlike import odrediPutanju
 from datetime import datetime
 from databaseFunctions import *
-from config import request, jsonify, app
+from config import *
 from flask import redirect
 
 # Proizvodi = [
@@ -389,9 +389,9 @@ def naruciProizvod():
             karticaKorisnika.stanje = str(stanjeRacuna)
             izmeniKarticuUBazi(karticaKorisnika)
 
-        zaradaAdmina = float(karticaAdmin.stanje)
-        zaradaAdmina += float(kupovina.cena) * int(kupovina.kolicina)
-        karticaAdmin.stanje = str(zaradaAdmina)
+        zarada = float(karticaAdmin.stanje)
+        zarada += float(zaradaAdmina)
+        karticaAdmin.stanje = str(zarada)
         izmeniKarticuUBazi(karticaAdmin)
 
     response_data = {
@@ -573,4 +573,4 @@ def prikazUplateIKonverzije():
 
 
 if __name__ == "__main__":
-    app.run(debug=True,port=5000)
+    app.run(debug=True, port=5000)

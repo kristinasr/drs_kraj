@@ -1,0 +1,25 @@
+version: '3'
+services:
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password1234
+      MYSQL_DATABASE: online_kupovina
+    ports:
+      - ":3306"
+
+  engine:
+    build: 
+      dockerfile: ./Engine
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+
+  ui:
+    build: ./ui
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
