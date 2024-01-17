@@ -13,6 +13,7 @@ import Verifikacija from './Verifikacija';
 import Konverzija from './Konverzija';
 import Odjava from './Odjava';
 import PrikazIzmeneKolicine from './PrikazIzmeneKolicine';
+import AdminJeZaradio from './AdminZarada';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/Kolicina" element={<PrikazIzmeneKolicine />} ></Route>
           <Route path="/Verifikacija" element={<Verifikacija />} ></Route>
           <Route path="/Konverzija" element={<Konverzija />} ></Route>
+          <Route path="/AdminRacun" element={<AdminJeZaradio/>}></Route>
         </Routes>
       </BrowserRouter>
     </div>

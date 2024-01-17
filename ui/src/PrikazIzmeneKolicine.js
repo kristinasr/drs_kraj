@@ -72,6 +72,9 @@ const PrikazIzmeneKolicine = () => {
                     <li className="nav-item">
                         <Link to="/Verifikacija" className="nav-link" style={{ borderRadius:'5px', color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Verifikacija</Link>
                     </li>
+                    <li className="nav-item">
+                        <Link to="/AdminRacun" className="nav-link" style={{ borderRadius:'5px', color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Admin Racun</Link>
+                    </li>
                 </ul>
             </div>
             <div className="prostorKartica" style={stilProstoraKartica}>

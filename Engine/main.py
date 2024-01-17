@@ -367,6 +367,7 @@ def naruciProizvod():
 
     nazivProizvoda = request.json['nazivProizvoda']
     cena = request.json['cena']
+    cena = request.json['cena']
     valuta = request.json['valuta']
     kolicina = request.json['kolicina']
     zaradaAdmina = request.json['zaradaAdmina']
@@ -454,6 +455,30 @@ def dodajKarticu():
 
 @app.route('/Racun', methods=['GET'])
 def prikaziRacun():
+    kartica = None
+
+    if prijavljenKorisnik is not None:
+        kartica = pronadjiKarticuVlasnika(prijavljenKorisnik.email)
+
+    if kartica is not None and kartica.odobrena == 'DA':
+        response_data = {
+            'brojKartice': kartica.brojKartice,
+            'datumIsteka': kartica.datumIsteka,
+            'stanje': kartica.stanje,
+            'valuta': kartica.valuta
+        }
+        return jsonify(response_data), 200
+    else:
+        response_data = {
+            'brojKartice': '',
+            'datumIsteka': '',
+            'stanje': '',
+            'valuta': ''
+        }
+        return jsonify(response_data), 200
+    
+@app.route('/AdminRacun', methods=['GET'])
+def prikaziAdminRacun():
     kartica = None
 
     if prijavljenKorisnik is not None:
