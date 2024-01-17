@@ -184,6 +184,7 @@ const Konverzija = () => {
             valuta: valuta2
         });
         alert('Konverzija je uspešna.');
+        window.location.reload();
     };
 
     useEffect(() => {

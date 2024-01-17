@@ -58,7 +58,7 @@ const IzmenaKolicine = ({ proizvod }) => {
         <div className="card" style={stilKartice}>
             <img src={proizvod.slika} className="card-img-top" alt={proizvod.naziv} style={stilSlike} />
             <div className="card-body" style={{ marginTop: '50px' }}>
-                <h5 className="card-title">{proizvod.naziv}</h5>
+                <h4 className="card-title">{proizvod.naziv}</h4>
             </div>
             <ul className="list-group list-group-flush">
                 <li className="list-group-item">Cena: {proizvod.cena} {proizvod.valuta}</li>

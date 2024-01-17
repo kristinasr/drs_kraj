@@ -27,13 +27,12 @@ const DodajProizvod = () => {
     const stilForme = {
         display: 'inline-block',
         textAlign: 'left',
-        margin: 10,
+        margin: 15,
     };
 
     const stilLabele = {
         fontFamily: 'Calibri',
         fontWeight: 'bold',
-        marginTop: 0,
         color: 'white',
     };
 
@@ -48,6 +47,7 @@ const DodajProizvod = () => {
         color:'white',
         backgroundColor:'#3d2b1f',
         border:'0.5px solid #3d2b1f',
+        margin: 10,
     };
 
     const stilNaslova = {
@@ -77,8 +77,8 @@ const DodajProizvod = () => {
     useEffect(() => {
         const sveValute = async () => {
             const response = await axios.get('https://api.exchangerate-api.com/v4/latest/USD');
-            const valute = Object.keys(response.data.rates);
-            setValute(valute);
+            const valuteSve = Object.keys(response.data.rates);
+            setValute(valuteSve);
         };
 
         sveValute();

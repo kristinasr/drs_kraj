@@ -235,7 +235,7 @@ def izmeniProfil():
             "lozinka": prijavljenKorisnik.lozinka
         }
 
-    return jsonify(response_data)
+    return jsonify(response_data), 200
 
 @app.route('/Proizvod', methods=['POST'])
 def dodajProizvod():
@@ -425,7 +425,7 @@ def prikaziIstorijuKupovineProizvoda():
         for p in kupljeni_proizvodi
     ]
 
-    return jsonify(response_data)
+    return jsonify(response_data), 200
 
 def formatiraj_vreme(vreme_str):
     datum_i_vreme = datetime.strptime(vreme_str, '%Y-%m-%d %H:%M:%S.%f')
@@ -436,7 +436,7 @@ def formatiraj_vreme(vreme_str):
 def dodajKarticu():
     brojKartice = request.json['brojKartice']
     datumIsteka = request.json['datumIsteka']
-    cvv = request.json.get('cvv')
+    cvv = request.json['cvv']
 
     kartica = Kartica(brojKartice=brojKartice, datumIsteka=datumIsteka, cvv=cvv, stanje=0.0, valuta="USD", vlasnik=prijavljenKorisnik.email, odobrena="NE")
     dodajKarticuUBazu(kartica)

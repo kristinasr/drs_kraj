@@ -128,7 +128,7 @@ const Pocetna = () => {
       </div>
       <div className="prostor" style={stilProstoraZaProizvode}>
         {podaci.map((proizvod, index) => (
-          <PrikazProizvoda key={index} proizvod={proizvod} kartica={kartica} isAdmin={prijavljen && email === 'secernisanns@gmail.com' || email === ''}/>
+          <PrikazProizvoda key={index} proizvod={proizvod} kartica={kartica} isAdmin={(prijavljen && email === 'secernisanns@gmail.com') || email === ''}/>
         ))}
       </div>
     </div>
