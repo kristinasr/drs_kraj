@@ -98,7 +98,7 @@ const AdminJeZaradio = () => {
                         <Link to="/Proizvod" className="nav-link" style={{ borderRadius:'5px', color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Dodavanje proizvoda</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/Kolicina" className="nav-link active" style={{ borderRadius:'5px', color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Izmena količine proizvoda</Link>
+                        <Link to="/Kolicina" className="nav-link" style={{ borderRadius:'5px', color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Izmena količine proizvoda</Link>
                     </li>
                     <li className="nav-item">
                         <Link to="/UzivoKupovina" className="nav-link" style={{ borderRadius:'5px', color: 'white', fontWeight: "bold", backgroundColor: '#3d2b1f', fontFamily: 'Calibri' }}>Praćenje kupovina</Link>
