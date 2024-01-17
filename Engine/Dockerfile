@@ -6,4 +6,4 @@ COPY . /Engine
 
 RUN pip install -r requirements.txt
 
-CMD ["python", "./config.py"]
+CMD ["python", "config.py"]
