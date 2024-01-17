@@ -7,7 +7,7 @@ services:
       MYSQL_ROOT_PASSWORD: password1234
       MYSQL_DATABASE: online_kupovina
     ports:
-      - ":3306"
+      - "3307:3306"
 
   engine:
     build: 
@@ -18,8 +18,9 @@ services:
       - db
 
   ui:
-    build: ./ui
+    build: 
+      dockerfile: ./ui
     ports:
       - "3000:3000"
     depends_on:
-      - db
+      - engine
